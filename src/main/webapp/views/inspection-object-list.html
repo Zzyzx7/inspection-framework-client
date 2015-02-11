@@ -1,26 +1,55 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
+<table><tr><td>
 
-      Search: <input ng-model="query">
-      Sort by:
-      <select ng-model="orderProp">
-        <option value="objectName">Alphabetical</option>
-        <option value="age">Newest</option>
-      </select>
+<table border="1" style="margin:20px;">
+    <tr><th>Assignments</th></tr>
+    <tr><td>Objects</td></tr>
+    <tr><td>List Of Assignments</td></tr>
+    <tr><td>Templates</td></tr>
+    <tr><th>Users</th></tr>
+</table>
 
-    </div>
-    <div class="col-md-10">
-      <!--Body content-->
+</td>
+<td valign="top">
 
-      <ul>
-        <li ng-repeat="inspectionObject in inspectionObjects | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="#/inspectionObjects/{{inspectionObject.id}}" class="thumb"><span>{{inspectionObject.objectName}}</span></a>
-          <p>{{inspectionObject.description}}</p>
-        </li>
-      </ul>
-
-    </div>
-  </div>
+<div style="margin:20px;">
+  Search: <input ng-model="query">
+  Sort by:
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="age">Newest</option>
+</select>
 </div>
+
+<table border="1" style="margin:20px;">
+<thead>
+<tr>
+<th style="min-width:250px;">Assignments</th>
+<th style="min-width:150px;">User Responsible</th>
+<th style="min-width:75px;">Due Date</th>
+<th style="min-width:75px;">Status</th>
+<th style="min-width:75px;">Clear</th>
+</tr>
+</thead>
+<tbody ng-repeat="object in objects | filter:query | orderBy:orderProp">
+<tr>
+<td>
+ <a href="#/objects/{{object.id}}">{{object.assignmentName}}</a>
+</td>
+<td>
+  {{object.user.userName}}
+</td>
+<td>
+  {{object.endDate}}
+</td>
+<td>
+
+</td>
+<td>
+
+</td>
+</tr>
+</tbody>
+</table> 
+
+</td></tr>
+</table>
