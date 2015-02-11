@@ -1,14 +1,9 @@
-var inspectionObjectControllers = angular.module('inspectionObjectControllers', []);
+var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', []);
 
-inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', '$http', 
-  function ($scope, $http) {
-	  $http.get(REST_BACKEND_URL + '/inspectionobject').success(function(data) {
-		  $scope.inspectionObjects = data
-	  })
-	  $scope.orderProp = 'objectName';
-	}]);
+inspectionFrameworkApp.controller('InspectionObjectCtrl', ['$scope', '$http',function ($scope, $http) {
+  $http.get('https://inspection-framework.herokuapp.com/assignment').success(function(data) {
+	$scope.objects = data
+  });
 
-inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams',
-                                                   function($scope, $routeParams) {
-                                                     $scope.inspectionObjectId = $routeParams.inspectionObjectId;
-                                                   }]);
+// if ordered by age, attribute age in json needed                    $scope.orderProp = 'age';
+}]);
