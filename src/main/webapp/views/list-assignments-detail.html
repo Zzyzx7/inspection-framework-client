@@ -1,0 +1,44 @@
+<table border="1px" style="margin:10px;">
+ <tr><td style="padding:10px;">
+ 
+ <table class="tableList">
+ <tr><td>Assignment Name: </td><td>{{object.assignmentName}}</td></tr>
+ <tr><td>Object: </td><td> </td></tr>
+ <tr><td>Due Date: </td><td>{{object.endDate}}</td></tr>
+ <tr><td>Responsible: </td><td>{{object.user.userName}}</td></tr>
+ </table>
+ 
+ <table border="1px" style="margin:10px;" class="tableDefault">
+  <thead><tr>
+   <th>Task</th>
+   <th>Report</th>
+   <th>Display</th>
+  </tr></thead>
+  <tbody ng-repeat="task in object.tasks">
+<tr>
+<td>
+ {{task.taskName}}
+</td>
+<td>
+  {{task.attachmentIds}}
+</td>
+<td>
+
+</td>
+</tr>
+</tbody>
+ </table>
+ 
+ </td>
+ <td style="padding:10px;">
+ 
+ <div>Problem Description:<br>
+ {{object.description}}
+ </div>
+ 
+ <div>Picture:</div>
+ 
+ </td></tr>
+</table>
+
+
