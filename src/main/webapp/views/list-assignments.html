@@ -1,22 +1,11 @@
-<table class="tableDefault"><tr><td>
 
-<table border="1" style="margin:20px;" class="tableDefault">
-    <tr><th>Assignments</th></tr>
-    <tr><td>Objects</td></tr>
-    <tr><td>List Of Assignments</td></tr>
-    <tr><td>Templates</td></tr>
-    <tr><th>Users</th></tr>
-</table>
-
-</td>
-<td valign="top">
 
 <div style="margin:20px;">
   Search: <input ng-model="query">
   Sort by:
 <select ng-model="orderProp">
   <option value="name">Alphabetical</option>
-  <option value="age">Newest</option>
+  <option value="endDate">Newest</option>
 </select>
 </div>
 
@@ -33,7 +22,7 @@
 <tbody ng-repeat="object in objects | filter:query | orderBy:orderProp">
 <tr>
 <td>
- <a href="#/objects/{{object.id}}">{{object.assignmentName}}</a>
+ <a href="#/assignments/{{object.id}}">{{object.assignmentName}}</a>
 </td>
 <td>
   {{object.user.userName}}
@@ -51,5 +40,3 @@
 </tbody>
 </table> 
 
-</td></tr>
-</table>

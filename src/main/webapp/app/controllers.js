@@ -6,7 +6,7 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', '$
                                                      $scope.objects = data;
                                                    });
 
-                                                   //$scope.orderProp = 'age';
+                                                   $scope.orderProp = 'endDate';
                                                  }]);
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', '$http',

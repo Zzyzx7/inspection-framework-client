@@ -5,16 +5,16 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
 		                    function($routeProvider, $locationProvider) {
 		                      $routeProvider.
-		                        when('/objects', {
+		                        when('/assignments', {
 		                          templateUrl: 'views/list-assignments.html',
 		                          controller: 'InspectionObjectListCtrl'
 		                        }).
-		                        when('/objects/:id', {
+		                        when('/assignments/:id', {
 		                          templateUrl: 'views/list-assignments-detail.html',
 		                          controller: 'InspectionObjectDetailCtrl'
 		                        }).
 		                        otherwise({
-		                          redirectTo: '/objects'
+		                          redirectTo: '/'
 		                        });
 		                    }]);
 

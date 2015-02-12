@@ -12,6 +12,17 @@ body {
   width: 100px;
 }
 
+table.login {
+	text-align:center;
+	margin:auto;
+	vertical-align:center;
+	margin-top:50px;
+}
+
+.login td {
+	padding:10px;
+}
+
 .tableList td {
 	padding: 3px;
 	margin: 2px;
@@ -50,10 +61,6 @@ ul.specs > li > span{
 
 ul.specs dt {
   font-weight: bold;
-}
-
-h1 {
-  border-bottom: 1px solid gray;
 }
 
 table tbody 

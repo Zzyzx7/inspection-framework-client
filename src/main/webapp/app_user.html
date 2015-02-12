@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="inspectionFrameworkApp">
+<head>
+  <meta charset="utf-8">
+  <title>Inspection Framework - User</title>
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script src="assets/js/angular.min.js"></script>
+  <script src="app/controllers.js"></script>
+   <script src="assets/js/angular-route.min.js"></script>
+  <script src="app/app.js"></script>
+  <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
+  
+  
+</head>
+<body>
+<table class="tableDefault"><tr><td style="vertical-align:top">
+
+<table border="1" style="margin:10px;" class="tableDefault">
+    <tr><th>Assignments</th></tr>
+    <tr><td>Objects</td></tr>
+    <tr><td><a href="#/assignments">List Of Assignments</a></td></tr>
+    <tr><td>Templates</td></tr>
+    <tr><th>Users</th></tr>
+</table>
+<div style="margin:10px; margin-top:40px; text-align:center;">
+<form action="index.html">
+    <input type="submit" name="commit" value="LOG OUT">
+</form>
+</div>
+</td>
+<td valign="top">
+
+<ng-view></ng-view>
+
+
+</td></tr>
+</table>
+
+</body>
+</html>
