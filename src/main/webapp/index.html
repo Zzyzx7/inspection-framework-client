@@ -2,23 +2,11 @@
 <html ng-app="inspectionFrameworkApp">
 <head>
   <meta charset="utf-8">
-<<<<<<< HEAD
   <title>Inspection Framework - List Of Assignments</title>
-=======
-<<<<<<< HEAD
-  <title>Inspection Framework - List Of Assignments</title>
-=======
-  <title>Inspection Framework Client</title>
->>>>>>> origin/master
->>>>>>> origin/master
   <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="assets/css/app.css">
   <script src="assets/js/angular.min.js"></script>
   <script src="app/controllers.js"></script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
    <script src="assets/js/angular-route.min.js"></script>
   <script src="app/app.js"></script>
   <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
@@ -28,40 +16,6 @@
 <body>
 
 <ng-view></ng-view>
-<<<<<<< HEAD
-=======
-=======
-</head>
-<body ng-controller="InspectionObjectCtrl">
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
-
-      Search: <input ng-model="query">
-      Sort by:
-<select ng-model="orderProp">
-  <option value="name">Alphabetical</option>
-  <option value="age">Newest</option>
-</select>
-
-    </div>
-    <div class="col-md-10">
-      <!--Body content-->
-
-      <ul class="objects">
-        <li ng-repeat="object in objects | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="https://inspection-framework.herokuapp.com/assignment/{{object.id}}">{{object.assignmentName}}</a>
-          
-        </li>
-      </ul>
-
-    </div>
-  </div>
-</div>
->>>>>>> origin/master
->>>>>>> origin/master
 
 </body>
 </html>

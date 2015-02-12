@@ -4,26 +4,6 @@ body {
   padding-top: 20px;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-.phone-images {
-  background-color: white;
-  width: 450px;
-  height: 450px;
-  overflow: hidden;
-  position: relative;
-  float: left;
-}
-
-.phones {
-  list-style: none;
-}
-
->>>>>>> origin/master
->>>>>>> origin/master
 .thumb {
   float: left;
   margin: -0.5em 1em 1.5em 0;
@@ -32,7 +12,6 @@ body {
   width: 100px;
 }
 
-<<<<<<< HEAD
 .tableList td {
 	padding: 3px;
 	margin: 2px;
@@ -51,65 +30,6 @@ table.tableList  {
 	padding: 10px;
 }
 
-=======
-<<<<<<< HEAD
-thead, th {
-	padding: 5px;
-}
-
-td {
-	padding: 10px;
-}
-
-=======
-.phones li {
-  clear: both;
-  height: 115px;
-  padding-top: 15px;
-}
-
-/** Detail View **/
-img.phone {
-  float: left;
-  margin-right: 3em;
-  margin-bottom: 2em;
-  background-color: white;
-  padding: 2em;
-  height: 400px;
-  width: 400px;
-  display: none;
-}
-
-img.phone:first-child {
-  display: block;
-}
-
-
-ul.phone-thumbs {
-  margin: 0;
-  list-style: none;
-}
-
-ul.phone-thumbs li {
-  border: 1px solid black;
-  display: inline-block;
-  margin: 1em;
-  background-color: white;
-}
-
-ul.phone-thumbs img {
-  height: 100px;
-  width: 100px;
-  padding: 1em;
-}
-
-ul.phone-thumbs img:hover {
-  cursor: pointer;
-}
-
-
->>>>>>> origin/master
->>>>>>> origin/master
 ul.specs {
   clear: both;
   margin: 0;
@@ -135,19 +55,10 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 
 table tbody 
 {
    overflow-y: auto;
    max-height: 300px;
 }
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
