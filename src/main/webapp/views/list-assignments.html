@@ -19,16 +19,16 @@
 <th style="min-width:75px;">Clear</th>
 </tr>
 </thead>
-<tbody ng-repeat="object in objects | filter:query | orderBy:orderProp">
+<tbody ng-repeat="assignment in assignments | filter:query | orderBy:orderProp">
 <tr>
 <td>
- <a href="#/assignments/{{object.id}}">{{object.assignmentName}}</a>
+ <a href="#/assignments/{{assignment.id}}">{{assignment.assignmentName}}</a>
 </td>
 <td>
-  {{object.user.userName}}
+  {{assignment.user.userName}}
 </td>
 <td>
-  {{object.endDate}}
+  {{assignment.endDate}}
 </td>
 <td>
 

@@ -1,17 +1,17 @@
-var inspectionObjectControllers = angular.module('inspectionObjectControllers', []);
+var AssignmentControllers = angular.module('AssignmentControllers', []);
 
-inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', '$http',
+AssignmentControllers.controller('AssignmentListCtrl', ['$scope', '$http',
                                                  function ($scope, $http) {
                                                    $http.get('https://inspection-framework.herokuapp.com/assignment').success(function(data) {
-                                                     $scope.objects = data;
+                                                     $scope.assignments = data;
                                                    });
 
                                                    $scope.orderProp = 'endDate';
                                                  }]);
 
-inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', '$http',
+AssignmentControllers.controller('AssignmentDetailCtrl', ['$scope', '$routeParams', '$http',
                                                  function($scope, $routeParams, $http) {
 	$http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id).success(function(data) {
-	      $scope.object = data;
+	      $scope.assignment = data;
 	    });
                                                  }]);

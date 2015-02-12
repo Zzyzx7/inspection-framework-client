@@ -1,17 +1,17 @@
 var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
 	                                                                 'ngRoute',
-	                                                                 'inspectionObjectControllers'
+	                                                                 'AssignmentControllers'
 	                                                               ]);
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
 		                    function($routeProvider, $locationProvider) {
 		                      $routeProvider.
 		                        when('/assignments', {
 		                          templateUrl: 'views/list-assignments.html',
-		                          controller: 'InspectionObjectListCtrl'
+		                          controller: 'AssignmentListCtrl'
 		                        }).
 		                        when('/assignments/:id', {
 		                          templateUrl: 'views/list-assignments-detail.html',
-		                          controller: 'InspectionObjectDetailCtrl'
+		                          controller: 'AssignmentDetailCtrl'
 		                        }).
 		                        otherwise({
 		                          redirectTo: '/'
