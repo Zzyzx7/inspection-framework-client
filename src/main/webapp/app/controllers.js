@@ -32,20 +32,37 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 
 
 
-var assignmentControllers = angular.module('assignmentControllers', []);
+var InspectionAssignmentControllers = angular.module('InspectionAssignmentControllers', []);
 
-assignmentControllers.controller('AssignmentListCtrl', ['$scope', '$http',
-                                                 function ($scope, $http) {
-                                                   $http.get('https://inspection-framework.herokuapp.com/assignment').success(function(data) {
-                                                     $scope.assignments = data;
-                                                   });
+InspectionAssignmentControllers.controller('AssignmentListCtrl', ['$scope', 'InspectionAssignment',
+                                                 function ($scope, InspectionAssignment) {
+                                                   
+                                                     $scope.inspectionassignments = InspectionAssignment.list()
+                             
 
-                                                   $scope.orderProp = 'endDate';
+                                                     $scope.orderProp = 'assignmentName';
                                                  }]);
 
-assignmentControllers.controller('AssignmentDetailCtrl', ['$scope', '$routeParams', '$http',
+InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'InspectionAssignment',
+                                                                 function ($scope, InspectionAssignment) {
+                 													$scope.master = {};
+                 												
+                 												    $scope.save = function(InspectionAssignment) {
+                 												      $scope.inspectionAssignment = angular.copy(inspectionAssignment);
+                 												      InspectionAssignment.save($scope.inspectionAssignment)
+                 												    };
+                 												
+                 												    $scope.reset = function() {
+                 												      $scope.inspectionAssignment = angular.copy($scope.master);
+                 												    };
+                 												
+                 												    $scope.reset();
+                 												 }]);
+
+InspectionAssignmentControllers.controller('AssignmentDetailCtrl', ['$scope', '$routeParams', '$http',
                                                  function($scope, $routeParams, $http) {
 	$http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id).success(function(data) {
 	      $scope.assignment = data;
 	    });
                                                  }]);
+

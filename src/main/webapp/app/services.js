@@ -7,3 +7,13 @@ inspectionObjectServices.factory('InspectionObject', ['$resource',
     	save: {method: 'POST'}
     });
   }]);
+
+var inspectionAssignmentServices = angular.module('inspectionAssignmentServices', ['ngResource']);
+
+inspectionAssignmentServices.factory('InspectionAssignment', ['$resource',
+  function($resource){
+    return $resource('https://inspection-framework.herokuapp.com/assignment', {}, {
+    	list: {method:'GET', isArray:true},
+    	save: {method: 'POST'}
+    });
+  }]);
