@@ -1,0 +1,32 @@
+<form>
+	<table border="1px" style="margin:10px;">
+	 <tr>
+	 
+	 <td style="padding:10px; vertical-align:top;">
+	 
+		 <table class="tableList">
+		 	<tr><td>Inspection Object: </td>
+		 		<td><input name="objectName" ng-model="inspectionobject.objectName" type="text" size="30" maxlength="30" value=""></td></tr>
+		 	<tr><td>Location: </td>
+		 		<td><input name="location" ng-model="inspectionobject.location" type="text" size="30" maxlength="30" value=""></td></tr>
+		 	<tr><td>Customer Name: </td>
+		 		<td><input name="customerName" ng-model="inspectionobject.customerName" type="text" size="30" maxlength="30" value=""></td></tr>
+		 </table>
+	 </td>
+	 <td style="padding:10px; vertical-align:top;">
+	 
+	 <div style="margin:20px;">Object Description:<br>
+	 	<textarea style="margin:5px;" ng-model="inspectionobject.description" name="user_eingabe" cols="50" rows="5"></textarea>
+	 </div>
+	 
+	 <div>Picture:<br>
+		 <img alt="No Picture available" width="200" height="100" src="" >
+	 </div>
+	 <input type="button" ng-click="reset()" value="Reset" />
+	 <input type="submit" ng-click="save(inspectionobject)" value="Save" />
+	
+	 </td>
+	 
+	 </tr>
+	</table>
+</form>
