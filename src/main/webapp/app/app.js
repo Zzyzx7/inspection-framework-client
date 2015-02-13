@@ -1,7 +1,8 @@
 var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
 	                                                                 'ngRoute',
 	                                                                 'inspectionObjectControllers',
-	                                                                 'assignmentControllers'
+	                                                                 'assignmentControllers',
+	                                                                 'inspectionObjectServices'
 	                                                               ]);
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
 		                    function($routeProvider, $locationProvider) {
@@ -10,6 +11,10 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
 		                          templateUrl: 'views/inspection-object-list.html',
 		                          controller: 'InspectionObjectListCtrl'
 		                        }).
+		                        when('/inspectionobject/new', {
+			                          templateUrl: 'views/inspection-object-create.html',
+			                          controller: 'InspectionObjectNewCtrl'
+			                        }).
 		                        when('/inspectionobject/:id', {
 		                          templateUrl: 'views/inspection-object-detail.html',
 		                          controller: 'InspectionObjectDetailCtrl'

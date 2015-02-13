@@ -1,13 +1,26 @@
 var inspectionObjectControllers = angular.module('inspectionObjectControllers', []);
 
-inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', '$http',
-                                                 function ($scope, $http) {
-                                                   $http.get('https://inspection-framework.herokuapp.com/inspectionobject').success(function(data) {
-                                                     $scope.inspectionobjects = data;
-                                                   });
-
-                                                   $scope.orderProp = 'endDate';
+inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'InspectionObject',
+                                                function ($scope, InspectionObject) {
+													$scope.inspectionobjects = InspectionObject.list()
+													$scope.orderProp = 'objectName';
                                                  }]);
+
+inspectionObjectControllers.controller('InspectionObjectNewCtrl', ['$scope', 'InspectionObject',
+                                                function ($scope, InspectionObject) {
+													$scope.master = {};
+												
+												    $scope.save = function(inspectionObject) {
+												      $scope.inspectionObject = angular.copy(inspectionObject);
+												      InspectionObject.save($scope.inspectionObject)
+												    };
+												
+												    $scope.reset = function() {
+												      $scope.inspectionObject = angular.copy($scope.master);
+												    };
+												
+												    $scope.reset();
+												 }]);
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', '$http',
                                                  function($scope, $routeParams, $http) {
@@ -15,6 +28,8 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 	      $scope.object = data;
 	    });
                                                  }]);
+
+
 
 
 var assignmentControllers = angular.module('assignmentControllers', []);
