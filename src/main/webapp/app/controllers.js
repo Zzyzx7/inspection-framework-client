@@ -22,7 +22,7 @@ var assignmentControllers = angular.module('assignmentControllers', []);
 assignmentControllers.controller('AssignmentListCtrl', ['$scope', '$http',
                                                  function ($scope, $http) {
                                                    $http.get('https://inspection-framework.herokuapp.com/assignment').success(function(data) {
-                                                     $scope.objects = data;
+                                                     $scope.assignments = data;
                                                    });
 
                                                    $scope.orderProp = 'endDate';
@@ -31,6 +31,6 @@ assignmentControllers.controller('AssignmentListCtrl', ['$scope', '$http',
 assignmentControllers.controller('AssignmentDetailCtrl', ['$scope', '$routeParams', '$http',
                                                  function($scope, $routeParams, $http) {
 	$http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id).success(function(data) {
-	      $scope.object = data;
+	      $scope.assignment = data;
 	    });
                                                  }]);
