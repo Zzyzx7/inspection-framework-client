@@ -5,12 +5,13 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
         $scope.inspectionobjects = InspectionObject.list();
         $scope.orderProp = 'objectName';
 
-        $scope.deleteItem = function(inspectionObjectId) {
-            InspectionObject.delete({
-                    inspectionobjectid: inspectionObjectId
+        $scope.deleteItem = function(inspectionObject) {
+            var index = $scope.inspectionobjects.indexOf(inspectionObject);
+            InspectionObject.remove({
+                    inspectionobjectid: inspectionObject.id
                 },
                 function(callbackData) {
-                    $scope.inspectionobjects = InspectionObject.list();
+                    $scope.inspectionobjects.splice(index, 1)
                 },
                 function(callbackData) {
                     console.log(callbackData.data.errorMessage);
@@ -19,37 +20,66 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
     }
 ]);
 
-inspectionObjectControllers.controller('InspectionObjectNewCtrl', ['$scope', '$location', 'InspectionObject',
-    function($scope, $location, InspectionObject) {
-        $scope.master = {};
-
-        $scope.save = function(inspectionObject) {
-            $scope.inspectionObject = angular.copy(inspectionObject);
-            $scope.savedInspectionObject = angular.copy(InspectionObject.save($scope.inspectionObject,
+inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$location', '$routeParams', 'InspectionObject',
+    function($scope, $location, $routeParams, InspectionObject) {
+		$scope.formControl = {}
+        if ($routeParams.id == null) {
+        	$scope.formControl.edit = true;
+        	$scope.formControl.cancelPossible = false;
+            $scope.master = {};
+        } else {
+        	$scope.formControl.edit = false;
+        	$scope.formControl.cancelPossible = true;
+            InspectionObject.getDetails({
+                    inspectionobjectid: $routeParams.id
+                },
                 function(callbackData) {
-                    $location.path('/inspectionobject/' + callbackData.id);
+                	$scope.inspectionObject = callbackData;
+                    $scope.master = callbackData;
                 },
                 function(callbackData) {
                     console.log(callbackData.data.errorMessage);
-                }));
+                });
+        }
+
+        $scope.editOn = function() {
+        	$scope.formControl.edit = true;
+        }
+        $scope.editOff = function() {
+        	$scope.formControl.edit = false;
+        }
+
+        $scope.save = function(inspectionObject) {
+        	if(inspectionObject.id == null) {
+	            InspectionObject.save(inspectionObject,
+	                function(callbackData) {
+	                	$scope.inspectionObject = callbackData;
+	                    $scope.master = callbackData;
+	                    $scope.formControl.edit = false;
+	                    $scope.formControl.cancelPossible = true;
+	                },
+	                function(callbackData) {
+	                    console.log(callbackData.data.errorMessage);
+                });
+        	} else {
+                inspectionObject.$update({
+                    inspectionobjectid: inspectionObject.id
+                },
+                function(callbackData) {
+                    $scope.master = inspectionObject;
+                    $scope.editOff();
+                },
+                function(callbackData) {
+                    console.log(callbackData.data.errorMessage);
+                });
+        	}
         };
 
         $scope.reset = function() {
             $scope.inspectionObject = angular.copy($scope.master);
         };
-
-        $scope.reset();
     }
 ]);
-
-inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', '$http',
-    function($scope, $routeParams, $http) {
-        $http.get('https://inspection-framework.herokuapp.com/inspectionobject/' + $routeParams.id).success(function(data) {
-            $scope.object = data;
-        });
-    }
-]);
-
 
 var InspectionAssignmentControllers = angular.module('inspectionAssignmentControllers', []);
 
