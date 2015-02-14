@@ -67,7 +67,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'Insp
     function($scope, InspectionAssignment) {
         $scope.master = {};
 
-        $scope.save = function(InspectionAssignment) {
+        $scope.save = function(inspectionAssignment) {
             $scope.inspectionAssignment = angular.copy(inspectionAssignment);
             InspectionAssignment.save($scope.inspectionAssignment)
         };
