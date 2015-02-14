@@ -7,10 +7,16 @@ inspectionObjectServices.factory('InspectionObject', ['$resource',
                 method: 'GET',
                 isArray: true
             },
+            'getDetails': {
+                method: 'GET'
+            },
             'save': {
                 method: 'POST'
             },
-            'delete': {
+            'update': {
+            	method: 'PUT'
+            },
+            'remove': {
                 method: 'DELETE'
             }
         });

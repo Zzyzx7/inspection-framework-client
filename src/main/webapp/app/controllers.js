@@ -5,12 +5,13 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
         $scope.inspectionobjects = InspectionObject.list();
         $scope.orderProp = 'objectName';
 
-        $scope.deleteItem = function(inspectionObjectId) {
-            InspectionObject.delete({
-                    inspectionobjectid: inspectionObjectId
+        $scope.deleteItem = function(inspectionObject) {
+            var index = $scope.inspectionobjects.indexOf(inspectionObject);
+            InspectionObject.remove({
+                    inspectionobjectid: inspectionObject.id
                 },
                 function(callbackData) {
-                    $scope.inspectionobjects = InspectionObject.list();
+                    $scope.inspectionobjects.splice(index, 1)
                 },
                 function(callbackData) {
                     console.log(callbackData.data.errorMessage);
@@ -21,6 +22,19 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
 
 inspectionObjectControllers.controller('InspectionObjectNewCtrl', ['$scope', '$location', 'InspectionObject',
     function($scope, $location, InspectionObject) {
+		var edit = true;
+		
+        $scope.editOn = function() {
+        	edit = true;
+        }
+        $scope.editOff = function() {
+        	edit = false;
+        }
+        
+        $scope.showEdit = function() {
+        	return edit;
+        }
+        
         $scope.master = {};
 
         $scope.save = function(inspectionObject) {
@@ -42,11 +56,59 @@ inspectionObjectControllers.controller('InspectionObjectNewCtrl', ['$scope', '$l
     }
 ]);
 
-inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', '$http',
-    function($scope, $routeParams, $http) {
-        $http.get('https://inspection-framework.herokuapp.com/inspectionobject/' + $routeParams.id).success(function(data) {
-            $scope.object = data;
-        });
+inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$routeParams', 'InspectionObject',
+    function($scope, $routeParams, InspectionObject) {
+		var edit = false;
+		
+	    $scope.editOn = function() {
+	    	edit = true;
+	    }
+	    $scope.editOff = function() {
+	    	$scope.reset();
+	    	edit = false;
+	    }
+	    
+	    $scope.showEdit = function() {
+	    	return edit;
+	    }
+	    
+	    $scope.inspectionObject = InspectionObject.getDetails({
+            inspectionobjectid: $routeParams.id
+        	},
+        	function(callbackData) {
+        		$scope.master = callbackData;
+        	},
+            function(callbackData) {
+                console.log(callbackData.data.errorMessage);
+            });
+	    
+        $scope.save = function(inspectionObject) {
+        	inspectionObject.$update(
+        		{ inspectionobjectid: inspectionObject.id
+        		},
+                function(callbackData) {
+        			$scope.master = inspectionObject;
+            		$scope.editOff();
+                },
+                function(callbackData) {
+                    console.log(callbackData.data.errorMessage);
+                });
+        };
+        
+        $scope.reset = function() {
+            $scope.inspectionObject = angular.copy($scope.master);
+        };
+	    
+	    /*InspectionObject.remove({
+            inspectionobjectid: inspectionObject.id
+        },
+        function(callbackData) {
+            $scope.inspectionobjects.splice(index, 1)
+        },
+        function(callbackData) {
+            console.log(callbackData.data.errorMessage);
+        });*/
+	
     }
 ]);
 

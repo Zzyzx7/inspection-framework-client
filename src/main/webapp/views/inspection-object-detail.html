@@ -1,43 +1,44 @@
-<table border="1px" style="margin:10px;">
-    <tr>
-        <td style="padding:10px; vertical-align:top;">
-            <form action="post"></form>
-            <table class="tableList">
-                <tr>
-                    <td>Inspection Object: </td>
-                    <td>
-                        <input name="assignmentName" type="text" size="30" maxlength="30" value="{{object.assignmentName}}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Object: </td>
-                    <td>
-                        <input name="object" type="text" size="30" maxlength="30" value="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Due Date: </td>
-                    <td>
-                        <input name="dueDate" type="text" size="30" maxlength="30" value="{{object.endDate}}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Responsible: </td>
-                    <td>
-                        <input name="responsible" type="text" size="30" maxlength="30" value="{{object.user.userName}}">
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td style="padding:10px; vertical-align:top;">
-            <div style="margin:20px;">Problem Description:
-                <br>
-                <textarea style="margin:5px;" name="user_eingabe" cols="50" rows="5">{{object.description}}</textarea>
-            </div>
-            <div>Picture:
-                <br>
-                <img alt="No Picture available" width="200" height="100" src="">
-            </div>
-        </td>
-    </tr>
-</table>
+<form>
+    <table border="1px" style="margin:10px;">
+        <tr>
+            <td style="padding:10px; vertical-align:top;">
+                <table class="tableList">
+                    <tr>
+                        <td>Inspection Object: </td>
+                        <td>
+                            <input name="objectName" ng-model="inspectionObject.objectName" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Location: </td>
+                        <td>
+                            <input name="location" ng-model="inspectionObject.location" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name: </td>
+                        <td>
+                            <input name="customerName" ng-model="inspectionObject.customerName" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td style="padding:10px; vertical-align:top;">
+                <div style="margin:20px;">Object Description:
+                    <br>
+                    <textarea style="margin:5px;" ng-model="inspectionObject.description" name="user_eingabe" cols="50" rows="5"></textarea>
+                </div>
+
+                <div>Picture:
+                    <br>
+                    <img alt="No Picture available" width="200" height="100" src="">
+                </div>
+                <input ng-hide="showEdit()" type="button" ng-click="editOn()" value="Edit" />
+                <input ng-show="showEdit()" type="button" ng-click="editOff()" value="Cancel" />
+                <input ng-show="showEdit()" type="button" ng-click="reset()" value="Reset" />
+                <input ng-show="showEdit()" type="button" ng-click="save(inspectionObject)" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>

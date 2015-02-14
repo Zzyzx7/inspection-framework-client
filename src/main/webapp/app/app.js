@@ -14,7 +14,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
             controller: 'InspectionObjectListCtrl'
         }).
         when('/inspectionobject/new', {
-            templateUrl: 'views/inspection-object-create.html',
+            templateUrl: 'views/inspection-object-detail.html',
             controller: 'InspectionObjectNewCtrl'
         }).
         when('/inspectionobject/:id', {
