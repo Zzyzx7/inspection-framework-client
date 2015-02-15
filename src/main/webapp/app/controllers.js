@@ -22,19 +22,21 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$location', '$routeParams', 'InspectionObject',
     function($scope, $location, $routeParams, InspectionObject) {
-		$scope.formControl = {}
+		
+        $scope.formControl = {}
         if ($routeParams.id == null) {
-        	$scope.formControl.edit = true;
-        	$scope.formControl.cancelPossible = false;
+            $scope.formControl.edit = true;
+            $scope.formControl.cancelPossible = false;
             $scope.master = {};
+            $scope.inspectionObject = {};
         } else {
-        	$scope.formControl.edit = false;
-        	$scope.formControl.cancelPossible = true;
+            $scope.formControl.edit = false;
+            $scope.formControl.cancelPossible = true;
             InspectionObject.getDetails({
                     inspectionobjectid: $routeParams.id
                 },
                 function(callbackData) {
-                	$scope.inspectionObject = callbackData;
+                    $scope.inspectionObject = callbackData;
                     $scope.master = callbackData;
                 },
                 function(callbackData) {
@@ -43,36 +45,38 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
         }
 
         $scope.editOn = function() {
-        	$scope.formControl.edit = true;
+            $scope.formControl.edit = true;
         }
         $scope.editOff = function() {
-        	$scope.formControl.edit = false;
+            $scope.formControl.edit = false;
         }
 
         $scope.save = function(inspectionObject) {
-        	if(inspectionObject.id == null) {
-	            InspectionObject.save(inspectionObject,
-	                function(callbackData) {
-	                	$scope.inspectionObject = callbackData;
-	                    $scope.master = callbackData;
-	                    $scope.formControl.edit = false;
-	                    $scope.formControl.cancelPossible = true;
-	                },
-	                function(callbackData) {
-	                    console.log(callbackData.data.errorMessage);
-                });
-        	} else {
+            if (inspectionObject.id == null) {
+            	InspectionObject.save(inspectionObject,
+                    function(callbackData) {
+                        $scope.inspectionObject = callbackData;
+                        $scope.master = callbackData;
+                        $scope.formControl.edit = false;
+                        $scope.formControl.cancelPossible = true;
+                    },
+                    function(callbackData) {
+                    	$scope.formControl.errorMsg = callbackData.data.errorMessage;
+                    	$scope.inspectionObjectDetailsForm.$invalid = true;
+                    });
+            } else {
                 inspectionObject.$update({
-                    inspectionobjectid: inspectionObject.id
-                },
-                function(callbackData) {
-                    $scope.master = inspectionObject;
-                    $scope.editOff();
-                },
-                function(callbackData) {
-                    console.log(callbackData.data.errorMessage);
-                });
-        	}
+                        inspectionobjectid: inspectionObject.id
+                    },
+                    function(callbackData) {
+                        $scope.master = inspectionObject;
+                        $scope.editOff();
+                    },
+                    function(callbackData) {
+                    	$scope.formControl.errorMsg = callbackData.data.errorMessage;
+                    	$scope.inspectionObjectDetailsForm.$invalid = true;
+                    });
+            }
         };
 
         $scope.reset = function() {
