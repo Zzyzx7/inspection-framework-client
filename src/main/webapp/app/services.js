@@ -14,7 +14,32 @@ inspectionObjectServices.factory('InspectionObject', ['$resource',
                 method: 'POST'
             },
             'update': {
-            	method: 'PUT'
+                method: 'PUT'
+            },
+            'remove': {
+                method: 'DELETE'
+            }
+        });
+    }
+]);
+
+var userServices = angular.module('userServices', ['ngResource']);
+
+userServices.factory('User', ['$resource',
+    function($resource) {
+        return $resource('https://inspection-framework.herokuapp.com/users/:userid', {}, {
+            'list': {
+                method: 'GET',
+                isArray: true
+            },
+            'getDetails': {
+                method: 'GET'
+            },
+            'save': {
+                method: 'POST'
+            },
+            'update': {
+                method: 'PUT'
             },
             'remove': {
                 method: 'DELETE'
