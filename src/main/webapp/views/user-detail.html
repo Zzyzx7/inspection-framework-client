@@ -1,0 +1,64 @@
+<form name="userDetailsForm" novalidate>
+    <span class="error" ng-show="userDetailsForm.$invalid">{{formControl.errorMsg}}</span>
+    <table border="1px" style="margin: 10px;">
+        <tr>
+            <td style="padding: 10px; vertical-align: top;">
+                <table class="tableList">
+                    <tr>
+                        <td>User:</td>
+                        <td>
+                            <input name="userName" ng-disabled="!formControl.edit" ng-model="user.userName" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail Address:</td>
+                        <td>
+                            <input name="emailAddress" ng-disabled="!formControl.edit" ng-model="user.emailAddress" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <input name="firstName" ng-disabled="!formControl.edit" ng-model="user.firstName" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>
+                            <input name="lastName" ng-disabled="!formControl.edit" ng-model="user.lastName" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Role:</td>
+                        <td>
+                            <input name="role" ng-disabled="!formControl.edit" ng-model="user.role" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td>
+                            <input name="phoneNumber" ng-disabled="!formControl.edit" ng-model="user.phoneNumber" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number:</td>
+                        <td>
+                            <input name="mobileNumber" ng-disabled="!formControl.edit" ng-model="user.mobileNumber" type="text" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td style="padding: 10px; vertical-align: top;">
+                <div>
+                    Picture:
+                    <br> <img alt="No Picture available" width="200" height="100" src="">
+                </div>
+                <input ng-hide="formControl.edit" type="button" ng-click="editOn()" value="Edit" />
+                <input ng-show="formControl.edit && formControl.cancelPossible" type="button" ng-click="editOff()" value="Cancel" />
+                <input ng-show="formControl.edit" type="button" ng-click="reset()" value="Reset" />
+                <input ng-show="formControl.edit" type="submit" ng-click="save(user)" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>

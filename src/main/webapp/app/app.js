@@ -3,23 +3,37 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
     'inspectionObjectControllers',
     'inspectionAssignmentControllers',
     'inspectionObjectServices',
-    'inspectionAssignmentServices'
+    'inspectionAssignmentServices',
+    'userControllers',
+    'userServices'
 ]);
 
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
         $routeProvider.
-        when('/inspectionobject', {
+        when('/inspectionobjects', {
             templateUrl: 'views/inspection-object-list.html',
             controller: 'InspectionObjectListCtrl'
         }).
-        when('/inspectionobject/new', {
+        when('/inspectionobjects/new', {
             templateUrl: 'views/inspection-object-detail.html',
             controller: 'InspectionObjectDetailCtrl'
         }).
-        when('/inspectionobject/:id', {
+        when('/inspectionobjects/:id', {
             templateUrl: 'views/inspection-object-detail.html',
             controller: 'InspectionObjectDetailCtrl'
+        }).
+        when('/users', {
+            templateUrl: 'views/user-list.html',
+            controller: 'UserListCtrl'
+        }).
+        when('/users/new', {
+            templateUrl: 'views/user-detail.html',
+            controller: 'UserDetailCtrl'
+        }).
+        when('/users/:id', {
+            templateUrl: 'views/user-detail.html',
+            controller: 'UserDetailCtrl'
         }).
         when('/assignments', {
             templateUrl: 'views/list-assignments.html',
