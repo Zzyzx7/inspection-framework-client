@@ -19,7 +19,7 @@
 <th style="min-width:75px;">Clear</th>
 </tr>
 </thead>
-<tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp">
+<tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp" ng-hide="{{inspectionassignment.isTemplate}}">
 <tr>
 <td>
  <a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
@@ -39,4 +39,3 @@
 </tr>
 </tbody>
 </table> 
-

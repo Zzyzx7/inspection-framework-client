@@ -59,9 +59,3 @@ ul.specs dt {
   font-weight: bold;
 }
 
-table tbody 
-{
-   overflow-y: auto;
-   max-height: 300px;
-}
-

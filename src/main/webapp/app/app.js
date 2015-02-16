@@ -47,6 +47,10 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
             templateUrl: 'views/list-assignments-detail.html',
             controller: 'AssignmentDetailCtrl'
         }).
+        when('/templates', {
+            templateUrl: 'views/list-templates.html',
+            controller: 'TemplateListCtrl'
+        }).
         otherwise({
             redirectTo: '/'
         });
