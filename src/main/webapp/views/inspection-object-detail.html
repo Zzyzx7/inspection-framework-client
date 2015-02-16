@@ -30,8 +30,23 @@
                     <br>
                     <textarea style="margin:5px;" ng-disabled="!formControl.edit" ng-model="inspectionObject.description" name="user_eingabe" cols="50" rows="5"></textarea>
                 </div>
-				<input type="file" name="file" data-url="home/upload" 
-                   multiple upload><span>Add files...</span>
+				<div class="control-group">
+			    	<div class="controls">
+        				<span class="btn btn-success fileinput-button">
+        					<i class="icon-plus icon-white"></i>
+							<input type="file" name="file" data-url="home/upload" upload><span>Add files...</span>
+						</span>
+					</div>
+				</div>
+				<div>
+				    <span ng-show="!files.length">No files selected</span>
+				    <ul>
+				        <li ng-repeat="file in files">{{file}}</li>
+				    </ul>
+				</div>
+				<div class="form-actions">
+				    <button type="submit" class="btn btn-primary pull-left" ng-click="upload()">Upload</button>
+				</div>
                 <div>Picture:
                     <br>
                     <img alt="No Picture available" width="200" height="100" src="">
