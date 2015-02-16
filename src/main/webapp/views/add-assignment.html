@@ -20,13 +20,37 @@
 	 </td></tr>
 	 <tr><td>
 	 
-	 Task:
+	 <div style="margin:20px;">
+	 Tasks:
+	 <input value="Add Task" onclick="addRow('dataTable')" type="button">
+ 
+    <input value="Delete Task" onclick="deleteRow('dataTable')" type="button">
+ 
+    <table id="dataTable" width="350px">
+        <tbody><tr>
+            <td><input name="chk" type="checkbox"></td>
+            <td><input name="taskName" ng-model="inspectionassignment.tasks.taskName" type="text"></td>
+            <td>
+                <select name="country">
+                    <option value="in">India</option>
+                    <option value="de">Germany</option>
+                    <option value="fr">France</option>
+                    <option value="us">United States</option>
+                    <option value="ch">Switzerland</option>
+                </select>
+            </td>
+        </tr>
+    </tbody></table>
+    </div>
 	 
 	 </td></tr>
 	 <tr><td>
 	 <input type="button" ng-click="reset()" value="Reset" style="margin-left:20px;" />
 	 <input type="submit" ng-click="save(inspectionassignment)" value="Save" style="margin-right:40px;"/>
-	 <input name="isTemplate" ng-model="inspectionassignment.isTemplate" type="checkbox" value=""> Template 
+	 as <select name="isTemplate" ng-model="inspectionassignment.isTemplate">
+      <option value="false" selected="selected">Assignment</option>
+      <option value="true">Template</option>
+     </select>
 	</tr>
 	</table>
 </form>
