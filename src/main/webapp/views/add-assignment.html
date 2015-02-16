@@ -6,34 +6,27 @@
 	 
 		 <table class="tableList">
 		 	<tr><td>Assignment Name: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.assignmentName" type="text" size="30" maxlength="30" value=""></td></tr>
-		 <tr><td>IsTemplate: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.isTemplate" type="checkbox"></td></tr>
-		 <tr><td>Inspection Object: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.inspectionObject" type="text" size="30" maxlength="30" value=""></td></tr>
-		 <tr><td>User: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.user" type="text" size="30" maxlength="30" value=""></td></tr>
-		 <tr><td>startDate: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.startDate" type="text" size="30" maxlength="30" value=""></td></tr>
-		 <tr><td>endDate: </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.endDate" type="text" size="30" maxlength="30" value=""></td></tr>
+		 		<td><input name="assignmentName" ng-model="inspectionassignment.assignmentName" type="text" size="25" maxlength="25" value=""></td>
+		 <td style="padding-left:40px;">Start Date: </td>
+		 		<td><input name="assignmentName" ng-model="inspectionassignment.startDate" type="text" size="15" maxlength="15" value=""></td></tr>
 		 
-		 </table>
-	 </td>
-	 <td style="padding:10px; vertical-align:top;">
+		 <tr><td>Inspection Object: </td>
+		 		<td><input name="assignmentName" ng-model="inspectionassignment.inspectionObject" type="text" size="25" maxlength="25" value=""></td>
+		 <td style="padding-left:40px;">Due Date: </td>
+		 		<td><input name="assignmentName" ng-model="inspectionassignment.endDate" type="text" size="15" maxlength="15" value=""></td></tr> 
+		 <tr><td>Responsible User: </td>
+		 		<td><input name="assignmentName" ng-model="inspectionassignment.user" type="text" size="25" maxlength="25" value=""></td></tr>
+         </table>
+	 </td></tr>
+	 <tr><td>
 	 
-	 <div style="margin:20px;">Assignment Description:<br>
-	 	<textarea style="margin:5px;" ng-model="inspectionassignment.description" name="user_eingabe" cols="50" rows="5"></textarea>
-	 </div>
+	 Task:
 	 
-	 <div>Picture:<br>
-		 <img alt="No Picture available" width="200" height="100" src="" >
-	 </div>
-	 <input type="button" ng-click="reset()" value="Reset" />
-	 <input type="submit" ng-click="save(inspectionassignment)" value="Save" />
-	
-	 </td>
-	 
-	 </tr>
+	 </td></tr>
+	 <tr><td>
+	 <input type="button" ng-click="reset()" value="Reset" style="margin-left:20px;" />
+	 <input type="submit" ng-click="save(inspectionassignment)" value="Save" style="margin-right:40px;"/>
+	 <input name="isTemplate" ng-model="inspectionassignment.isTemplate" type="checkbox" value=""> Template 
+	</tr>
 	</table>
 </form>
