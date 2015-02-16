@@ -78,13 +78,22 @@ var inspectionAssignmentServices = angular.module('inspectionAssignmentServices'
 
 inspectionAssignmentServices.factory('InspectionAssignment', ['$resource',
     function($resource) {
-        return $resource('https://inspection-framework.herokuapp.com/assignment', {}, {
+        return $resource('https://inspection-framework.herokuapp.com/assignment/:inspectionassignmentid', {}, {
             'list': {
                 method: 'GET',
                 isArray: true
             },
+            'getDetails': {
+                method: 'GET'
+            },
             'save': {
                 method: 'POST'
+            },
+            'update': {
+                method: 'PUT'
+            },
+            'remove': {
+                method: 'DELETE'
             }
         });
     }

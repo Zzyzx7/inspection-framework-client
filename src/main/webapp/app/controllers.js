@@ -179,12 +179,25 @@ var InspectionAssignmentControllers = angular.module('inspectionAssignmentContro
 InspectionAssignmentControllers.controller('AssignmentListCtrl', ['$scope',
     'InspectionAssignment',
     function($scope, InspectionAssignment) {
-
         $scope.inspectionassignments = InspectionAssignment.list()
-
         $scope.orderProp = 'assignmentName';
+        
+        $scope.deleteItem = function(inspectionAssignment) {
+            var index = $scope.inspectionassignments.indexOf(inspectionAssignment);
+            InspectionAssignment.remove({
+                inspectionassignmentid: inspectionAssignment.id
+            }, function(callbackData) {
+                $scope.inspectionassignments.splice(index, 1)
+            }, function(callbackData) {
+                console.log(callbackData.data.errorMessage);
+            });
+        }
     }
 ]);
+
+
+
+                                                                       
 
 InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'InspectionAssignment',
     function($scope, InspectionAssignment) {
