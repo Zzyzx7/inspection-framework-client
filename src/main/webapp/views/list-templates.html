@@ -1,0 +1,33 @@
+
+
+<div style="margin:20px;">
+  Search: <input ng-model="query">
+  Sort by:
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="endDate">Newest</option>
+</select>
+</div>
+
+<table border="1" style="margin:20px;" class="tableDefault">
+<thead>
+<tr>
+<th style="min-width:250px;">Assignments</th>
+<th style="min-width:150px;">Number Of Tasks</th>
+<th style="min-width:100px;">Delete</th>
+</tr>
+</thead>
+<tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp" ng-hide="!{{inspectionassignment.isTemplate}}">
+<tr>
+<td>
+ <a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+</td>
+<td>
+  {{inspectionassignment.tasks.length}}
+</td>
+<td style="text-align:center;">
+  <input type="submit" ng-click="deleteItem(inspectionassignment)" value="Delete" />
+</td>
+</tr>
+</tbody>
+</table> 
