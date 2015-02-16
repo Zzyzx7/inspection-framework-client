@@ -195,6 +195,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'Insp
         };
 
         $scope.reset();
+        
     }
 ]);
 
