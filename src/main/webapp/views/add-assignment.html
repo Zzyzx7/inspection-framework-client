@@ -11,34 +11,19 @@
 		 		<td><input name="startDate" ng-model="inspectionassignment.startDate" type="text" size="15" maxlength="50" value=""></td></tr>
 		 
 		 <tr><td>Inspection Object: </td>
-		 		<td><input name="inspectionObject" ng-model="inspectionassignment.inspectionObject" type="text" size="25" maxlength="50" value=""></td>
+		 		<td><input name="inspectionObject" ng-model="inspectionassignment.inspectionObject.id" type="text" size="25" maxlength="50" value=""></td>
 		 <td style="padding-left:40px;">Due Date: </td>
 		 		<td><input name="endDate" ng-model="inspectionassignment.endDate" type="text" size="15" maxlength="50" value=""></td></tr> 
 		 <tr><td>Responsible User: </td>
-		 		<td><input name="user" ng-model="inspectionassignment.user" type="text" size="25" maxlength="50" value=""></td></tr>
+		 		<td><input name="user" ng-model="inspectionassignment.user.id" type="text" size="25" maxlength="50" value=""></td></tr>
          </table>
 	 </td></tr>
 	 <tr><td>
 	 
-	 <div style="margin:20px;">
-	 
-	 <input value="Add Task" onclick="addRow('dataTable')" type="button">
- 
-    <input value="Delete Task" onclick="deleteRow('dataTable')" type="button">
- 
-    <table id="dataTable">
-        <tbody><tr>
-            <td><input name="chk" type="checkbox"></td>
-            <td>Task Name:<input name="taskName" ng-model="inspectionassignment.tasks.taskName" type="text" value=""></td>
-            <td>
-                Interaction:<select name="interaction" ng-model="inspectionassignment.tasks.description">
-                    <option value="check">Check</option>
-                    
-                </select>
-            </td>
-        </tr>
-    </tbody></table>
-    </div>
+	 <div ng-repeat="task in inspectiontasks">
+        <input ng-model="inspectionassignment.tasks.taskName" type="text" />
+        <input ng-model="inspectionassignment.tasks.description" type="text" />
+    </div> <a ng-click="addInspectionTask()">Add Task</a>
 	 
 	 </td></tr>
 	 <tr><td>

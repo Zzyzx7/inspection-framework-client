@@ -3,13 +3,13 @@
  
  <table class="tableList">
  <tr><td>Assignment Name: </td>
- <td><input name="assignmentName" type="text" size="30" maxlength="30" value="{{assignment.assignmentName}}"></td></tr>
- <tr><td>Object: </td>
- <td><input name="object" type="text" size="30" maxlength="30" value=""></td></tr>
+ <td><input name="assignmentName" type="text" size="30" maxlength="30" value="{{inspectionassignment.assignmentName}}"></td></tr>
+ <tr><td>Inspection-Object: </td>
+ <td><input name="inspectionObject" type="text" size="30" maxlength="30" value="{{inspectionassignment.inspectionObject.objectName}}"></td></tr>
  <tr><td>Due Date: </td>
- <td><input name="dueDate" type="text" size="30" maxlength="30" value="{{assignment.endDate}}"></td></tr>
+ <td><input name="dueDate" type="text" size="30" maxlength="30" value="{{inspectionassignment.endDate}}"></td></tr>
  <tr><td>Responsible: </td>
- <td><input name="responsible" type="text" size="30" maxlength="30" value="{{assignment.user.userName}}"></td></tr>
+ <td><input name="responsible" type="text" size="30" maxlength="30" value="{{inspectionassignment.user.userName}}"></td></tr>
  </table>
 
 
@@ -19,7 +19,7 @@
    <th>Report</th>
    <th>Display</th>
   </tr></thead>
-  <tbody ng-repeat="task in assignment.tasks">
+  <tbody ng-repeat="task in inspectionassignment.tasks">
 <tr>
 <td>
  {{task.taskName}}
@@ -39,7 +39,7 @@
  <td style="padding:10px; vertical-align:top;">
  
  <div style="margin:20px;">Problem Description:<br>
- <textarea style="margin:5px;"name="user_eingabe" cols="50" rows="5">{{assignment.description}}</textarea>
+ <textarea style="margin:5px;"name="user_eingabe" cols="50" rows="5">{{inspectionassignment.description}}</textarea>
  </div>
  
  <div>Picture:<br>
