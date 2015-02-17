@@ -214,6 +214,11 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'Insp
 
         $scope.reset();
         
+
+        
+        
+        
+        
     }
 ]);
 
@@ -224,7 +229,7 @@ InspectionAssignmentControllers.controller('AssignmentDetailCtrl', [
     function($scope, $routeParams, $http) {
         $http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id)
             .success(function(data) {
-                $scope.assignment = data;
+                $scope.inspectionassignment = data;
             });
     }
 ]);
