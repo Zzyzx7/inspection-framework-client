@@ -196,20 +196,10 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'Insp
 
         $scope.reset();
         
-        $scope.inspectiontasks = [{
-            id: null,
-        	taskName: 'enter a name',
-            description: 'enter a description'
-        }];
 
-
-        $scope.addInspectionTask = function () {
-            $scope.inspectiontasks.push({
-                id: null,
-                taskName: 'enter a name',
-                description: 'enter a description'
-            });
-        }
+        
+        
+        
         
     }
 ]);
