@@ -19,8 +19,8 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
 ]);
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$location',
-    '$routeParams', 'InspectionObject',
-    function($scope, $location, $routeParams, InspectionObject) {
+    '$routeParams', 'InspectionObject', '$rootScope', 'uploadManager',
+    function($scope, $location, $routeParams, InspectionObject, $rootScope, uploadManager) {
 
         $scope.formControl = {}
         if ($routeParams.id == null) {
@@ -76,6 +76,24 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
         $scope.reset = function() {
             $scope.inspectionObject = angular.copy($scope.master);
         };
+        
+        $scope.files = [];
+        $scope.percentage = 0;
+
+        $scope.upload = function () {
+            uploadManager.upload();
+            $scope.files = [];
+        };
+
+        $rootScope.$on('fileAdded', function (e, call) {
+            $scope.files.push(call);
+            $scope.$apply();
+        });
+
+        $rootScope.$on('uploadProgress', function (e, call) {
+            $scope.percentage = call;
+            $scope.$apply();
+        });
     }
 ]);
 
@@ -183,7 +201,10 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', ['$scope',
 
 InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'InspectionAssignment',
     function($scope, InspectionAssignment) {
-        $scope.master = {};
+		$scope.inspectionassignment = {};
+		$scope.inspectionassignment.tasks = new Array();
+		$scope.inspectionassignment.tasks.push({taskName: ""});
+		$scope.master = {};
 
         $scope.save = function(inspectionAssignment) {
             $scope.inspectionAssignment = angular.copy(inspectionAssignment);
