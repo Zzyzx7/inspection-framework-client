@@ -5,13 +5,14 @@ body {
 }
 
 /*unvisited and visited link*/
-a:link, a:visited {
+a:link, a:visited, a:active {
 	color: #242424;
 	text-decoration: none;
 }
 /*active link*/
-a:active, a:hover {
+a:hover {
 	color:#014283;
+	cursor: pointer;
 }
 
 
@@ -30,25 +31,40 @@ table.login {
 /*style id for the menu on the left side*/
 #menu {
 	margin:10px;
+	position: fixed;
 }
 #menu thead, th {
 	padding: 5px;
 	background-color: #c0c0c0;
 }
-#menu tbody, td {
-	padding: 10px;
+#menu td {
+	padding: 0px;
 }
 #menu td:hover {
 	background-color: #eeeeee;
+	cursor: pointer;
+}
+#menu a {
+	padding: 10px;
 }
 
+
+td {
+	padding: 10px;
+}
 
 table.tableList  {
 	margin: 10px;
 	margin-bottom: 20px;
 }
 
-
+#tableDefault {
+	margin-left: 10px;
+	min-width: 650px;
+}
+#tableDefault td {
+	padding: 7px;
+}
 
 
 
@@ -72,5 +88,6 @@ table.tableList  {
 }
 
 #navigation a:hover {
-	color: grey;
+	color: #c0c0c0;
+	cursor: pointer;
 }
