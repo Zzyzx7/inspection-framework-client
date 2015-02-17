@@ -201,7 +201,10 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', ['$scope',
 
 InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'InspectionAssignment',
     function($scope, InspectionAssignment) {
-        $scope.master = {};
+		$scope.inspectionassignment = {};
+		$scope.inspectionassignment.tasks = new Array();
+		$scope.inspectionassignment.tasks.push({taskName: ""});
+		$scope.master = {};
 
         $scope.save = function(inspectionAssignment) {
             $scope.inspectionAssignment = angular.copy(inspectionAssignment);

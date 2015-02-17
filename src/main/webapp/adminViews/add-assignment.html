@@ -19,15 +19,15 @@
          </table>
 	 </td></tr>
 	 <tr><td>
-	 
-	 <input name="tasks" ng-model="inspectionassignment.tasks.taskName" type="text" size="25" maxlength="50" value=""/>
-	 
+	 <div ng-repeat="task in inspectionassignment.tasks"> 
+	 	<input name="tasks" ng-model="task.taskName" type="text" size="25" maxlength="50" value=""/>
+	 </div>
 	 
 	 
 	 </td></tr>
 	 <tr><td>
 	 <input type="button" ng-click="reset()" value="Reset" style="margin-left:20px;" />
-	 <input type="submit" ng-click="save(inspectionassignment)" value="Save" style="margin-right:40px;"/>
+	 <input type="button" ng-click="save(inspectionassignment)" value="Save" style="margin-right:40px;"/>
 	 as <select name="isTemplate" ng-model="inspectionassignment.isTemplate">
       <option value="false">Assignment</option>
       <option value="true">Template</option>
