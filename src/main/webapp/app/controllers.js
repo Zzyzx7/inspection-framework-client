@@ -234,3 +234,6 @@ InspectionAssignmentControllers.controller('TemplateListCtrl', ['$scope',
                                                                       }
                                                                   }
                                                               ]);
+
+
+

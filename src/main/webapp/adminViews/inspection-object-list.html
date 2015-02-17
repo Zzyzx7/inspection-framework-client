@@ -1,16 +1,16 @@
 <div style="margin:20px;">
     Search:
-    <input ng-model="query"> Sort by:
+    <input ng-model="query"/> Sort by:
     <select ng-model="orderProp">
         <option value="name">Alphabetical</option>
         <option value="endDate">Newest</option>
     </select>
 </div>
 
-<table border="1" style="margin:20px;" class="tableDefault">
+<table border="1" id="tableDefault">
     <thead>
         <tr>
-            <th style="min-width:250px;">Inspection Objects</th>
+            <th style="min-width:200px;">Inspection Objects</th>
             <th style="min-width:150px;">Description</th>
             <th style="min-width:75px;">Location</th>
             <th style="min-width:75px;">Customer Name</th>
