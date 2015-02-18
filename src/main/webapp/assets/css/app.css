@@ -65,7 +65,14 @@ table.tableList  {
 #tableDefault td {
 	padding: 7px;
 }
-
+#tableDefault a {
+	color: #242424;
+	text-decoration: none;
+}
+#tableDefault a:hover {
+	color:#014283;
+	cursor: pointer;
+}
 
 
 /* style id for the navigation bar*/

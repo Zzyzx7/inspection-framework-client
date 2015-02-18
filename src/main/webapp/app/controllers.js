@@ -203,7 +203,10 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'Insp
     function($scope, InspectionAssignment) {
 		$scope.inspectionassignment = {};
 		$scope.inspectionassignment.tasks = new Array();
-		$scope.inspectionassignment.tasks.push({taskName: ""});
+		$scope.inspectionassignment.tasks.push({taskName: "", description: ""});
+		$scope.addTask = function () {
+			$scope.inspectionassignment.tasks.push({taskName: "", description: ""});
+		}
 		$scope.master = {};
 
         $scope.save = function(inspectionAssignment) {
