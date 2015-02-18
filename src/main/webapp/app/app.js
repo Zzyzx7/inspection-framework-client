@@ -1,4 +1,5 @@
 var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
+    'angularFileUpload',
     'ngRoute',
     'inspectionObjectControllers',
     'inspectionAssignmentControllers',
@@ -57,6 +58,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
+/*
 inspectionFrameworkApp.factory('uploadManager', function($rootScope) {
     var _files = [];
     return {
@@ -106,3 +108,4 @@ inspectionFrameworkApp.directive('upload', ['uploadManager', function factory(up
         }
     };
 }]);
+*/

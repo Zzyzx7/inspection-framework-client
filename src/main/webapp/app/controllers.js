@@ -19,8 +19,36 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', ['$scope', 'I
 ]);
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$location',
-    '$routeParams', 'InspectionObject', '$rootScope', 'uploadManager',
-    function($scope, $location, $routeParams, InspectionObject, $rootScope, uploadManager) {
+    '$routeParams', 'InspectionObject', '$rootScope', 'FileUploader',
+    function($scope, $location, $routeParams, InspectionObject, $rootScope, FileUploader) {
+	
+		var uploader = $scope.uploader = new FileUploader({
+	        url: 'https://inspection-framework.herokuapp.com/inspectionobject/',
+	        alias: 'fileUpload' 
+	    });
+		
+		uploader.onBeforeUploadItem = function(item) {
+			
+		}
+		
+		uploader.onAfterAddingFile = function(item) {
+			item.setDescription = function(description) {
+				if(angular.isDefined(description)) {
+					if(angular.isDefined(item.formData[0])) {
+						item.formData[0] = {fileDescription: description}
+					} else {
+						item.formData.push({fileDescription: description})
+					}
+				} else {
+					if(angular.isDefined(item.formData[0])) {
+						return item.formData[0].fileDescription
+					} else {
+						return description
+					}
+				} 
+			}
+		}
+
 
         $scope.formControl = {}
         if ($routeParams.id == null) {
@@ -37,6 +65,8 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
             }, function(callbackData) {
                 $scope.inspectionObject = callbackData;
                 $scope.master = angular.copy(callbackData);
+                uploader.url = 'http://localhost:8080/rest/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
+                //uploader.url = 'https://inspection-framework.herokuapp.com/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
             }, function(callbackData) {
                 console.log(callbackData.data.errorMessage);
             });
@@ -75,8 +105,12 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 
         $scope.reset = function() {
             $scope.inspectionObject = angular.copy($scope.master);
+            uploader.formData;
         };
         
+        
+        
+        /*
         $scope.files = [];
         $scope.percentage = 0;
 
@@ -94,6 +128,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
             $scope.percentage = call;
             $scope.$apply();
         });
+        */
     }
 ]);
 
