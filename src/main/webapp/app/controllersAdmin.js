@@ -199,26 +199,51 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', ['$scope',
 
                                                                        
 
-InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', 'InspectionAssignment',
-    function($scope, InspectionAssignment) {
-		$scope.inspectionassignment = {};
-		$scope.inspectionassignment.tasks = new Array();
+InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', '$http', '$routeParams', 'InspectionAssignment',
+    function($scope, $http, $routeParams, InspectionAssignment) {
+	
+	
+    if ($routeParams.id == null) {
+        
+       
+        $scope.inspectionassignment = {};
+        
+        $scope.inspectionassignment.tasks = new Array();
 		$scope.inspectionassignment.tasks.push({taskName: "", description: ""});
 		$scope.addTask = function () {
 			$scope.inspectionassignment.tasks.push({taskName: "", description: ""});
 		}
-		$scope.master = {};
-
-        $scope.save = function(inspectionAssignment) {
+		
+		 $scope.master = {};
+		 
+		 
+        
+    } else {
+        
+    	$http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id)
+        .success(function(data) {
+            $scope.inspectionassignment = data;
+        });
+    	
+    	
+    	
+    	$scope.addTask = function () {
+			$scope.inspectionassignment.tasks.push({taskName: "", description: ""});
+		}
+    	
+    	
+    }
+	
+         $scope.save = function(inspectionAssignment) {
             $scope.inspectionAssignment = angular.copy(inspectionAssignment);
             InspectionAssignment.save($scope.inspectionAssignment)
         };
 
         $scope.reset = function() {
-            $scope.inspectionAssignment = angular.copy($scope.master);
+            $scope.inspectionassignment = angular.copy($scope.master);
         };
 
-        $scope.reset();
+       $scope.reset();
         
 
         

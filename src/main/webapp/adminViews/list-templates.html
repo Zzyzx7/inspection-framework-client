@@ -1,7 +1,7 @@
 
 
 <div style="margin:20px;">
-  Search: <input ng-model="query">
+  Search: <input ng-model="query"/>
   Sort by:
 <select ng-model="orderProp">
   <option value="name">Alphabetical</option>
@@ -20,7 +20,7 @@
 <tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp" ng-hide="!{{inspectionassignment.isTemplate}}">
 <tr>
 <td>
- <a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+ <a href="#/templates/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
 </td>
 <td>
   {{inspectionassignment.tasks.length}}

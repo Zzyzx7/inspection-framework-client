@@ -29,7 +29,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
             controller: 'TemplateListCtrl'
         }).
         otherwise({
-            redirectTo: '/'
+            redirectTo: '/assignments'
         });
     }
 ]);

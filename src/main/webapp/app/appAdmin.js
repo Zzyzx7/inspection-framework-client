@@ -39,7 +39,11 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
             templateUrl: 'adminViews/list-assignments.html',
             controller: 'AssignmentListCtrl'
         }).
-        when('/inspectionassignment/new', {
+        when('/assignments/new', {
+            templateUrl: 'adminViews/add-assignment.html',
+            controller: 'AddAssignmentCtrl'
+        }).
+        when('/templates/:id', {
             templateUrl: 'adminViews/add-assignment.html',
             controller: 'AddAssignmentCtrl'
         }).
