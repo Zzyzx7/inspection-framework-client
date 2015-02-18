@@ -6,55 +6,65 @@
     <title>Inspection Framework - User</title>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="css/fileupload.css">
+    <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
     <script src="assets/js/angular.min.js"></script>
     <script src="assets/js/angular-route.min.js"></script>
     <script src="assets/js/angular-resource.min.js"></script>
-    <script src="app/services.js"></script>
-    <script src="app/controllers.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/servicesUser.js"></script>
+    <script src="app/controllersUser.js"></script>
+    <script src="app/appUser.js"></script>
+
     <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
 
-
 </head>
-
 <body>
-    <table class="tableDefault">
-        <tr>
-            <td style="vertical-align:top">
 
-                <table border="1" style="margin:10px;" class="tableDefault">
+<div id="navigation">
+  <table width="900px" style="margin-left: 20px;"><tr>
+  <td style="font-size: 28px; text-align:left; padding-left:5px;">
+   <img alt="Logo" src="assets/img/if_gold_logo.png" height="41px" width="50px" style="margin-right:3px;vertical-align: top;">
+   Inspection <span style="font-weight: bolder">FRAMEWORK</span>
+   </td><td style="text-align:right;">
+    <span style="font-style: italic; font-size: 12px;">Role: User</span>
+    <a href="index.html">LOG OUT</a>
+   </td></table>
+  
+</div>
+
+    <table style="margin-top:50px;">
+        <tr>
+            <td style="vertical-align:top; min-width:210px;">
+
+                <table border="1" id="menu" width="180px">
                     <tr>
                         <th>Assignments</th>
                     </tr>
                     <tr>
-                        <td>Objects</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#/assignments">List Of Assignments</a>
+                        <td><a href="#/assignments" style="display:block;">Open Assignments</a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Templates</td>
+                        <td><a href="#/saved" style="display:block;">Saved Assignments</a>
+                        </td>
                     </tr>
                     <tr>
-                        <th>Users</th>
+                        <th>User</th>
                     </tr>
+                    <tr>
+                        <td><a href="#/profile" style="display:block;">Manage Profile</a></td>
+                    </tr>
+                                        
                 </table>
-                <div style="margin:10px; margin-top:40px; text-align:center;">
-                    <form action="index.html">
-                        <input type="submit" name="commit" value="LOG OUT">
-                    </form>
-                </div>
+                                
             </td>
-            <td valign="top">
-
+            <td style="vertical-align:top;">
                 <ng-view></ng-view>
-
-
             </td>
         </tr>
     </table>
-
+    
+    
+    
 </body>
-
 </html>
