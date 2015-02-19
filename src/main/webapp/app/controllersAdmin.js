@@ -222,7 +222,13 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', '$htt
         
     	$http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id)
         .success(function(data) {
-            $scope.inspectionassignment = data;
+        	var template = data;
+        	
+        	delete template.id;
+        	delete template.assignmentName;
+        	
+        	
+            $scope.inspectionassignment = template;
         });
     	
     	
@@ -241,6 +247,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', ['$scope', '$htt
 
         $scope.reset = function() {
             $scope.inspectionassignment = angular.copy($scope.master);
+            
         };
 
        $scope.reset();
