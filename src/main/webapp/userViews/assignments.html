@@ -17,17 +17,14 @@
 <th style="min-width:75px;">Due Date</th>
 </tr>
 </thead>
-<tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp" ng-hide="{{inspectionassignment.isTemplate}}">
-<tr>
-<td>
- <a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
-</td>
-<td>
-  {{inspectionassignment.inspectionObject.objectName}}
-</td>
-<td>
-  {{inspectionassignment.endDate}}
-</td>
-</tr>
-</tbody>
+	<tbody ng-if="inspectionassignment.user.userName == 'fpetru'"
+		ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp"
+		ng-hide="{{inspectionassignment.isTemplate}}">
+		<tr>
+			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+			</td>
+			<td>{{inspectionassignment.inspectionObject.objectName}}</td>
+			<td>{{inspectionassignment.endDate}}</td>
+		</tr>
+	</tbody>
 </table> 

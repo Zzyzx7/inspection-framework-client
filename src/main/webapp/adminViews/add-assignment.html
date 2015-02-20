@@ -1,44 +1,80 @@
 <form>
-	<table border="1px" style="margin:10px;" id="tableDefault">
-	 <tr>
-	 
-	 <td style="padding:10px; vertical-align:top;">
-	 
-		 <table class="tableList">
-		 	<tr><td>Assignment Name:<span style="color:red;">*/**</span> </td>
-		 		<td><input name="assignmentName" ng-model="inspectionassignment.assignmentName" type="text" size="25" maxlength="50" value=""/></td>
-		 <td style="padding-left:40px;">Start Date:<span style="color:red;">**</span> </td>
-		 		<td><input name="startDate" ng-model="inspectionassignment.startDate" type="text" size="15" maxlength="50" value=""/></td></tr>
-		 
-		 <tr><td>Inspection Object:<span style="color:red;">**</span> </td>
-		 		<td><input name="inspectionObject" ng-model="inspectionassignment.inspectionObject.id" type="text" size="25" maxlength="50" value=""/></td>
-		 <td style="padding-left:40px;">Due Date:<span style="color:red;">**</span> </td>
-		 		<td><input name="endDate" ng-model="inspectionassignment.endDate" type="text" size="15" maxlength="50" value=""/></td></tr> 
-		 <tr><td>Responsible User:<span style="color:red;">**</span> </td>
-		 		<td><input name="user" ng-model="inspectionassignment.user.id" type="text" size="25" maxlength="50" value=""/></td></tr>
-         </table>
-	 </td></tr>
-	 <tr><td><br/>
-	 <div ng-repeat="task in inspectionassignment.tasks" style="margin:2px; margin-left:20px;"> 
-	 	Task Name:<input name="tasks" ng-model="task.taskName" type="text" size="25" maxlength="50" value="" style="margin-left:5px;"/>
-	 	<span style="margin-left:20px;">Description:</span><input name="tasks" ng-model="task.description" type="text" size="25" maxlength="50" value="" style="margin-left:5px;"/>
-	 </div>
-	 <div style="text-align:right; margin-right:40px;">
-	 <input type="button" ng-click="addTask()" value="Add new task" style="margin:10px;" />
-	 </div>
-	 
-	 
-	 </td></tr>
-	 <tr><td style="padding-top:10px;padding-left:20px;padding-bottom:10px;">
-	 <input type="button" ng-click="reset()" value="Reset"/>
-	 <input type="button" ng-click="save(inspectionassignment)" value="Save" style="margin-right:40px;"/>
-	 as <select name="isTemplate" ng-model="inspectionassignment.isTemplate">
-      <option value="false">Assignment</option>
-      <option value="true">Template</option>
-     </select><span style="color:red;">*/**</span>
-	</td></tr>
-	<tr><th style="text-align:right;padding-right:40px;padding:10px;">
-	*mandatory for Templates / **mandatory for Assignments
-	</th></tr>
+	<table border="1px" style="margin: 10px;" id="tableDefault">
+		<tr>
+
+			<td style="padding: 10px; vertical-align: top;">
+
+				<table class="tableList">
+					<tr>
+						<td>Assignment Name:<span style="color: red;">*/**</span>
+						</td>
+						<td><input name="assignmentName"
+							ng-model="inspectionassignment.assignmentName" type="text"
+							size="25" maxlength="50" value="" /></td>
+						<td style="padding-left: 40px;">Start Date:<span
+							style="color: red;">**</span>
+						</td>
+						<td><input name="startDate"
+							ng-model="inspectionassignment.startDate" type="text" size="15"
+							maxlength="50" value="" /></td>
+					</tr>
+
+					<tr>
+						<td>Inspection Object:<span style="color: red;">**</span>
+						</td>
+						<td><input name="inspectionObject"
+							ng-model="inspectionassignment.inspectionObject.id" type="text"
+							size="25" maxlength="50" value="" /></td>
+						<td style="padding-left: 40px;">Due Date:<span
+							style="color: red;">**</span>
+						</td>
+						<td><input name="endDate"
+							ng-model="inspectionassignment.endDate" type="text" size="15"
+							maxlength="50" value="" /></td>
+					</tr>
+					<tr>
+						<td>Responsible User:<span style="color: red;">**</span>
+						</td>
+						<td><input name="user"
+							ng-model="inspectionassignment.user.id" type="text" size="25"
+							maxlength="50" value="" /></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><br />
+				<div ng-repeat="task in inspectionassignment.tasks"
+					style="margin: 2px; margin-left: 20px;">
+					Task Name:<input name="tasks" ng-model="task.taskName" type="text"
+						size="25" maxlength="50" value="" style="margin-left: 5px;" /> <span
+						style="margin-left: 20px;">Description:</span><input name="tasks"
+						ng-model="task.description" type="text" size="25" maxlength="50"
+						value="" style="margin-left: 5px;" />
+				</div>
+				<div style="text-align: right; margin-right: 40px;">
+					<input type="button" ng-click="addTask()" value="Add new task"
+						style="margin: 10px;" />
+				</div></td>
+		</tr>
+		<tr>
+			<td
+				style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
+				<input type="button" ng-click="reset()" value="Reset" /> <input
+				type="button" ng-click="save(inspectionassignment)" value="Save"
+				style="margin-right: 40px;" /> as:
+				<form name="saveAs">
+					<input type="radio" ng-model="inspectionassignment.isTemplate"
+						value="false" /> Assignment<span style="color: red;">**</span> <input
+						type="radio" ng-model="inspectionassignment.isTemplate"
+						value="true" style="margin-left: 10px;" /> Template<span
+						style="color: red;">*</span>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align: right; padding-right: 40px; padding: 10px;">
+				*mandatory for Templates / **mandatory for Assignments</th>
+		</tr>
 	</table>
 </form>
