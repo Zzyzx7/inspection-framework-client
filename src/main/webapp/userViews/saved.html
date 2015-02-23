@@ -16,9 +16,9 @@
 			<th style="border-left-style: none;"></th>
 		</tr>
 	</thead>
-	<tbody ng-if="inspectionassignment.user.userName == 'fpetru'"
+	<tbody ng-if="inspectionassignment.user.userName == 'fpetru' && inspectionassignment.state == '1'"
 		ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp"
-		ng-hide="!{{inspectionassignment.isTemplate}}">
+		ng-hide="{{inspectionassignment.isTemplate}}">
 		<tr>
 			<td style="border-right-style: none;"><a
 				href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
@@ -29,9 +29,5 @@
 				style="margin-right: 10px;" /></td>
 		</tr>
 	</tbody>
-	<tr>
-		<th style="text-align: left; border-right-style: none;"><input
-			type="button" ng-click="" value="Submit Assignments" /></th>
-		<th style="border-left-style: none;"></th>
-	</tr>
+	
 </table>

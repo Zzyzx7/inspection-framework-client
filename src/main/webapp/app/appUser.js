@@ -1,6 +1,6 @@
 var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
     'ngRoute',
-    'inspectionObjectControllers',
+    
     'inspectionAssignmentControllers',
     'inspectionObjectServices',
     'inspectionAssignmentServices',
@@ -12,7 +12,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
         $routeProvider.
         
-        when('/profile', {
+        when('/profile/:id', {
             templateUrl: 'userViews/profile.html',
             controller: 'UserDetailCtrl'
         }).
@@ -26,7 +26,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider',
         }).
         when('/saved', {
             templateUrl: 'userViews/saved.html',
-            controller: 'TemplateListCtrl'
+            controller: 'AssignmentListCtrl'
         }).
         otherwise({
             redirectTo: '/assignments'

@@ -24,11 +24,14 @@
 			</td>
 			<td>{{inspectionassignment.user.userName}}</td>
 			<td>{{inspectionassignment.endDate}}</td>
-			<td></td>
+			<td>
+			<span ng-if="inspectionassignment.state == 0">Initial</span>
+			<span ng-if="inspectionassignment.state == 1">In Progress</span>
+			<span ng-if="inspectionassignment.state == 2">Finished</span>
+			</td>
 			<td><input type="submit"
-				ng-click="deleteItem(inspectionassignment)" value="Clear" /> <input
-				ng-if="inspectionassignment.assignmentName == 'Check Ernst-Walz NEW'"
-				type="submit" ng-click="" value="View Report" /></td>
+				ng-click="deleteItem(inspectionassignment)" ng-if="inspectionassignment.state == '2' || inspectionassignment.state == '0'" value="Clear" />
+				</td>
 		</tr>
 	</tbody>
 </table>

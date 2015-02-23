@@ -289,6 +289,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			}
 
 			$scope.save = function(inspectionAssignment) {
+				
 				$scope.inspectionAssignment = angular
 						.copy(inspectionAssignment);
 				InspectionAssignment.save($scope.inspectionAssignment)
