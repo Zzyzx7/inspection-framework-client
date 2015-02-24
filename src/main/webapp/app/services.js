@@ -2,7 +2,7 @@ var inspectionObjectServices = angular.module('inspectionObjectServices', ['ngRe
 
 inspectionObjectServices.factory('InspectionObject', ['$resource',
     function($resource) {
-        return $resource('https://inspection-framework.herokuapp.com/inspectionobject/:inspectionobjectid', {}, {
+        return $resource(REST_BACKEND_URL + '/inspectionobject/:inspectionobjectid', {}, {
             'list': {
                 method: 'GET',
                 isArray: true
@@ -49,11 +49,30 @@ inspectionObjectServices.factory('InspectionObject', ['$resource',
     }
 ]);
 
+var loginServices = angular.module('loginServices', ['ngResource']);
+
+loginServices.factory('Login', ['$resource',
+    function($resource) {
+        return $resource(REST_BACKEND_URL + '/login', {}, {
+            'login': {
+                method: 'POST',
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        		transformRequest: function(obj) {
+		            var str = [];
+		            for(var p in obj)
+		            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		            return str.join("&");
+		        }
+            }
+        });
+    }
+]);
+
 var userServices = angular.module('userServices', ['ngResource']);
 
 userServices.factory('User', ['$resource',
     function($resource) {
-        return $resource('https://inspection-framework.herokuapp.com/users/:userid', {}, {
+        return $resource(REST_BACKEND_URL + '/users/:userid', {}, {
             'list': {
                 method: 'GET',
                 isArray: true
@@ -78,7 +97,7 @@ var inspectionAssignmentServices = angular.module('inspectionAssignmentServices'
 
 inspectionAssignmentServices.factory('InspectionAssignment', ['$resource',
     function($resource) {
-        return $resource('https://inspection-framework.herokuapp.com/assignment/:inspectionassignmentid', {}, {
+        return $resource(REST_BACKEND_URL + '/assignment/:inspectionassignmentid', {}, {
             'list': {
                 method: 'GET',
                 isArray: true

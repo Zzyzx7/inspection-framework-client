@@ -23,7 +23,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
     function($scope, $location, $routeParams, InspectionObject, $rootScope, FileUploader) {
 	
 		var uploader = $scope.uploader = new FileUploader({
-	        url: 'https://inspection-framework.herokuapp.com/inspectionobject/',
+	        url: REST_BACKEND_URL + '/inspectionobject/',
 	        alias: 'fileUpload' 
 	    });
 		
@@ -65,8 +65,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
             }, function(callbackData) {
                 $scope.inspectionObject = callbackData;
                 $scope.master = angular.copy(callbackData);
-                uploader.url = 'http://localhost:8080/rest/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
-                //uploader.url = 'https://inspection-framework.herokuapp.com/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
+                uploader.url = REST_BACKEND_URL + '/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
             }, function(callbackData) {
                 console.log(callbackData.data.errorMessage);
             });
@@ -131,6 +130,21 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
         */
     }
 ]);
+
+var indexControllers = angular.module('indexControllers', []);
+
+indexControllers.controller('LoginCtrl', ['$scope', 'Login', function($scope, Login) {
+    $scope.login = function(username, password) {
+    	var login = new Login();
+    	Login.login({ username: username,
+    				  password: password }, 
+    	function(callbackData) {
+    		console.log("success");
+        }, function(callbackData) {
+            console.log(callbackData.data.errorMessage);
+        });
+    }
+}]);
 
 var userControllers = angular.module('userControllers', []);
 
@@ -265,7 +279,7 @@ InspectionAssignmentControllers.controller('AssignmentDetailCtrl', [
     '$routeParams',
     '$http',
     function($scope, $routeParams, $http) {
-        $http.get('https://inspection-framework.herokuapp.com/assignment/' + $routeParams.id)
+        $http.get(REST_BACKEND_URL + '/assignment/' + $routeParams.id)
             .success(function(data) {
                 $scope.inspectionassignment = data;
             });

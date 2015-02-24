@@ -2,6 +2,7 @@
 <html ng-app="inspectionFrameworkApp">
 
 <head>
+	<!--  <base href="/inspection-framework-html-client/admin/"> -->
     <meta charset="utf-8">
     <title>Inspection Framework - Admin</title>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
@@ -11,8 +12,10 @@
     <script src="assets/js/angular.min.js"></script>
     <script src="assets/js/angular-route.min.js"></script>
     <script src="assets/js/angular-resource.min.js"></script>
+    <script src="app/constants.js"></script>
     <script src="app/services.js"></script>
     <script src="app/controllers.js"></script>
+    <script src="app/httpInterceptors.js"></script>
     <script src="app/app.js"></script>
     <script type="text/javascript" src="assets/js/angular-file-upload.js"></script>
 </head>
@@ -25,9 +28,8 @@
    Inspection <span style="font-weight: bolder">FRAMEWORK</span>
    </td><td style="text-align:right;">
     <span style="font-style: italic; font-size: 12px;">Role: Admin</span>
-    <a href="index.html">LOG OUT</a>
+    <a href="/logout">LOG OUT</a>
    </td></table>
-  
 </div>
 
     <table style="margin-top:50px;">
@@ -77,8 +79,5 @@
             </td>
         </tr>
     </table>
-    
-    
-    
 </body>
 </html>
