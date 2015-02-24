@@ -40,11 +40,9 @@
 				<tbody ng-repeat="task in inspectionassignment.tasks">
 					<tr>
 						<td>{{task.taskName}}</td>
-						<td><span ng-if="task.attachmentIds == '0'">none</span> <span
-							ng-if="task.attachmentIds == '1'">text</span> <span
-							ng-if="task.attachmentIds == '2'">picture</span> <span
-							ng-if="task.attachmentIds == '3'">text & picture</span></td>
-						<td><input ng-if="task.attatchmentIds == '0'" type="submit"
+						<td><span ng-if="task.state == '0'">not OK</span> <span
+							ng-if="task.state == '1'">OK</span> </td>
+						<td><input ng-if="task.attatchmentIds == '1'" type="submit"
 							ng-click="" value="View Problem" /></td>
 					</tr>
 				</tbody>

@@ -96,3 +96,5 @@ inspectionFrameworkApp.directive('upload', [
 				}
 			};
 		} ]);
+
+

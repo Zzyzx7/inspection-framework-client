@@ -22,9 +22,12 @@
 					<tr>
 						<td>Inspection Object:<span style="color: red;">**</span>
 						</td>
-						<td><input name="inspectionObject"
-							ng-model="inspectionassignment.inspectionObject.id" type="text"
-							size="25" maxlength="50" value="" /></td>
+						<td>						
+						<select style="width: 180px; height:25px;" ng-model="inspectionassignment.inspectionObject.id">
+								<option ng-repeat="inspectionobject in inspectionobjects" value="{{inspectionobject.id}}">{{inspectionobject.objectName}}</option>
+							</select>
+						
+						</td>
 						<td style="padding-left: 40px;">Due Date:<span
 							style="color: red;">**</span>
 						</td>
@@ -35,13 +38,18 @@
 					<tr>
 						<td>Responsible User:<span style="color: red;">**</span>
 						</td>
-						<td><input name="user"
-							ng-model="inspectionassignment.user.id" type="text" size="25"
-							maxlength="50" value="" /></td>
+						<td>
+							
+							<select style="width: 180px; height:25px;" ng-model="inspectionassignment.user.id">
+								<option ng-repeat="user in users" value="{{user.id}}">{{user.userName}}</option>
+							</select>
+						
+						</td>
 					</tr>
-				</table>
-				<span style="margin-left:19px;">Assignment Description:<br/> <textarea style="margin-left:19px;" ng-model="inspectionassignment.description" name="description" cols="90"
-					rows="1">{{inspectionassignment.description}}</textarea></span>
+				</table> <span style="margin-left: 19px;">Assignment Description:<br />
+					<textarea style="margin-left: 19px;"
+						ng-model="inspectionassignment.description" name="description"
+						cols="90" rows="1"></textarea></span>
 			</td>
 		</tr>
 		<tr>

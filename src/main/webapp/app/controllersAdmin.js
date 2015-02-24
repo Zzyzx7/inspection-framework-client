@@ -246,8 +246,11 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 		'$http',
 		'$routeParams',
 		'InspectionAssignment',
+		
 		function($scope, $http, $routeParams, InspectionAssignment) {
 
+			$scope.formControl = {}
+			
 			if ($routeParams.id == null) {
 
 				$scope.inspectionassignment = {};
@@ -287,12 +290,44 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 				}
 
 			}
+			
+			$http.get(
+					'https://inspection-framework.herokuapp.com/users'
+							).success(function(dataU) {
+				
+				$scope.users = dataU;
+			});
+			
+			$http.get(
+					'https://inspection-framework.herokuapp.com/inspectionobject'
+							).success(function(dataO) {
+				
+				$scope.inspectionobjects = dataO;
+			});
 
 			$scope.save = function(inspectionAssignment) {
 				
-				$scope.inspectionAssignment = angular
-						.copy(inspectionAssignment);
-				InspectionAssignment.save($scope.inspectionAssignment)
+					InspectionAssignment
+							.save(
+									inspectionAssignment,
+									function(callbackData) {
+										$scope.inspectionAssignment = callbackData;
+										$scope.master = callbackData;
+										$scope.formControl.edit = false;
+										$scope.formControl.cancelPossible = true;
+									},
+									function(callbackData) {
+										
+										
+											alert(callbackData.data.errorMessage);
+										
+											
+										
+										
+										
+									});
+				
+				
 			};
 
 			$scope.reset = function() {

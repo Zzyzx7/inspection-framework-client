@@ -81,6 +81,21 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 					console.log(callbackData.data.errorMessage);
 				});
 			}
+			
+			$scope.finish = function(inspectionAssignment) {
+
+				inspectionAssignment
+						.$update(
+								{
+									inspectionassignmentid : inspectionAssignment.id
+								},
+								function(callbackData) {
+									$scope.master = inspectionAssignment;
+								
+								}
+								);
+				inspectionAssignment.state = '2';
+			};
 		} ]);
 
 
