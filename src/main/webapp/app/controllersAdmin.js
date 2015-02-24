@@ -74,10 +74,12 @@ inspectionObjectControllers
 														$scope.master = callbackData;
 														$scope.formControl.edit = false;
 														$scope.formControl.cancelPossible = true;
+														
+														alert('Saved successfully.');
+														$location.path( '/inspectionobjects' );
 													},
 													function(callbackData) {
-														$scope.formControl.errorMsg = callbackData.data.errorMessage;
-														$scope.inspectionObjectDetailsForm.$invalid = true;
+														alert(callbackData.data.errorMessage);
 													});
 								} else {
 									inspectionObject
@@ -90,8 +92,7 @@ inspectionObjectControllers
 														$scope.editOff();
 													},
 													function(callbackData) {
-														$scope.formControl.errorMsg = callbackData.data.errorMessage;
-														$scope.inspectionObjectDetailsForm.$invalid = true;
+														alert(callbackData.data.errorMessage);
 													});
 								}
 							};
@@ -191,10 +192,12 @@ userControllers
 														$scope.master = callbackData;
 														$scope.formControl.edit = false;
 														$scope.formControl.cancelPossible = true;
+														
+														alert('Saved successfully.');
+														$location.path( '/users' );
 													},
 													function(callbackData) {
-														$scope.formControl.errorMsg = callbackData.data.errorMessage;
-														$scope.userDetailsForm.$invalid = true;
+														alert(callbackData.data.errorMessage);
 													});
 								} else {
 									user
@@ -207,8 +210,7 @@ userControllers
 														$scope.editOff();
 													},
 													function(callbackData) {
-														$scope.formControl.errorMsg = callbackData.data.errorMessage;
-														$scope.userDetailsForm.$invalid = true;
+														alert(callbackData.data.errorMessage);
 													});
 								}
 							};
@@ -244,10 +246,11 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 		'$scope',
 		'$http',
+		'$location',
 		'$routeParams',
 		'InspectionAssignment',
 		
-		function($scope, $http, $routeParams, InspectionAssignment) {
+		function($scope, $http, $location, $routeParams, InspectionAssignment) {
 
 			$scope.formControl = {}
 			
@@ -293,16 +296,16 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			
 			$http.get(
 					'https://inspection-framework.herokuapp.com/users'
-							).success(function(dataU) {
+							).success(function(dataUser) {
 				
-				$scope.users = dataU;
+				$scope.users = dataUser;
 			});
 			
 			$http.get(
 					'https://inspection-framework.herokuapp.com/inspectionobject'
-							).success(function(dataO) {
+							).success(function(dataObject) {
 				
-				$scope.inspectionobjects = dataO;
+				$scope.inspectionobjects = dataObject;
 			});
 
 			$scope.save = function(inspectionAssignment) {
@@ -315,9 +318,14 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 										$scope.master = callbackData;
 										$scope.formControl.edit = false;
 										$scope.formControl.cancelPossible = true;
+										
+										alert('Saved successfully.');
+										$location.path( '/assignments' );
 									},
 									function(callbackData) {
 									  alert(callbackData.data.errorMessage);
+										
+										
 									});
 				
 				

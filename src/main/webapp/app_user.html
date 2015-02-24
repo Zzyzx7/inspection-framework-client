@@ -18,7 +18,7 @@
 <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
 
 </head>
-<body>
+<body ng-controller="AssignmentListCtrl">
 
 	<div id="navigation">
 		<table width="900px" style="margin-left: 20px;">
@@ -45,11 +45,13 @@
 					</tr>
 					<tr>
 						<td><a href="#/assignments" style="display: block;">Open
-								Assignments</a></td>
+								Assignments 
+								({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a></td>
 					</tr>
 					<tr>
 						<td><a href="#/saved" style="display: block;">Saved
-								Assignments</a></td>
+								Assignments
+								({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a></td>
 					</tr>
 					<tr>
 						<th>User</th>

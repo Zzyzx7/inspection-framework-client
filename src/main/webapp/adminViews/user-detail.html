@@ -1,11 +1,10 @@
-<form name="userDetailsForm" novalidate>
-    <span class="error" ng-show="userDetailsForm.$invalid">{{formControl.errorMsg}}</span>
+<form>
     <table border="1px" style="margin: 10px;">
         <tr>
             <td style="padding: 10px; vertical-align: top;">
                 <table class="tableList">
                     <tr>
-                        <td>User:</td>
+                        <td>User:<span style="color: red;">*</span></td>
                         <td>
                             <input name="userName" ng-disabled="!formControl.edit" ng-model="user.userName" type="text" size="30" maxlength="30" value="">
                         </td>
@@ -54,11 +53,17 @@
                     Picture:
                     <br> <img alt="No Picture available" width="200" height="100" src="">
                 </div>
-                <input ng-hide="formControl.edit" type="button" ng-click="editOn()" value="Edit" />
-                <input ng-show="formControl.edit && formControl.cancelPossible" type="button" ng-click="editOff()" value="Cancel" />
-                <input ng-show="formControl.edit" type="button" ng-click="reset()" value="Reset" />
-                <input ng-show="formControl.edit" type="submit" ng-click="save(user)" value="Save" />
+                </td></tr>
+                <tr><td colspan="2">
+                <input ng-hide="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="editOn()" value="Edit" />
+                <input ng-show="formControl.edit && formControl.cancelPossible" class="btn btn-primary btn-sm" type="button" ng-click="editOff()" value="Cancel" />
+                <input ng-show="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" />
+                <input ng-show="formControl.edit" type="submit" class="btn btn-primary btn-sm" ng-click="save(user)" value="Save" />
             </td>
         </tr>
+        <tr>
+			<th colspan="2" style="text-align: right; padding-right: 40px; padding: 10px;">
+				*mandatory field</th>
+		</tr>
     </table>
 </form>

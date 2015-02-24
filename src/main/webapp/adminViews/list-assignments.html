@@ -29,7 +29,7 @@
 			<span ng-if="inspectionassignment.state == 1">In Progress</span>
 			<span ng-if="inspectionassignment.state == 2">Finished</span>
 			</td>
-			<td><input type="submit"
+			<td style="text-align:center;"><input type="submit" class="btn btn-danger btn-xs"
 				ng-click="deleteItem(inspectionassignment)" ng-if="inspectionassignment.state == '2' || inspectionassignment.state == '0'" value="Clear" />
 				</td>
 		</tr>

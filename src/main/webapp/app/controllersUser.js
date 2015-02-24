@@ -84,6 +84,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 			
 			$scope.finish = function(inspectionAssignment) {
 
+				inspectionAssignment.state = '2';
 				inspectionAssignment
 						.$update(
 								{
@@ -94,8 +95,8 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 								
 								}
 								);
-				inspectionAssignment.state = '2';
-				alert("Assignment submitted successfully.")
+				
+				
 			};
 		} ]);
 
@@ -131,6 +132,7 @@ InspectionAssignmentControllers
 
 							$scope.save = function(inspectionAssignment) {
 
+								inspectionAssignment.state = '1';
 								inspectionAssignment
 										.$update(
 												{
@@ -138,15 +140,16 @@ InspectionAssignmentControllers
 												},
 												function(callbackData) {
 													$scope.master = inspectionAssignment;
-												
+													alert("Assignment saved successfully.")
 												}
 												);
-								inspectionAssignment.state = '1';
-								alert("Assignment saved successfully.")
+								
+								
 							};
 							
 							$scope.finish = function(inspectionAssignment) {
 
+								inspectionAssignment.state = '2';
 								inspectionAssignment
 										.$update(
 												{
@@ -154,11 +157,13 @@ InspectionAssignmentControllers
 												},
 												function(callbackData) {
 													$scope.master = inspectionAssignment;
-												
+													
+													alert("Assignment submitted successfully.")
+													
+													$location.path( '/assignments' );
 												}
 												);
-								inspectionAssignment.state = '2';
-								alert("Assignment submitted successfully.")
+								
 							};
 
 							$scope.reset = function() {
