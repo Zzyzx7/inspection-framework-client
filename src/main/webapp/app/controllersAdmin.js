@@ -317,14 +317,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 										$scope.formControl.cancelPossible = true;
 									},
 									function(callbackData) {
-										
-										
-											alert(callbackData.data.errorMessage);
-										
-											
-										
-										
-										
+									  alert(callbackData.data.errorMessage);
 									});
 				
 				

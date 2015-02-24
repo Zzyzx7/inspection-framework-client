@@ -95,6 +95,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 								}
 								);
 				inspectionAssignment.state = '2';
+				alert("Assignment submitted successfully.")
 			};
 		} ]);
 
@@ -141,6 +142,7 @@ InspectionAssignmentControllers
 												}
 												);
 								inspectionAssignment.state = '1';
+								alert("Assignment saved successfully.")
 							};
 							
 							$scope.finish = function(inspectionAssignment) {
@@ -156,6 +158,7 @@ InspectionAssignmentControllers
 												}
 												);
 								inspectionAssignment.state = '2';
+								alert("Assignment submitted successfully.")
 							};
 
 							$scope.reset = function() {
