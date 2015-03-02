@@ -1,0 +1,33 @@
+
+
+<div style="margin: 20px;">
+	Search: <input ng-model="query" /> Sort by: <select
+		ng-model="orderProp">
+		<option value="name">Alphabetical</option>
+		<option value="endDate">Newest</option>
+	</select>
+</div>
+
+<table border="1" id="tableDefault">
+	<thead>
+		<tr>
+			<th style="min-width: 250px; border-right-style: none;">Saved
+				Assignments</th>
+			<th style="border-left-style: none;"></th>
+		</tr>
+	</thead>
+	<tbody ng-if="inspectionassignment.state == '1'"
+		ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp"
+		ng-hide="{{inspectionassignment.isTemplate}}">
+		<tr>
+			<td style="border-right-style: none;"><a
+				href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+
+			</td>
+			<td style="text-align: right; border-left-style: none;"><input
+				type="button" class="btn btn-success btn-xs" ng-click="finish(inspectionassignment)" value="Submit Assignment"
+				style="margin-right: 10px;" /></td>
+		</tr>
+	</tbody>
+	
+</table>

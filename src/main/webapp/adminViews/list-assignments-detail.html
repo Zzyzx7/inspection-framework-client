@@ -1,53 +1,72 @@
-<table border="1px" style="margin:10px;">
- <tr><td style="padding:10px; vertical-align:top;">
- 
- <table class="tableList">
- <tr><td>Assignment Name: </td>
- <td><input name="assignmentName" type="text" size="30" maxlength="30" value="{{inspectionassignment.assignmentName}}"/></td></tr>
- <tr><td>Inspection-Object: </td>
- <td><input name="inspectionObject" type="text" size="30" maxlength="30" value="{{inspectionassignment.inspectionObject.objectName}}"/></td></tr>
- <tr><td>Due Date: </td>
- <td><input name="dueDate" type="text" size="30" maxlength="30" value="{{inspectionassignment.endDate}}"/></td></tr>
- <tr><td>Responsible: </td>
- <td><input name="responsible" type="text" size="30" maxlength="30" value="{{inspectionassignment.user.userName}}"/></td></tr>
- </table>
+<form>
+<table border="1px" style="margin: 10px;">
+	<tr>
+		<td style="padding: 10px; vertical-align: top;">
+
+			<table class="tableList">
+				<tr>
+					<td>Assignment Name:</td>
+					<td><input name="assignmentName" type="text" size="30"
+						maxlength="30" value="{{inspectionassignment.assignmentName}}" /></td>
+				</tr>
+				<tr>
+					<td>Inspection-Object:</td>
+					<td><input name="inspectionObject" type="text" size="30"
+						maxlength="30"
+						value="{{inspectionassignment.inspectionObject.objectName}}" /></td>
+				</tr>
+				<tr>
+					<td>Due Date:</td>
+					<td><input name="dueDate" type="text" size="30" maxlength="30"
+						value="{{inspectionassignment.endDate}}" /></td>
+				</tr>
+				<tr>
+					<td>Responsible:</td>
+					<td><input name="responsible" type="text" size="30"
+						maxlength="30" value="{{inspectionassignment.user.userName}}" /></td>
+				</tr>
+			</table>
 
 
- <table border="1px" style="margin:10px; margin-left:auto; margin-right:auto;" class="tableDefault">
-  <thead><tr>
-   <th>Task</th>
-   <th>Report</th>
-   <th>Display</th>
-  </tr></thead>
-  <tbody ng-repeat="task in inspectionassignment.tasks">
-<tr>
-<td>
- {{task.taskName}}
-</td>
-<td>
-  {{task.attachmentIds}}
-</td>
-<td>
+			<table border="1px"
+				style="margin: 10px; margin-left: auto; margin-right: auto;"
+				class="tableDefault">
+				<thead>
+					<tr>
+						<th>Task</th>
+						<th>Report</th>
+						<th>Display</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="task in inspectionassignment.tasks">
+					<tr>
+						<td>{{task.taskName}}</td>
+						<td><span ng-if="task.state == '0'">not OK</span> <span
+							ng-if="task.state == '1'">OK</span> </td>
+						<td><input ng-if="task.attatchmentIds == '1'" type="submit"
+							ng-click="" value="View Problem" /></td>
+					</tr>
+				</tbody>
+			</table>
 
-</td>
-</tr>
-</tbody>
- </table>
 
- 
- </td>
- <td style="padding:10px; vertical-align:top;">
- 
- <div style="margin:20px;">Problem Description:<br/>
- <textarea style="margin:5px;" name="user_eingabe" cols="50" rows="5">{{inspectionassignment.description}}</textarea>
- </div>
- 
- <div>Picture:<br/>
- <img alt="No Picture available" width="200" height="100" src=""/>
- 
- </div>
- 
- </td></tr>
+		</td>
+		<td style="padding: 10px; vertical-align: top;">
+
+			<div style="margin: 20px;">
+				Problem Description:<br />
+				<textarea style="margin: 5px;" name="user_eingabe" cols="50"
+					rows="5">{{inspectionassignment.description}}</textarea>
+			</div>
+
+			<div>
+				Picture:<br /> <img alt="No Picture available" width="200"
+					height="100" src="" />
+
+			</div>
+
+		</td>
+	</tr>
 </table>
-
+</form>
 

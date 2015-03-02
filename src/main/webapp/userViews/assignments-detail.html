@@ -1,0 +1,60 @@
+<form>
+	<table border="1px" style="margin: 10px;">
+		<tr>
+			<td style="padding: 10px; vertical-align: top;">
+
+				<table class="tableList">
+					<tr>
+						<td>Assignment Name:</td>
+						<td><input name="assignmentName" type="text" size="30"
+							ng-disabled="!formControl.edit" maxlength="30"
+							value="{{inspectionAssignment.assignmentName}}" /></td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td><textarea ng-disabled="!formControl.edit"
+								name="user_eingabe" cols="70" rows="2">{{inspectionAssignment.description}}</textarea></td>
+					</tr>
+				</table>
+
+
+				<table border="1px"
+					style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px; min-width: 600px;"
+					class="tableDefault">
+					<thead>
+						<tr>
+							<th>Task</th>
+							<th>Report</th>
+							<th>Check</th>
+							<th>Error</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="task in inspectionAssignment.tasks">
+						<tr>
+							<td>{{task.taskName}}</td>
+							<td>{{task.description}}</td>
+							<td>
+								<form name="checkTask">
+									<input type="radio" ng-model="task.state" value="1" /> OK <input
+										type="radio" ng-model="task.state" value="0"
+										style="margin-left: 5px;" /> not OK
+								</form>
+							</td>
+							<td><a href="" style="display: block;">Add
+									error-description</a></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</td>
+		</tr>
+		<tr>
+			<td	style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
+				<input type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset Tasks" /> <input
+				type="submit" class="btn btn-primary btn-sm" ng-click="save(inspectionAssignment)" href="/saved" value="Save" />
+				<input style="margin-left:50px;" type="submit" class="btn btn-success btn-sm" ng-click="finish(inspectionAssignment)" value="Submit Assignment" />
+			</td>
+		</tr>
+	</table>
+</form>

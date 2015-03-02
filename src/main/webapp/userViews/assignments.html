@@ -1,0 +1,30 @@
+
+
+<div style="margin:20px;">
+  Search: <input ng-model="query"/>
+  Sort by:
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="endDate">Newest</option>
+</select>
+</div>
+
+<table border="1" id="tableDefault">
+<thead>
+<tr>
+<th style="min-width:250px;">Open Assignments</th>
+<th style="min-width:150px;">Inspection Objects</th>
+<th style="min-width:75px;">Due Date</th>
+</tr>
+</thead>
+	<tbody ng-if="inspectionassignment.state == '0'"
+		ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp"
+		ng-hide="{{inspectionassignment.isTemplate}}">
+		<tr>
+			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+			</td>
+			<td>{{inspectionassignment.inspectionObject.objectName}}</td>
+			<td>{{inspectionassignment.endDate}}</td>
+		</tr>
+	</tbody>
+</table> 

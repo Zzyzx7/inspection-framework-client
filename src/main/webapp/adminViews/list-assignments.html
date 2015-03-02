@@ -1,41 +1,37 @@
-
-
-<div style="margin:20px;">
-  Search: <input ng-model="query"/>
-  Sort by:
-<select ng-model="orderProp">
-  <option value="name">Alphabetical</option>
-  <option value="endDate">Newest</option>
-</select>
+<div style="margin: 20px;">
+	Search: <input ng-model="query" /> Sort by: <select
+		ng-model="orderProp">
+		<option value="name">Alphabetical</option>
+		<option value="endDate">Newest</option>
+	</select>
 </div>
 
 <table border="1" id="tableDefault">
-<thead>
-<tr>
-<th style="min-width:250px;">Assignments</th>
-<th style="min-width:150px;">User Responsible</th>
-<th style="min-width:75px;">Due Date</th>
-<th style="min-width:75px;">Status</th>
-<th style="min-width:75px;">Clear</th>
-</tr>
-</thead>
-<tbody ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp" ng-hide="{{inspectionassignment.isTemplate}}">
-<tr>
-<td>
- <a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
-</td>
-<td>
-  {{inspectionassignment.user.userName}}
-</td>
-<td>
-  {{inspectionassignment.endDate}}
-</td>
-<td>
-
-</td>
-<td>
-  <input type="submit" ng-click="deleteItem(inspectionassignment)" value="Clear" />
-</td>
-</tr>
-</tbody>
-</table> 
+	<thead>
+		<tr>
+			<th style="min-width: 250px;">Assignments</th>
+			<th style="min-width: 150px;">User Responsible</th>
+			<th style="min-width: 75px;">Due Date</th>
+			<th style="min-width: 75px;">Status</th>
+			<th style="min-width: 75px;">Clear</th>
+		</tr>
+	</thead>
+	<tbody
+		ng-repeat="inspectionassignment in inspectionassignments | filter:query | orderBy:orderProp"
+		ng-hide="{{inspectionassignment.isTemplate}}">
+		<tr>
+			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
+			</td>
+			<td>{{inspectionassignment.user.userName}}</td>
+			<td>{{inspectionassignment.endDate}}</td>
+			<td>
+			<span ng-if="inspectionassignment.state == 0">Initial</span>
+			<span ng-if="inspectionassignment.state == 1">In Progress</span>
+			<span ng-if="inspectionassignment.state == 2">Finished</span>
+			</td>
+			<td style="text-align:center;"><input type="submit" class="btn btn-danger btn-xs"
+				ng-click="deleteItem(inspectionassignment)" ng-if="inspectionassignment.state == '2' || inspectionassignment.state == '0'" value="Clear" />
+				</td>
+		</tr>
+	</tbody>
+</table>

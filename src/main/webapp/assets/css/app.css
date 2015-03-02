@@ -18,14 +18,23 @@ a:hover {
 
 
 /* style for the login form*/
-table.login {
+#login {
 	text-align:center;
 	margin:auto;
 	vertical-align:center;
 	margin-top:50px;
+	background-color: #042c57;
+	color: white;
 }
-.login td {
+#login td {
 	padding:10px;
+}
+#login a {
+	color: white;
+	text-decoration: none;
+}
+#login input {
+	color: black;
 }
 
 /*style id for the menu on the left side*/
@@ -65,7 +74,14 @@ table.tableList  {
 #tableDefault td {
 	padding: 7px;
 }
-
+#tableDefault a {
+	color: #242424;
+	text-decoration: none;
+}
+#tableDefault a:hover {
+	color:#014283;
+	cursor: pointer;
+}
 
 
 /* style id for the navigation bar*/
