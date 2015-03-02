@@ -131,11 +131,10 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
     }
 ]);
 
-var indexControllers = angular.module('indexControllers', []);
+var sessionControllers = angular.module('sessionControllers', []);
 
-indexControllers.controller('LoginCtrl', ['$scope', 'Login', function($scope, Login) {
+sessionControllers.controller('LoginCtrl', ['$scope', 'Login', function($scope, Login) {
     $scope.login = function(username, password) {
-    	var login = new Login();
     	Login.login({ username: username,
     				  password: password }, 
     	function(callbackData) {
@@ -144,6 +143,14 @@ indexControllers.controller('LoginCtrl', ['$scope', 'Login', function($scope, Lo
             console.log(callbackData.data.errorMessage);
         });
     }
+}]);
+
+sessionControllers.controller('LogoutCtrl', ['$scope', '$window', 'Logout', function($scope, $window, Logout) {
+	Logout.logout({ },function(callbackData) {
+		$window.location.href = 'index.html';
+    }, function(callbackData) {
+        console.log(callbackData.data.errorMessage);
+    });
 }]);
 
 var userControllers = angular.module('userControllers', []);

@@ -49,9 +49,9 @@ inspectionObjectServices.factory('InspectionObject', ['$resource',
     }
 ]);
 
-var loginServices = angular.module('loginServices', ['ngResource']);
+var sessionServices = angular.module('sessionServices', ['ngResource']);
 
-loginServices.factory('Login', ['$resource',
+sessionServices.factory('Login', ['$resource',
     function($resource) {
         return $resource(REST_BACKEND_URL + '/login', {}, {
             'login': {
@@ -67,6 +67,17 @@ loginServices.factory('Login', ['$resource',
         });
     }
 ]);
+
+sessionServices.factory('Logout', ['$resource',
+            function($resource) {
+                return $resource(REST_BACKEND_URL + '/logout', {}, {
+                    'logout': {
+                        method: 'POST',
+                        headers: {'Content-Type':'application/x-www-form-urlencoded'}
+                    }
+                });
+            }
+        ]);
 
 var userServices = angular.module('userServices', ['ngResource']);
 

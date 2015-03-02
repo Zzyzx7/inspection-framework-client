@@ -3,12 +3,12 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
     'ngRoute',
     'inspectionObjectControllers',
     'inspectionAssignmentControllers',
-    'indexControllers',
+    'sessionControllers',
     'inspectionObjectServices',
     'inspectionAssignmentServices',
     'userControllers',
     'userServices',
-    'loginServices',
+    'sessionServices',
     'httpInterceptors'
 ]);
 
@@ -24,6 +24,10 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProv
         when('/login', {
             templateUrl: 'userViews/login.html',
             controller: 'LoginCtrl'
+        }).
+        when('/logout', {
+            templateUrl: 'userViews/logout.html',
+            controller: 'LogoutCtrl'
         }).
         when('/inspectionobjects', {
             templateUrl: 'adminViews/inspection-object-list.html',
