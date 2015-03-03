@@ -2,21 +2,22 @@
 <html ng-app="inspectionFrameworkApp">
 
 <head>
-<meta charset="utf-8">
-<title>Inspection Framework - Admin</title>
-<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="assets/css/app.css">
-<link rel="stylesheet" href="css/fileupload.css">
-<script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
-<script src="assets/js/angular.min.js"></script>
-<script src="assets/js/angular-route.min.js"></script>
-<script src="assets/js/angular-resource.min.js"></script>
-<script src="app/servicesAdmin.js"></script>
-<script src="app/controllersAdmin.js"></script>
-<script src="app/appAdmin.js"></script>
-
-<script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
-
+	<base href="/inspection-framework-html-client/">
+    <meta charset="utf-8">
+    <title>Inspection Framework - Admin</title>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="css/fileupload.css">
+    <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.min.js"></script>
+    <script src="assets/js/angular-resource.min.js"></script>
+    <script src="app/constants.js"></script>
+    <script src="app/servicesAdmin.js"></script>
+    <script src="app/controllersAdmin.js"></script>
+    <script src="app/httpInterceptors.js"></script>
+    <script src="app/appAdmin.js"></script>
+    <script type="text/javascript" src="assets/js/angular-file-upload.js"></script>
 </head>
 <body>
 
@@ -35,54 +36,52 @@
 
 	</div>
 
-	<table style="margin-top: 50px;">
-		<tr>
-			<td style="vertical-align: top; min-width: 210px;">
+    <table style="margin-top:50px;">
+        <tr>
+            <td style="vertical-align:top; min-width:210px;">
 
-				<table border="1" id="menu" width="180px">
-					<tr>
-						<th>Assignments</th>
-					</tr>
-					<tr>
-						<td><a href="#/assignments" style="display: block;">List of Assignments</a></td>
-					</tr>
-					<tr>
-						<td><a href="#/assignments/new" style="display: block;">Create
-								New</a></td>
-					</tr>
-					<tr>
-						<td><a href="#/templates" style="display: block;">List of Templates</a></td>
-					</tr>
-					<tr>
-						<th>Users</th>
-					</tr>
-					<tr>
-						<td><a href="#/users" style="display: block;">List of
-								Users</a></td>
-					</tr>
-					<tr>
-						<td><a href="#/users/new" style="display: block;">Create
-								User</a></td>
-					</tr>
-					<tr>
-						<th>Inspection Objects</th>
-					</tr>
-					<tr>
-						<td><a href="#/inspectionobjects" style="display: block;">List
-								of Inspection Objects</a></td>
-					</tr>
-					<tr>
-						<td><a href="#/inspectionobjects/new" style="display: block;">Create
-								Inspection Object</a></td>
-					</tr>
-				</table>
-
-			</td>
-			<td style="vertical-align: top;"><ng-view></ng-view></td>
-		</tr>
-	</table>
-
-
-
+                <table border="1" id="menu">
+                    <tr>
+                        <th>Assignments</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#/assignments" style="display:block;">List Of Assignments</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#/inspectionassignment/new" style="display:block;">Add Assignment</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#/templates" style="display:block;">Templates</a></td>
+                    </tr>
+                    <tr>
+                        <th>Users</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#/users" style="display:block;">List of Users</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#/users/new" style="display:block;">Create User</a></td>
+                    </tr>
+                    <tr>
+                        <th>Inspection Objects</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#/inspectionobjects" style="display:block;">List of Inspection Objects</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#/inspectionobjects/new" style="display:block;">Create Inspection Object</a>
+                        </td>
+                    </tr>
+                </table>
+                                
+            </td>
+            <td style="vertical-align:top;">
+                <ng-view></ng-view>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
