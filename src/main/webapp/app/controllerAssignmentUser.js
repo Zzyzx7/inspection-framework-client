@@ -174,20 +174,26 @@ InspectionAssignmentControllers.controller(
 
 					
 
-					$scope.save = function(inspectionAssignment) {
-						
-							inspectionAssignment
-									.$update(
-											{
-												inspectionassignmentid : inspectionAssignment.id
+						$scope.save = function(inspectionAssignment) {
+							
+							InspectionAssignment
+									.save(
+											inspectionAssignment,
+											function(callbackData) {
+												$scope.inspectionAssignment = callbackData;
+												$scope.master = callbackData;
+												$scope.formControl.edit = false;
+												$scope.formControl.cancelPossible = true;
+												
+												alert('Saved successfully.');
+												$location.path( '/assignments/' + $routeParams.id);
 											},
 											function(callbackData) {
-												$scope.master = inspectionAssignment;
-												$scope.editOff();
-											},
-											function(callbackData) {
-												alert(callbackData.data.errorMessage);
+											  alert(callbackData.data.errorMessage);
+												
+												
 											});
+						
 						
 					};
 
