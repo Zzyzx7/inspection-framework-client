@@ -24,7 +24,7 @@
 			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
 			</td>
 			<td>{{inspectionassignment.inspectionObject.objectName}}</td>
-			<td>{{inspectionassignment.endDate}}</td>
+			<td>{{inspectionassignment.endDate | date:"dd.MM.yyyy"}}</td>
 		</tr>
 	</tbody>
 </table> 

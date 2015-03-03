@@ -1,22 +1,24 @@
-var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [ 'ngRoute',
-		'sessionControllers', 'inspectionObjectControllers', 'inspectionAssignmentControllers',
-		'inspectionObjectServices', 'inspectionAssignmentServices', 'userControllers',
-		'userServices', 'httpInterceptors', 'sessionServices', ]);
+var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
+    'angularFileUpload',
+    'ngRoute',
+    'inspectionObjectControllers',
+    'inspectionAssignmentControllers',
+    'sessionControllers',
+    'inspectionObjectServices',
+    'inspectionAssignmentServices',
+    'userControllers',
+    'userServices',
+    'sessionServices',
+    'httpInterceptors'
+]);
 
-inspectionFrameworkApp.config([ '$routeProvider', '$locationProvider', '$httpProvider',
-		function($routeProvider, $locationProvider, $httpProvider) {
-			$httpProvider.interceptors.push('UnauthorizedInterceptor');
-
-			$routeProvider.when('/', {
-				templateUrl : 'userViews/login.html',
-				controller : 'LoginCtrl'
-			}).when('/login', {
-				templateUrl : 'userViews/login.html',
-				controller : 'LoginCtrl'
-			}).when('/logout', {
-				templateUrl : 'userViews/logout.html',
-				controller : 'LogoutCtrl'
-			}).when('/inspectionobjects', {
+inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
+    function($routeProvider, $locationProvider, $httpProvider) {
+		$httpProvider.interceptors.push('UnauthorizedInterceptor');
+			
+	
+	$routeProvider.
+			when('/inspectionobjects', {
 				templateUrl : 'adminViews/inspection-object-list.html',
 				controller : 'InspectionObjectListCtrl'
 			}).when('/inspectionobjects/new', {
@@ -83,23 +85,29 @@ inspectionFrameworkApp.factory('uploadManager', function($rootScope) {
 	};
 });
 
-inspectionFrameworkApp.directive('upload', [ 'uploadManager', function factory(uploadManager) {
-	return {
-		restrict : 'A',
-		link : function(scope, element, attrs) {
-			$(element).fileupload({
-				dataType : 'text',
-				add : function(e, data) {
-					uploadManager.add(data);
-				},
-				progressall : function(e, data) {
-					var progress = parseInt(data.loaded / data.total * 100, 10);
-					uploadManager.setProgress(progress);
-				},
-				done : function(e, data) {
-					uploadManager.setProgress(0);
+inspectionFrameworkApp.directive('upload', [
+		'uploadManager',
+		function factory(uploadManager) {
+			return {
+				restrict : 'A',
+				link : function(scope, element, attrs) {
+					$(element).fileupload(
+							{
+								dataType : 'text',
+								add : function(e, data) {
+									uploadManager.add(data);
+								},
+								progressall : function(e, data) {
+									var progress = parseInt(data.loaded
+											/ data.total * 100, 10);
+									uploadManager.setProgress(progress);
+								},
+								done : function(e, data) {
+									uploadManager.setProgress(0);
+								}
+							});
 				}
-			});
-		}
-	};
-} ]);
+			};
+		} ]);
+
+

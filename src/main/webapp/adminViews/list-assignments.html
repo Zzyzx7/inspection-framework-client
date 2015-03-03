@@ -23,7 +23,7 @@
 			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
 			</td>
 			<td>{{inspectionassignment.user.userName}}</td>
-			<td>{{inspectionassignment.endDate}}</td>
+			<td>{{inspectionassignment.endDate | date:"dd.MM.yyyy"}}</td>
 			<td>
 			<span ng-if="inspectionassignment.state == 0">Initial</span>
 			<span ng-if="inspectionassignment.state == 1">In Progress</span>

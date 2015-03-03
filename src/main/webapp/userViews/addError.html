@@ -1,0 +1,44 @@
+<form>
+	<table border="1px" style="margin: 10px;">
+		<tr>
+			<td style="padding: 10px; vertical-align: top;">
+
+				<table class="tableList">
+					<tr>
+						<td>Task Name:</td>
+						<td ng-repeat="task in inspectionAssignment.tasks | filter: assignmentTask.assignmenttaskid">
+						<input name="assignmentName" type="text" size="30"
+							ng-disabled="!formControl.edit" maxlength="30"
+							value="{{task.taskName}}" /></td>
+					</tr>
+					<tr>
+						<td>Task Description:</td>
+						<td ng-repeat="task in inspectionAssignment.tasks | filter: assignmentTask.assignmenttaskid"><textarea ng-disabled="!formControl.edit"
+								name="taskDescription" cols="40" rows="1">{{task.description}}</textarea></td>
+					</tr>
+					<tr>
+					<td>Add Error Description:</td>
+					<td><textarea name="errorDescription" cols="40" rows="2"></textarea></td>
+					</tr>
+					<tr>
+					<td>Upload Files:</td>
+					<td></td>
+					</tr>
+					
+				</table>
+
+
+				
+
+
+			</td>
+		</tr>
+		<tr>
+			<td	style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
+				<input type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" /> <input
+				type="submit" class="btn btn-success btn-sm" ng-click="save(inspectionAssignment)" href="/saved" value="Done" />
+				
+			</td>
+		</tr>
+	</table>
+</form>

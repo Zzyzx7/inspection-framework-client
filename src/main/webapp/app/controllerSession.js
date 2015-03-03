@@ -19,3 +19,4 @@ sessionControllers.controller('LogoutCtrl', ['$scope', '$window', 'Logout', func
         console.log(callbackData.data.errorMessage);
     });
 }]);
+
