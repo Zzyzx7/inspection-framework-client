@@ -112,7 +112,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			} else {
 
 				$http.get(
-						'https://inspection-framework.herokuapp.com/assignment/'
+						REST_BACKEND_URL + '/assignment/'
 								+ $routeParams.id).success(function(data) {
 					var template = data;
 
@@ -132,14 +132,14 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			}
 			
 			$http.get(
-					'https://inspection-framework.herokuapp.com/users'
+					REST_BACKEND_URL + '/users'
 							).success(function(dataUser) {
 				
 				$scope.users = dataUser;
 			});
 			
 			$http.get(
-					'https://inspection-framework.herokuapp.com/inspectionobject'
+					REST_BACKEND_URL + '/inspectionobject'
 							).success(function(dataObject) {
 				
 				$scope.inspectionobjects = dataObject;
@@ -191,7 +191,7 @@ InspectionAssignmentControllers.controller('AssignmentDetailCtrl', [
 		'$http',
 		function($scope, $routeParams, $http) {
 			$http.get(
-					'https://inspection-framework.herokuapp.com/assignment/'
+					REST_BACKEND_URL + '/assignment/'
 							+ $routeParams.id).success(function(data) {
 				$scope.inspectionassignment = data;
 			});
