@@ -1,5 +1,5 @@
 var InspectionAssignmentControllers = angular.module(
-		'inspectionAssignmentControllers', []);
+		'inspectionAssignmentControllers', ['ui.bootstrap']);
 
 InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 		'$scope',
@@ -21,14 +21,73 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 			}
 		} ]);
 
+
+
 InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 		'$scope',
 		'$http',
 		'$location',
 		'$routeParams',
 		'InspectionAssignment',
-		
+				
 		function($scope, $http, $location, $routeParams, InspectionAssignment) {
+			
+			
+			//date picker:
+			$scope.today = function() {
+			    $scope.dt = new Date();
+			  };
+			  $scope.today();
+
+			  $scope.clear = function () {
+			    $scope.dt = null;
+			  };
+
+			  // Disable weekend selection
+			  $scope.disabled = function(date, mode) {
+			    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+			  };
+
+			  $scope.toggleMin = function() {
+			    $scope.minDate = $scope.minDate ? null : new Date();
+			  };
+			  $scope.toggleMin();
+
+			  $scope.open = function($event) {
+			    $event.preventDefault();
+			    $event.stopPropagation();
+
+			    if($event.target.attributes.id.value == '1'){
+			    	$scope.opened1 = true;
+				    $scope.opened2 = false;
+			    }
+			    if($event.target.attributes.id.value == '2'){
+			    	$scope.opened1 = false;
+				    $scope.opened2 = true;
+			    }
+			    
+			  };
+			  
+			  $scope.dateOptions = {
+			    formatYear: 'yy',
+			    startingDay: 1
+			  };
+
+			  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+			  $scope.format = $scope.formats[2];
+			  
+			  $scope.onDateChange1 = function() {
+                  if (this.inspectionassignment.startDate) {
+                    this.inspectionassignment.startDate = this.inspectionassignment.startDate.getTime();
+                  }
+                };
+                
+                $scope.onDateChange2 = function() {
+                    if (this.inspectionassignment.endDate) {
+                      this.inspectionassignment.endDate = this.inspectionassignment.endDate.getTime();
+                    }
+                  };
+			//end of datepicker
 
 			$scope.formControl = {}
 			
@@ -85,6 +144,8 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 				
 				$scope.inspectionobjects = dataObject;
 			});
+			
+			
 
 			$scope.save = function(inspectionAssignment) {
 				
@@ -155,3 +216,6 @@ InspectionAssignmentControllers.controller('TemplateListCtrl', [
 				});
 			}
 		} ]);
+
+
+
