@@ -56,19 +56,24 @@ userServices.factory('User', ['$resource',
         return $resource(REST_BACKEND_URL + '/users/:userid', {}, {
             'list': {
                 method: 'GET',
-                isArray: true
+                isArray: true,
+                withCredentials: true
             },
             'getDetails': {
-                method: 'GET'
+                method: 'GET',
+                withCredentials: true
             },
             'save': {
-                method: 'POST'
+                method: 'POST',
+                withCredentials: true
             },
             'update': {
-                method: 'PUT'
+                method: 'PUT',
+                withCredentials: true
             },
             'remove': {
-                method: 'DELETE'
+                method: 'DELETE',
+                withCredentials: true
             }
         });
     }
@@ -107,6 +112,7 @@ sessionServices.factory('Login', ['$resource',
             'login': {
                 method: 'POST',
                 headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                withCredentials: true,
         		transformRequest: function(obj) {
 		            var str = [];
 		            for(var p in obj)
