@@ -1,13 +1,13 @@
 var sessionControllers = angular.module('sessionControllers', []);
 
-sessionControllers.controller('LoginCtrl', ['$scope', 'Login', function($scope, Login) {
+sessionControllers.controller('LoginCtrl', ['$scope','$window', 'Login', function($scope, $window, Login) {
     $scope.login = function(username, password) {
     	Login.login({ username: username,
     				  password: password }, 
     	function(callbackData) {
-    		console.log("success");
+    		$window.location.href = 'admin.html';
         }, function(callbackData) {
-            console.log(callbackData.data.errorMessage);
+            console.log("error");
         });
     }
 }]);
