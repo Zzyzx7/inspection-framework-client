@@ -17,6 +17,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Password:</td>
+                        <td>
+                            <input name="password" ng-disabled="!formControl.edit" ng-model="user.password" type="password" size="30" maxlength="30" value="">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>First Name:</td>
                         <td>
                             <input name="firstName" ng-disabled="!formControl.edit" ng-model="user.firstName" type="text" size="30" maxlength="30" value="">

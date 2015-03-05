@@ -29,8 +29,10 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 		'$location',
 		'$routeParams',
 		'InspectionAssignment',
+		'User',
+		'InspectionObject',
 				
-		function($scope, $http, $location, $routeParams, InspectionAssignment) {
+		function($scope, $http, $location, $routeParams, InspectionAssignment, User, InspectionObject) {
 			
 			
 			//date picker:
@@ -131,19 +133,14 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 
 			}
 			
-			$http.get(
-					REST_BACKEND_URL + '/users'
-							).success(function(dataUser) {
-				
-				$scope.users = dataUser;
-			});
 			
-			$http.get(
-					REST_BACKEND_URL + '/inspectionobject'
-							).success(function(dataObject) {
+				$scope.users = User.list();
+			
+			
+			
 				
-				$scope.inspectionobjects = dataObject;
-			});
+				$scope.inspectionobjects = InspectionObject.list();
+			
 			
 			
 
