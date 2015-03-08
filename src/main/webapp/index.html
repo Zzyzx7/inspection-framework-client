@@ -23,7 +23,7 @@
 <script src="app/controllerAssignmentAdmin.js"></script>
 <script src="app/controllerInspectionObject.js"></script>
 <script src="app/controllerUsers.js"></script>
-<script src="app/controllerSession.js"></script>
+<script src="app/directiveSession.js"></script>
 
 <script src="app/appAdmin.js"></script>
 <script src="app/services.js"></script>
@@ -34,7 +34,7 @@
 
 </head>
 
-<body style="background-color: #f2f2f2;" ng-controller="LoginCtrl">
+<body style="background-color: #f2f2f2;">
 
 
 	<table id="login">
@@ -59,7 +59,8 @@
 		<tr>
 			<td></td>
 			<td>
-				<form>
+				<insp-login></insp-login>
+				<!--  <form>
 					<p>
 						<input type="text" ng-model="user.username" name="login" value=""
 							placeholder="Username or Email">
@@ -73,7 +74,7 @@
 						<input type="submit" class="btn btn-default btn-sm" name="commit" 
 						ng-click="login(user.username, user.password)" value="Login">
 					</p>
-				</form>
+				</form> -->
 			</td>
 			<td></td>
 		</tr>

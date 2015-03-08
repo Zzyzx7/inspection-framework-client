@@ -20,7 +20,9 @@
 <!-- loading different controllers -->
 <script src="app/controllerAssignmentUser.js"></script>
 <script src="app/controllerUsers.js"></script>
-<script src="app/controllerSession.js"></script>
+
+<!-- loading different directives -->
+<script src="app/directiveSession.js"></script>
 
 <script src="app/appUser.js"></script>
 <script src="app/services.js"></script>
@@ -42,10 +44,8 @@
 				</td>
 				<td style="text-align: right;"><span
 					style="font-style: italic; font-size: 12px; margin-right:10px;">Role: User</span> 
-					<input type="submit" class="btn btn-default btn-xs" name="commit" 
-						ng-click="" value="Logout">
-					<a
-					href="index.html">Logout</a></td>
+					<insp-logout></insp-logout>
+				</td>
 		</table>
 
 	</div>
