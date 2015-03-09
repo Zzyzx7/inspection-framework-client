@@ -24,7 +24,9 @@
 <script src="app/controllerAssignmentAdmin.js"></script>
 <script src="app/controllerInspectionObject.js"></script>
 <script src="app/controllerUsers.js"></script>
-<script src="app/controllerSession.js"></script>
+
+<!-- loading different directives -->
+<script src="app/directiveSession.js"></script>
 
 <script src="app/appAdmin.js"></script>
 <script src="app/services.js"></script>
@@ -35,7 +37,6 @@
 
 </head>
 <body>
-
 	<div id="navigation">
 		<table width="900px" style="margin-left: 20px;">
 			<tr>
@@ -45,14 +46,11 @@
 					Inspection <span style="font-weight: bolder">FRAMEWORK</span>
 				</td>
 				<td style="text-align: right;"><span
-					style="font-style: italic; font-size: 12px; margin-right:10px;">Role: Admin</span> 
-					<input type="submit" class="btn btn-default btn-xs" name="commit" 
-						ng-click="" value="Logout">
-					
-					<a
-					href="index.html">Logout</a></td>
+					style="font-style: italic; font-size: 12px; margin-right:10px;">Role: Admin</span>
+					<insp-logout></insp-logout> 
+				</td>
+			</tr>
 		</table>
-
 	</div>
 
 	<table style="margin-top: 50px;">
@@ -102,7 +100,6 @@
 			<td style="vertical-align: top;"><ng-view></ng-view></td>
 		</tr>
 	</table>
-
 
 
 </body>

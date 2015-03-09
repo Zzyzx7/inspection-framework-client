@@ -3,4 +3,3 @@
 * AngularJS
 * CSS
 * Javascript
-* Android
