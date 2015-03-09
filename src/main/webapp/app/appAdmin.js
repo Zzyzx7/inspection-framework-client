@@ -19,7 +19,7 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProv
 	
 	$routeProvider.
 			when('/', {
-				templateUrl : 'adminViews/index.html'
+				templateUrl : 'adminViews/welcome.html'
 			}).when('/inspectionobjects', {
 				templateUrl : 'adminViews/inspection-object-list.html',
 				controller : 'InspectionObjectListCtrl'

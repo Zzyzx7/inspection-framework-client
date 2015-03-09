@@ -6,30 +6,93 @@
 				<table class="tableList">
 					<tr>
 						<td>Task Name:</td>
-						<td ng-repeat="task in inspectionAssignment.tasks | filter: assignmentTask.assignmenttaskid">
+						<td>
 						<input name="assignmentName" type="text" size="30"
 							ng-disabled="!formControl.edit" maxlength="30"
-							value="{{task.taskName}}" /></td>
+							value="{{inspectionAssignmentTask.taskName}}" /></td>
 					</tr>
 					<tr>
 						<td>Task Description:</td>
-						<td ng-repeat="task in inspectionAssignment.tasks | filter: assignmentTask.assignmenttaskid"><textarea ng-disabled="!formControl.edit"
-								name="taskDescription" cols="40" rows="1">{{task.description}}</textarea></td>
+						<td><textarea ng-disabled="!formControl.edit"
+								name="taskDescription" cols="40" rows="1">{{inspectionAssignmentTask.description}}</textarea></td>
 					</tr>
 					<tr>
 					<td>Add Error Description:</td>
-					<td><textarea name="errorDescription" ng-model="" cols="40" rows="2"></textarea></td>
+					<td><textarea name="errorDescription" ng-model="inspectionAssignmentTask.errorDescription" cols="40" rows="2"></textarea></td>
 					</tr>
 					<tr>
-					<td>Upload Files:</td>
+					
+					<td colspan="2">
+					<div>
+				<div class="form-actions">
+				</div>
+					<h4>Attachments</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="50%">File name</th>
+                                <th ng-show="uploader.isHTML5">Size</th>
+                                <th ng-show="uploader.isHTML5">Progress</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in inspectionObject.attachments">
+                                <td><a ng-href="{{item.url}}"><strong>{{ item.fileName }}</strong></a></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.bytes/1024|number:2 }} KB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td><input type="text" ng-model="item.description" ng-model-options="{ getterSetter: true }"/></td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form>
+                    	<input type="file" nv-file-select="" uploader="uploader"/>
+					</form>
+					<div>
+                        <!--  <div>
+                            Queue progress:
+                            <div class="progress" style="">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div> 
+                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                            <span class="glyphicon glyphicon-upload"></span> Upload all
+                        </button>
+                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                        </button>
+                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                            <span class="glyphicon glyphicon-trash"></span> Remove all
+                        </button>
+                        -->
+                    </div>
+              </div>
 					<td></td>
 					</tr>
 					
 				</table>
-
-
-				
-
 
 			</td>
 		</tr>

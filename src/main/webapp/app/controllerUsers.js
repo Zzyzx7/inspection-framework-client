@@ -73,3 +73,4 @@ userControllers.controller('UserDetailCtrl', [ '$scope', '$location', '$routePar
 				$scope.user = angular.copy($scope.master);
 			};
 		} ]);
+

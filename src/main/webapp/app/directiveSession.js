@@ -5,7 +5,7 @@ sessionControllers.controller('LoginCtrl', ['$scope','$window', 'Login', functio
     	Login.login({ username: username,
     				  password: password }, 
     	function(callbackData) {
-    		$window.location.href = 'admin.html';
+    		$window.location.href = 'admin.html#/assignments';
         }, function(callbackData) {
             console.log("error");
         });
@@ -41,16 +41,35 @@ sessionControlDirective.directive('inspLogout', ['Logout', '$window', function(L
 	};
 }])
 
-sessionControlDirective.directive('inspLogin', ['Login', '$window', function(Login, $window) {
+sessionControlDirective.directive('inspLogin', ['Login', 'CurrentUser',  '$window', 
+                                                function(Login, CurrentUser, $window) {
 	function link(scope, element, attrs) {
 	    scope.login = function(username, password) {
 				    	Login.login({ username: username,
 				    				  password: password }, 
 				    	function(callbackData) {
-				    		$window.location.href = 'admin.html';
+				    					  CurrentUser.getDetails(
+				    					function(callbackData) {
+				  							scope.currentUser = callbackData;
+				  							
+				  							if (scope.currentUser.role == 'ROLE_ADMIN') {
+				  								$window.location.href = 'admin.html#/assignments';
+				  							} else {
+				  								$window.location.href = 'user.html#/assignments';
+				  							}
+				  							
+				  						}, function(callbackData) {
+				  							console.log(callbackData.data.errorMessage);
+				  						});		  
 				        }, function(callbackData) {
 				            console.log("error");
+				            alert('Wrong Username or Password!');
 				        })
+				        
+				    		
+				    	
+				        
+				        
 		        	}
 	}
 	

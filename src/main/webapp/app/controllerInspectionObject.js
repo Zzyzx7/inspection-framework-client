@@ -98,8 +98,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		              $scope.master = inspectionObject;
 		              $scope.editOff();
 		          }, function(callbackData) {
-		              $scope.formControl.errorMsg = callbackData.data.errorMessage;
-		              $scope.inspectionObjectDetailsForm.$invalid = true;
+		              alert(callbackData.data.errorMessage);
 		          });
 		      }
 		  };

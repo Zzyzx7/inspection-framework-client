@@ -7,7 +7,8 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
     'userControllers',
     'userServices',
     'sessionServices',
-    'httpInterceptors'
+    'httpInterceptors',
+    'sessionControlDirective'
 ]);
 
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
