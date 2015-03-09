@@ -175,7 +175,8 @@ sessionServices.factory('Logout', [ '$resource', function($resource) {
 			method : 'POST',
 			headers : {
 				'Content-Type' : 'application/x-www-form-urlencoded'
-			}
+			},
+			withCredentials: true
 		}
 	});
 } ]);
