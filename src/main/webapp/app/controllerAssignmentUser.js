@@ -49,9 +49,8 @@ InspectionAssignmentControllers
 						'$routeParams',
 						'InspectionAssignment',
 						'$rootScope',
-						'uploadManager',
 						function($scope, $location, $routeParams,
-								InspectionAssignment, $rootScope, uploadManager) {
+								InspectionAssignment, $rootScope) {
 
 							$scope.formControl = {}
 
@@ -109,25 +108,7 @@ InspectionAssignmentControllers
 										.copy($scope.master);
 							};
 
-							/*$scope.files = [];
-							$scope.percentage = 0;
-
-							$scope.upload = function() {
-								uploadManager.upload();
-								$scope.files = [];
-							};
-
-							$rootScope.$on('fileAdded', function(e, call) {
-								$scope.files.push(call);
-								$scope.$apply();
-							});
-
-							$rootScope.$on('uploadProgress', function(e, call) {
-								$scope.percentage = call;
-								$scope.$apply();
-							});
 							
-							*/
 							
 						} ]);
 
@@ -139,9 +120,8 @@ InspectionAssignmentControllers.controller(
 				'$routeParams',
 				'InspectionAssignment',
 				'$rootScope',
-				'uploadManager',
 				function($scope, $location, $routeParams,
-						InspectionAssignment, $rootScope, uploadManager) {
+						InspectionAssignment, $rootScope) {
 
 					
 					$scope.formControl = {}
