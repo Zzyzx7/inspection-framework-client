@@ -4,10 +4,20 @@ var InspectionAssignmentControllers = angular.module(
 InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 		'$scope',
 		'InspectionAssignment',
-		function($scope, InspectionAssignment) {
+		'CurrentUser',
+		function($scope, InspectionAssignment, CurrentUser) {
 			$scope.inspectionassignments = InspectionAssignment.list()
 			$scope.orderProp = 'assignmentName';
 
+			//get User ID for "Manage Profile" Link
+			CurrentUser.getDetails(
+ 					function(callbackData) {
+							$scope.currentUser = callbackData;
+							$scope.master = angular.copy(callbackData);
+						}, function(callbackData) {
+							console.log(callbackData.data.errorMessage);
+						});	
+			
 			$scope.deleteItem = function(inspectionAssignment) {
 				var index = $scope.inspectionassignments
 						.indexOf(inspectionAssignment);
@@ -118,86 +128,83 @@ InspectionAssignmentControllers.controller(
 				'$scope',
 				'$location',
 				'$routeParams',
-				'InspectionAssignment',
+				'InspectionAssignmentTask',
 				'$rootScope',
+				'FileUploader',
 				function($scope, $location, $routeParams,
-						InspectionAssignment, $rootScope) {
+						InspectionAssignmentTask, $rootScope, FileUploader) {
+					
+					var uploader = $scope.uploader = new FileUploader({
+					    url: REST_BACKEND_URL + '/inspectionobject/',
+					    alias: 'fileUpload' 
+					});
+					
+					uploader.onBeforeUploadItem = function(item) {
+						
+					}
+					
+					uploader.onAfterAddingFile = function(item) {
+						item.setDescription = function(description) {
+							if(angular.isDefined(description)) {
+								if(angular.isDefined(item.formData[0])) {
+									item.formData[0] = {fileDescription: description}
+								} else {
+									item.formData.push({fileDescription: description})
+								}
+							} else {
+								if(angular.isDefined(item.formData[0])) {
+									return item.formData[0].fileDescription;
+								} else {
+									return description;
+								}
+							} 
+						}
+						//$scope.inspectionObject.attachments
+					};
 
 					
 					$scope.formControl = {}
-
-
-						$scope.master = {};
+                    
+					$scope.master = {};
 					
-					
-					
-						InspectionAssignment.getDetails({
-							inspectionassignmentid : $routeParams.id
+						InspectionAssignmentTask.getDetails({
+							inspectionassignmentid : $routeParams.id,
+							taskid : $routeParams.taskid
 							
 						}, function(callbackData) {
-							$scope.inspectionAssignment = callbackData;
+							$scope.inspectionAssignmentTask = callbackData;
 							
 							$scope.master = angular.copy(callbackData);
 						}, function(callbackData) {
 							console.log(callbackData.data.errorMessage);
 						});
 						
-						
-						
-						$scope.assignmentTask = {
-								assignmenttaskid : $routeParams.taskid
-						}
-						
-						
-						
-						
-
-					
-
-						$scope.save = function(inspectionAssignment) {
+                        $scope.save = function(inspectionAssignmentTask) {
 							
-							InspectionAssignment
-									.save(
-											inspectionAssignment,
-											function(callbackData) {
-												$scope.inspectionAssignment = callbackData;
-												$scope.master = callbackData;
-												$scope.formControl.edit = false;
-												$scope.formControl.cancelPossible = true;
+							
+											inspectionAssignmentTask.$update({
+												inspectionassignmentid: $routeParams.id,
+												taskid: inspectionAssignmentTask.id
 												
-												alert('Saved successfully.');
-												$location.path( '/assignments/' + $routeParams.id);
-											},
-											function(callbackData) {
-											  alert(callbackData.data.errorMessage);
-												
-												
-											});
+									          }, function(callbackData) {
+									              $scope.master = inspectionAssignmentTask;
+									              
+									              alert('Saved successfully.');
+													//$location.path( '/assignments/' + $routeParams.id);
+									          }, function(callbackData) {
+									              alert(callbackData.data.errorMessage);
+									          });
+											
+											
 						
 						
 					};
 
 					$scope.reset = function() {
-						$scope.inspectionAssignment = angular
+						$scope.inspectionAssignmentTask = angular
 								.copy($scope.master);
 					};
 
-					$scope.files = [];
-					$scope.percentage = 0;
-
-					$scope.upload = function() {
-						uploadManager.upload();
-						$scope.files = [];
-					};
-
-					$rootScope.$on('fileAdded', function(e, call) {
-						$scope.files.push(call);
-						$scope.$apply();
-					});
-
-					$rootScope.$on('uploadProgress', function(e, call) {
-						$scope.percentage = call;
-						$scope.$apply();
-					});
+					
 				} ]);
 

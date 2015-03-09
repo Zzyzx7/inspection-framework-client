@@ -108,6 +108,30 @@ inspectionAssignmentServices.factory('InspectionAssignment', [
 			});
 		} ]);
 
+inspectionAssignmentServices.factory('InspectionAssignmentTask', [
+		'$resource',
+		function($resource) {
+			return $resource(REST_BACKEND_URL
+					+ '/assignment/:inspectionassignmentid/task/:taskid', {}, {
+				'list' : {
+					method : 'GET',
+					isArray : true
+				},
+				'getDetails' : {
+					method : 'GET'
+				},
+				'save' : {
+					method : 'POST'
+				},
+				'update' : {
+					method : 'PUT'
+				},
+				'remove' : {
+					method : 'DELETE'
+				}
+			});
+		} ]);
+
 var sessionServices = angular.module('sessionServices', [ 'ngResource' ]);
 
 sessionServices.factory('Login', [
@@ -131,22 +155,19 @@ sessionServices.factory('Login', [
 			});
 		} ]);
 
-sessionServices.factory('CurrentUser', [
-		'$resource',
-		function($resource) {
-			return $resource(REST_BACKEND_URL
-					+ '/users/current', {}, {
-				'list' : {
-					method : 'GET',
-					isArray : true,
-					withCredentials : true
-				},
-				'getDetails' : {
-					method : 'GET',
-					withCredentials : true
-				}
-			});
-		} ]);
+sessionServices.factory('CurrentUser', [ '$resource', function($resource) {
+	return $resource(REST_BACKEND_URL + '/users/current', {}, {
+		'list' : {
+			method : 'GET',
+			isArray : true,
+			withCredentials : true
+		},
+		'getDetails' : {
+			method : 'GET',
+			withCredentials : true
+		}
+	});
+} ]);
 
 sessionServices.factory('Logout', [ '$resource', function($resource) {
 	return $resource(REST_BACKEND_URL + '/logout', {}, {
