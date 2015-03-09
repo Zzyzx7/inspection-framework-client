@@ -53,11 +53,9 @@ sessionControlDirective.directive('inspLogin', ['Login', 'CurrentUser',  '$windo
 				  							scope.currentUser = callbackData;
 				  							
 				  							if (scope.currentUser.role == 'ROLE_ADMIN') {
-				  								alert(admin);
-				  								//$window.location.href = 'admin.html#/assignments';
+				  								$window.location.href = 'admin.html#/assignments';
 				  							} else {
-				  								alert(user);
-				  								//$window.location.href = 'user.html#/assignments';
+				  								$window.location.href = 'user.html#/assignments';
 				  							}
 				  							
 				  						}, function(callbackData) {
