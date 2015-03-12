@@ -8,19 +8,24 @@ inspectionObjectServices.factory('InspectionObject', [
 					+ '/inspectionobject/:inspectionobjectid', {}, {
 				'list' : {
 					method : 'GET',
-					isArray : true
+					isArray : true,
+					withCredentials : true
 				},
 				'getDetails' : {
-					method : 'GET'
+					method : 'GET',
+					withCredentials : true
 				},
 				'save' : {
-					method : 'POST'
+					method : 'POST',
+					withCredentials : true
 				},
 				'update' : {
-					method : 'PUT'
+					method : 'PUT',
+					withCredentials : true
 				},
 				'remove' : {
-					method : 'DELETE'
+					method : 'DELETE',
+					withCredentials : true
 				},
 				'fileUpload' : {
 					method : 'POST',
@@ -91,19 +96,24 @@ inspectionAssignmentServices.factory('InspectionAssignment', [
 					+ '/assignment/:inspectionassignmentid', {}, {
 				'list' : {
 					method : 'GET',
-					isArray : true
+					isArray : true,
+					withCredentials : true
 				},
 				'getDetails' : {
-					method : 'GET'
+					method : 'GET',
+					withCredentials : true
 				},
 				'save' : {
-					method : 'POST'
+					method : 'POST',
+					withCredentials : true
 				},
 				'update' : {
-					method : 'PUT'
+					method : 'PUT',
+					withCredentials : true
 				},
 				'remove' : {
-					method : 'DELETE'
+					method : 'DELETE',
+					withCredentials : true
 				}
 			});
 		} ]);
@@ -115,19 +125,24 @@ inspectionAssignmentServices.factory('InspectionAssignmentTask', [
 					+ '/assignment/:inspectionassignmentid/task/:taskid', {}, {
 				'list' : {
 					method : 'GET',
-					isArray : true
+					isArray : true,
+					withCredentials : true
 				},
 				'getDetails' : {
-					method : 'GET'
+					method : 'GET',
+					withCredentials : true
 				},
 				'save' : {
-					method : 'POST'
+					method : 'POST',
+					withCredentials : true
 				},
 				'update' : {
-					method : 'PUT'
+					method : 'PUT',
+					withCredentials : true
 				},
 				'remove' : {
-					method : 'DELETE'
+					method : 'DELETE',
+					withCredentials : true
 				}
 			});
 		} ]);
