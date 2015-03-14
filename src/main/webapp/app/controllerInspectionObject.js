@@ -54,6 +54,10 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		  $scope.formControl = {};
 		  $scope.noAttachments = false;
 		  
+		  setUploaderUrl = function(inspectionObjectid) {
+			  uploader.url = REST_BACKEND_URL + '/inspectionobject/' + inspectionObjectid + '/attachment';
+		  }
+		  
 		  getInspectionObjectDetails = function(inspectionObjectId) {
 		      InspectionObject.getDetails({
 		          inspectionobjectid: inspectionObjectId,
@@ -61,7 +65,8 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		      }, function(callbackData) {
 		          $scope.inspectionObject = callbackData;
 		          $scope.master = angular.copy(callbackData);
-		          uploader.url = REST_BACKEND_URL + '/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
+		          setUploaderUrl($scope.inspectionObject.id);
+		          //uploader.url = REST_BACKEND_URL + '/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
 		          if($scope.inspectionObject.attachments === undefined || $scope.inspectionObject.attachments == null || $scope.inspectionObject.attachments.length == 0) {
 		        	  $scope.noAttachments = true;
 		          } else {
@@ -132,6 +137,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		              $scope.master = callbackData;
 		              $scope.formControl.edit = false;
 		              $scope.formControl.cancelPossible = true;
+		              setUploaderUrl($scope.inspectionObject.id);
 		          }, function(callbackData) {
 		              $scope.formControl.errorMsg = callbackData.data.errorMessage;
 		              $scope.inspectionObjectDetailsForm.$invalid = true;
