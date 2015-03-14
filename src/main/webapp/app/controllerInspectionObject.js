@@ -19,16 +19,18 @@ inspectionObjectControllers.controller('InspectionObjectListCtrl', [ '$scope',
 
 
 inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', '$location',
-          '$routeParams', 'InspectionObject', '$rootScope', 'FileUploader',
-          function($scope, $location, $routeParams, InspectionObject, $rootScope, FileUploader) {
+          '$routeParams', 'InspectionObject', '$rootScope', 'FileUploader', 'InspectionObjectAttachment', 'Attachment',
+          function($scope, $location, $routeParams, InspectionObject, $rootScope, FileUploader, InspectionObjectAttachment, Attachment ) {
       	
 			var uploader = $scope.uploader = new FileUploader({
 			    url: REST_BACKEND_URL + '/inspectionobject/',
-			    alias: 'fileUpload' 
+			    alias: 'fileUpload',
+			    removeAfterUpload: true,
+			    withCredentials: true
 			});
 			
-			uploader.onBeforeUploadItem = function(item) {
-				
+			uploader.onSuccessItem = function(item, response, status, headers) {
+				getInspectionObjectDetails($scope.inspectionObject.id);
 			}
 			
 			uploader.onAfterAddingFile = function(item) {
@@ -47,10 +49,28 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 						}
 					} 
 				}
-				//$scope.inspectionObject.attachments
 			};
 
-		  $scope.formControl = {}
+		  $scope.formControl = {};
+		  $scope.noAttachments = false;
+		  
+		  getInspectionObjectDetails = function(inspectionObjectId) {
+		      InspectionObject.getDetails({
+		          inspectionobjectid: inspectionObjectId,
+		          addAttachmentDetails: true
+		      }, function(callbackData) {
+		          $scope.inspectionObject = callbackData;
+		          $scope.master = angular.copy(callbackData);
+		          uploader.url = REST_BACKEND_URL + '/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
+		          if($scope.inspectionObject.attachments === undefined || $scope.inspectionObject.attachments == null || $scope.inspectionObject.attachments.length == 0) {
+		        	  $scope.noAttachments = true;
+		          } else {
+		        	  $scope.noAttachments = false;
+		          }
+		      }, function(callbackData) {
+		          console.log(callbackData.data.errorMessage);
+		      });
+		  }
 		  
 		  if ($routeParams.id == null) {
 		      $scope.formControl.edit = true;
@@ -61,16 +81,7 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		      $scope.formControl.edit = false;
 		      $scope.formControl.cancelPossible = true;
 		      $scope.master = {};
-		      InspectionObject.getDetails({
-		          inspectionobjectid: $routeParams.id,
-		          addAttachmentDetails: true
-		      }, function(callbackData) {
-		          $scope.inspectionObject = callbackData;
-		          $scope.master = angular.copy(callbackData);
-		          uploader.url = REST_BACKEND_URL + '/inspectionobject/' + $scope.inspectionObject.id + '/attachment';
-		      }, function(callbackData) {
-		          console.log(callbackData.data.errorMessage);
-		      });
+		      getInspectionObjectDetails($routeParams.id);
 		  }
 		  
 		  $scope.editOn = function() {
@@ -79,6 +90,40 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		  $scope.editOff = function() {
 		      $scope.formControl.edit = false;
 		  }
+		  
+		  $scope.downloadAttachment = function(attachment) {
+			  window.open(attachment.url)
+			  
+			  /*Attachment.download({
+				  gridfsid: attachment.gridFsId,
+			  }, function(callbackData) {
+				  window.saveAs(callbackData.response, attachment.fileName);
+				  //window.saveAs(new Blob([callbackData]), attachment.fileName)
+				  /*var file = new Blob([ callbackData ], {
+                      type : 'application/csv'
+                  });
+				  var fileURL 	= URL.createObjectURL(file);
+                  var a         = document.createElement('a');
+                  a.href        = fileURL; 
+                  a.target      = '_blank';
+                  document.body.appendChild(a);
+                  a.click();
+			  }, function(callbackData) {
+				  console.log(callbackData.data.errorMessage);
+			  }) */
+		  }
+			$scope.deleteAttachment = function(inspectionObject, attachment) {
+				var index = $scope.inspectionObject.attachments.indexOf(attachment);
+				InspectionObjectAttachment.remove({
+					attachmentid : attachment.gridFsId,
+					inspectionobjectid : inspectionObject.id
+				}, function(callbackData) {
+					$scope.inspectionObject.attachments.splice(index, 1);
+					$scope.master.attachments.splice(index, 1);
+				}, function(callbackData) {
+					console.log(callbackData.data.errorMessage);
+				});
+			}
 		
 		  $scope.save = function(inspectionObject) {
 		      if (inspectionObject.id == null) {
@@ -97,8 +142,8 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		          }, function(callbackData) {
 		              $scope.master = inspectionObject;
 		              $scope.editOff();
-		          }, function(callbackData) {
-		              alert(callbackData.data.errorMessage);
+		          }, function(errorData) {
+		              alert(errorData.data.errorMessage);
 		          });
 		      }
 		  };

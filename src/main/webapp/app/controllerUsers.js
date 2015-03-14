@@ -46,25 +46,26 @@ userControllers.controller('UserDetailCtrl', [ '$scope', '$location', '$routePar
 
 			$scope.save = function(user) {
 				if (user.id == null) {
-					User.save(user, function(callbackData) {
-						$scope.user = callbackData;
-						$scope.master = callbackData;
-						$scope.formControl.edit = false;
-						$scope.formControl.cancelPossible = true;
-
-						alert('Saved successfully.');
-						$location.path('/users');
-					}, function(callbackData) {
-						alert(callbackData.data.errorMessage);
-					});
+					User.save(user, 
+						function(callbackData) {
+							$scope.user = callbackData;
+							$scope.master = callbackData;
+							$scope.formControl.edit = false;
+							$scope.formControl.cancelPossible = true;
+							alert('Saved successfully.');
+							$location.path('/users');
+						}, function(errorData) {
+							alert(errorData.data.errorMessage);
+						}
+					);
 				} else {
 					user.$update({
 						userid : user.id
 					}, function(callbackData) {
 						$scope.master = user;
 						$scope.editOff();
-					}, function(callbackData) {
-						alert(callbackData.data.errorMessage);
+					}, function(errorData) {
+						alert(errorData.data.errorMessage);
 					});
 				}
 			};

@@ -71,5 +71,8 @@
 			<th colspan="2" style="text-align: right; padding-right: 40px; padding: 10px;">
 				*mandatory field</th>
 		</tr>
+		<tr>
+			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		</tr>
     </table>
 </form>

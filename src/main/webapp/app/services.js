@@ -1,3 +1,26 @@
+var attachmentServices = angular.module('attachmentServices', [ 'ngResource' ]);
+
+attachmentServices.factory('Attachment', ['$resource', function($resource) {
+	return $resource(REST_BACKEND_URL + '/attachment/:gridfsid', {}, {
+		'download': {
+			method: 'GET',
+			isArray: false,
+			withCredentials: true,
+		    responseType: 'arraybuffer',
+		    cache: true,
+		    transformResponse: function (data) {
+		        var file;
+		        if (data) {
+		            file = new Blob([data], { });
+		        }
+		        return {
+		            response: file 
+		        }
+		    }
+		}
+	})
+}]);
+
 var inspectionObjectServices = angular.module('inspectionObjectServices',
 		[ 'ngResource' ]);
 
@@ -8,19 +31,24 @@ inspectionObjectServices.factory('InspectionObject', [
 					+ '/inspectionobject/:inspectionobjectid', {}, {
 				'list' : {
 					method : 'GET',
-					isArray : true
+					isArray : true,
+					withCredentials : true
 				},
 				'getDetails' : {
-					method : 'GET'
+					method : 'GET',
+					withCredentials : true
 				},
 				'save' : {
-					method : 'POST'
+					method : 'POST',
+					withCredentials : true
 				},
 				'update' : {
-					method : 'PUT'
+					method : 'PUT',
+					withCredentials : true
 				},
 				'remove' : {
-					method : 'DELETE'
+					method : 'DELETE',
+					withCredentials : true
 				},
 				'fileUpload' : {
 					method : 'POST',
@@ -48,10 +76,24 @@ inspectionObjectServices.factory('InspectionObject', [
 					},
 					headers : {
 						'Content-Type' : undefined
-					}
+					},
+					withCredentials : true
 				}
 			});
 		} ]);
+
+inspectionObjectServices.factory('InspectionObjectAttachment', [
+  		'$resource',
+  		function($resource) {
+  			return $resource(REST_BACKEND_URL
+  					+ '/inspectionobject/:inspectionobjectid/attachment/:attachmentid', {}, {
+  				'remove' : {
+  					method : 'DELETE',
+  					withCredentials : true
+  				}
+  			}
+		)}]);
+
 
 var userServices = angular.module('userServices', [ 'ngResource' ]);
 

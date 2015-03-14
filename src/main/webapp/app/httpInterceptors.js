@@ -12,8 +12,7 @@ httpInterceptors.factory('UnauthorizedInterceptor', [ '$q', '$location',
 					if (response.status === 403 || response.status === 401) {
 						$window.location.href = '#/index.html/login';
 					}
-					// return response || $q.when(response);
-					return $q.reject(rejectReason);
+					return $q.reject(response);
 				}
 			};
 		} ]);
