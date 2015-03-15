@@ -1,114 +1,89 @@
-<form>
-    <table border="1px" style="margin:10px;">    
-        <tr>
-            <td style="padding:10px; vertical-align:top;">
-                <table class="tableList">
-                	<tr>
-                        <td>Inspection Object:<span style="color: red;">*</span> </td>
-                        <td>
-                            <input name="objectName" ng-disabled="!formControl.edit" ng-model="inspectionObject.objectName" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Location: </td>
-                        <td>
-                            <input name="location" ng-disabled="!formControl.edit" ng-model="inspectionObject.location" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Customer Name: </td>
-                        <td>
-                            <input name="customerName" ng-disabled="!formControl.edit" ng-model="inspectionObject.customerName" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-							<span>Assignment Description: </span>
+<div class="panel panel-default">
+	<div class="panel-heading">Inspection object details</div>
+	<div class="panel-body">
+		<form ng-submit="save(inspectionObject)" class="form-horizontal">
+			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		    <div class="form-group">
+		    	<label for="objectNameInput" class="col-sm-3 control-label">Object name<span style="color: red;">*</span></label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="objectNameInput" placeholder="Enter object name" name="objectName" ng-disabled="!formControl.edit" ng-model="inspectionObject.objectName" required>
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="locationInput" class="col-sm-3 control-label">Location</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="locationInput" placeholder="Enter location" name="location" ng-disabled="!formControl.edit" ng-model="inspectionObject.location" size="30" maxlength="30">
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="customerName" class="col-sm-3 control-label">Customer Name</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="customerNameInput" placeholder="Enter customer name" name="customerName" ng-disabled="!formControl.edit" ng-model="inspectionObject.customerName" size="30" maxlength="30">
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="descriptionInput" class="col-sm-3 control-label">Description</label>
+		    	<div class="col-sm-5">
+		    		<textarea class="form-control" style="resize: none;" rows="3" ng-disabled="!formControl.edit" id="descriptionInput" ng-model="inspectionObject.description" name="description"></textarea>
+		    	</div>
+		  	</div>
+			<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-5">
+            		<input ng-hide="formControl.edit" type="button" class="btn btn-primary" ng-click="editOn()" value="Edit" />
+            		<input ng-show="formControl.edit && formControl.cancelPossible" class="btn btn-default" type="button" ng-click="editOff()" value="Cancel" />
+            		<input ng-show="formControl.edit" type="button" class="btn btn-default" ng-click="reset()" value="Reset" />
+            		<input ng-show="formControl.edit" type="submit" class="btn btn-primary" value="Save" />
+            	</div>
+            </div>
+		</form>
+	</div>
+</div>
+<div class="panel panel-default" ng-show="formControl.cancelPossible">
+	<div class="panel-heading">Attachments</div>
+	<div class="panel-body">
+		<form ng-submit="performUpload()" name="fileUploadForm">
+			<div class="form-group">
+				<label for="fileInput">File input</label>
+				<input type="file" id="fileInput" name="fileInputField" nv-file-select="" uploader="uploader" ng-click="resetUploadQueue()"/>
+			</div>
+			<div class="form-group">
+				<label for="fileDescription">Description</label>
+				<input type="text" class="form-control" placeholder="Enter file description" ng-model="fileDescription" size="30" maxlength="30"/>
+			</div>
+			<button type="submit" class="btn btn-primary" ng-disabled="uploader.queue < 1">Upload</button>
+		</form>
+		<div class="panel-body">
+			<table class="table table-hover table-bordered" ng-show="!noAttachments">
+				<thead>
+				    <tr>
+				        <th width="50%">File name</th>
+				        <th>Description</th>
+				        <th ng-show="uploader.isHTML5">Size</th>
+				        <th>Actions</th>
+				    </tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="attachment in inspectionObject.attachments">
+						<td>
+							<a ng-href="{{attachment.url}}">{{attachment.fileName}}</a>
 						</td>
 						<td>
-							<textarea ng-disabled="!formControl.edit" ng-model="inspectionObject.description" name="description" cols="90" rows="4"></textarea>
+							{{attachment.description}}
 						</td>
-                    </tr>
-                </table>
-            </td>
-		</tr>
-		<tr ng-show="formControl.cancelPossible">
-			<td>
-				<h4>Attachments</h4>
-				<table border="1px" style="margin:10px;">
-					<thead>
-					    <tr>
-					        <th width="50%">File name</th>
-					        <th ng-show="uploader.isHTML5">Size</th>
-					        <th>Description</th>
-					        <th>Actions</th>
-					    </tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="attachment in inspectionObject.attachments">
-							<td>
-								<a ng-href="{{attachment.url}}"><strong>{{attachment.fileName}}</strong></a>
-							</td>
-							<td nowrap>
-								{{attachment.bytes/1024|number:2}} KB
-							</td>
-							<td>
-								{{attachment.description}}
-							</td>
-							<td nowrap>
-								<button type="button" class="btn btn-success btn-xs" ng-click="downloadAttachment(attachment)">
-									<span class="glyphicon glyphicon-download"></span> Download
-								</button>
-								<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAttachment(inspectionObject, attachment)">
-									<span class="glyphicon glyphicon-trash"></span> Delete
-								</button>
-							</td>
-						</tr>
-						<tr ng-repeat="item in uploader.queue">
-							<td>
-								<strong>{{item.file.name}}</strong>
-							</td>
-							<td nowrap>
-								{{item.file.size/1024|number:2}} KB
-							</td>
-							<td>
-								<input type="text" ng-model="item.setDescription" ng-model-options="{ getterSetter: true }"/>
-							</td>
-							<td nowrap>
-								<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-									<span class="glyphicon glyphicon-upload"></span> Upload
-								</button>
-	                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-	                                <span class="glyphicon glyphicon-trash"></span> Remove
-	                            </button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div>
-					<button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-						<span class="glyphicon glyphicon-upload"></span> Upload all
-					</button>
-					<button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-						<span class="glyphicon glyphicon-trash"></span> Remove all
-					</button>
-				</div>
-				<div>
-					<input type="file" nv-file-select="" uploader="uploader"/>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-                <input ng-hide="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="editOn()" value="Edit" />
-                <input ng-show="formControl.edit && formControl.cancelPossible" type="button" class="btn btn-primary btn-sm" ng-click="editOff()" value="Cancel" />
-                <input ng-show="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" />
-                <input ng-show="formControl.edit" type="submit" class="btn btn-primary btn-sm" ng-click="save(inspectionObject)" value="Save" />
-            </td>
-        </tr>
-        <tr>
-			<th colspan="2" style="text-align: right; padding-right: 40px; padding: 10px;">
-				*mandatory field</th>
-		</tr>
-    </table>
-</form>
+						<td nowrap>
+							{{attachment.bytes/1024|number:2}} KB
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-xs" ng-click="downloadAttachment(attachment)">
+								<span class="glyphicon glyphicon-download"></span> Download
+							</button>
+							<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAttachment(inspectionObject, attachment)">
+								<span class="glyphicon glyphicon-trash"></span> Delete
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

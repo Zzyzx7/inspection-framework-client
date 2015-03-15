@@ -1,7 +1,11 @@
 /* app css stylesheet */
 
-body {
+/*body {
   padding-top: 20px;
+}*/
+
+html, body {
+	height: 100%;
 }
 
 /*unvisited and visited link*/
@@ -15,7 +19,24 @@ a:hover {
 	cursor: pointer;
 }
 
+.footer {
+	width:100%;
+  	text-align: center;
+  	padding: 30px 0;
+  	margin-top: 70px;
+  	border-top: 1px solid #e5e5e5;
+  	bottom:0;
+  	background-color: #f5f5f5;
+}
 
+.wrapper {
+	min-height: 100%;
+	margin: 0 auto -161px;
+}
+
+.push {
+	height: 161px; /* .push must be the same height as .footer */
+}
 
 /* style for the login form*/
 #login {
@@ -42,10 +63,11 @@ a:hover {
 	margin:10px;
 	position: fixed;
 }
-#menu thead, th {
+
+/*#menu thead, th {
 	padding: 5px;
 	background-color: #c0c0c0;
-}
+}*/
 #menu td {
 	padding: 0px;
 }
