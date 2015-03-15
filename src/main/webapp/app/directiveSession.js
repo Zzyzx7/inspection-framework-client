@@ -65,11 +65,6 @@ sessionControlDirective.directive('inspLogin', ['Login', 'CurrentUser',  '$windo
 				            console.log("error");
 				            alert('Wrong Username or Password!');
 				        })
-				        
-				    		
-				    	
-				        
-				        
 		        	}
 	}
 	

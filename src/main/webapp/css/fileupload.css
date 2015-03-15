@@ -17,3 +17,13 @@
 	direction: ltr;
 	cursor: pointer;
 }
+
+div.upload {
+    overflow: hidden;
+}
+
+div.upload input {
+    display: block !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
