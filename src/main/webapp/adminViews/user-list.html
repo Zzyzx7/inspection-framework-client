@@ -1,6 +1,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 		<table class="table table-hover table-bordered">
 		    <thead>
 		        <tr>
@@ -17,7 +18,10 @@
 		            </td>
 		            <td>{{user.firstName}} {{user.lastName}}</td>
 		            <td>{{user.emailAddress}}</td>
-		            <td>{{user.role}}</td>
+		            <td>
+		            	<span ng-if="user.role == 'ROLE_ADMIN'">Administrator</span>
+		            	<span ng-if="user.role == 'ROLE_INSPECTOR'">Inspector</span>
+		            </td>
 		            <td style="text-align:center;">
 		                <input type="submit" class="btn btn-danger btn-xs" ng-click="deleteItem(user)" value="Delete" />
 		            </td>
