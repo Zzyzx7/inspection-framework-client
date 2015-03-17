@@ -1,7 +1,17 @@
 
 
-<div class="panel panel-default">
+
 	<div class="panel-body">
+	
+	<div style="margin-bottom:15px;">
+		    Search:
+		    <input ng-model="query"/> <span style="margin-left:15px;">Sort by:
+		    <select ng-model="orderProp">
+		        <option value="name">Alphabetical</option>
+		        <option value="endDate">Newest</option>
+		    </select></span>
+		</div>
+	
 		<table class="table table-hover table-bordered">
 		    <thead>
 		        <tr>
@@ -33,13 +43,5 @@
 		        </tr>
 		    </tbody>
 		</table>
-		<div>
-		    Search:
-		    <input ng-model="query"/> Sort by:
-		    <select ng-model="orderProp">
-		        <option value="name">Alphabetical</option>
-		        <option value="endDate">Newest</option>
-		    </select>
-		</div>
 	</div>
-</div>
+

@@ -22,86 +22,68 @@
 					</tr>
 					<tr>
 					
-					<td colspan="2">
-					<div>
-				<div class="form-actions">
-				</div>
-					<h4>Attachments</h4>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="50%">File name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in inspectionObject.attachments">
-                                <td><a ng-href="{{item.url}}"><strong>{{ item.fileName }}</strong></a></td>
-                                <td ng-show="uploader.isHTML5" nowrap>{{ item.bytes/1024|number:2 }} KB</td>
-                                <td ng-show="uploader.isHTML5">
-                                    <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                                    </div>
-                                </td>
-                                <td><input type="text" ng-model="item.description" ng-model-options="{ getterSetter: true }"/></td>
-                                <td class="text-center">
-                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                                </td>
-                                <td nowrap>
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form>
-                    	<input type="file" nv-file-select="" uploader="uploader"/>
-					</form>
-					<div>
-                        <!--  <div>
-                            Queue progress:
-                            <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                            </div>
-                        </div> 
-                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-upload"></span> Upload all
-                        </button>
-                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                        </button>
-                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                            <span class="glyphicon glyphicon-trash"></span> Remove all
-                        </button>
-                        -->
-                    </div>
-              </div>
-					<td></td>
-					</tr>
+					<td>
 					
-				</table>
+					
 
 			</td>
 		</tr>
 		<tr>
 			<td	style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
 				<input type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" /> <input
-				type="submit" class="btn btn-success btn-sm" ng-click="save(inspectionAssignment)" href="/saved" value="Done" />
+				type="submit" class="btn btn-success btn-sm" ng-click="save(inspectionAssignmentTask)" href="/saved" value="Done" />
 				
 			</td>
 		</tr>
 	</table>
+	<div class="panel panel-default">
+	<div class="panel-heading">Attachments</div>
+	<div class="panel-body">
+		<form ng-submit="performUpload()" name="fileUploadForm">
+			<div class="form-group">
+				<label for="fileInput">File input</label>
+				<input type="file" id="fileInput" name="fileInputField" nv-file-select="" uploader="uploader" ng-click="resetUploadQueue()"/>
+			</div>
+			<div class="form-group">
+				<label for="fileDescription">Description</label>
+				<input type="text" class="form-control" placeholder="Enter file description" ng-model="fileDescription" size="30" maxlength="30"/>
+			</div>
+			<button type="submit" class="btn btn-primary" ng-disabled="uploader.queue < 1">Upload</button>
+		</form>
+		<div class="panel-body">
+			<table class="table table-hover table-bordered" ng-show="!noAttachments">
+				<thead>
+				    <tr>
+				        <th width="50%">File name</th>
+				        <th>Description</th>
+				        <th ng-show="uploader.isHTML5">Size</th>
+				        <th>Actions</th>
+				    </tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="attachment in inspectionObject.attachments">
+						<td>
+							<a ng-href="{{attachment.url}}">{{attachment.fileName}}</a>
+						</td>
+						<td>
+							{{attachment.description}}
+						</td>
+						<td nowrap>
+							{{attachment.bytes/1024|number:2}} KB
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-xs" ng-click="downloadAttachment(attachment)">
+								<span class="glyphicon glyphicon-download"></span> Download
+							</button>
+							<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAttachment(inspectionObject, attachment)">
+								<span class="glyphicon glyphicon-trash"></span> Delete
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+	
 </form>

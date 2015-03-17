@@ -155,6 +155,18 @@ inspectionAssignmentServices.factory('InspectionAssignment', [
 			});
 		} ]);
 
+inspectionAssignmentServices.factory('InspectionAssignmentAttachment', [
+                                                          		'$resource',
+                                                          		function($resource) {
+                                                          			return $resource(REST_BACKEND_URL
+                                                          					+ '/assignment/:inspectionassignmentid/task/:taskid/attachment/:attachmentid', {}, {
+                                                          				'remove' : {
+                                                          					method : 'DELETE',
+                                                          					withCredentials : true
+                                                          				}
+                                                          			}
+                                                        		)}]);
+
 inspectionAssignmentServices.factory('InspectionAssignmentTask', [
 		'$resource',
 		function($resource) {

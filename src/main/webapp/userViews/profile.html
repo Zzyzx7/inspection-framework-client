@@ -1,72 +1,137 @@
-<form name="userDetailsForm" novalidate>
-    <span class="error" ng-show="userDetailsForm.$invalid">{{formControl.errorMsg}}</span>
-    <table border="1px" style="margin: 10px;">
-        <tr>
-            <td style="padding: 10px; vertical-align: top;">
-                <table class="tableList">
-                    <tr>
-                        <td>User:</td>
-                        <td>
-                            <input name="userName" ng-disabled="!formControl.edit" ng-model="user.userName" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>E-Mail Address:</td>
-                        <td>
-                            <input name="emailAddress" ng-disabled="!formControl.edit" ng-model="user.emailAddress" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td>
-                            <input name="password" ng-disabled="!formControl.edit" ng-model="user.password" type="password" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>First Name:</td>
-                        <td>
-                            <input name="firstName" ng-disabled="!formControl.edit" ng-model="user.firstName" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Last Name:</td>
-                        <td>
-                            <input name="lastName" ng-disabled="!formControl.edit" ng-model="user.lastName" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Role:</td>
-                        <td>
-                            <input name="role" ng-disabled="!formControl.edit" ng-model="user.role" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Phone Number:</td>
-                        <td>
-                            <input name="phoneNumber" ng-disabled="!formControl.edit" ng-model="user.phoneNumber" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mobile Number:</td>
-                        <td>
-                            <input name="mobileNumber" ng-disabled="!formControl.edit" ng-model="user.mobileNumber" type="text" size="30" maxlength="30" value="">
-                        </td>
-                    </tr>
-                </table>
-            </td>
-
-            <td style="padding: 10px; vertical-align: top;">
-                <div>
-                    Picture:
-                    <br> <img alt="No Picture available" width="200" height="100" src="">
-                </div>
-                </td></tr>
-                <tr><td colspan="2">
-                <input ng-hide="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="editOn()" value="Edit" />
-                <input ng-show="formControl.edit && formControl.cancelPossible" type="button" class="btn btn-primary btn-sm" ng-click="editOff()" value="Cancel" />
-                <input ng-show="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" />
-                <input ng-show="formControl.edit" type="submit" class="btn btn-primary btn-sm" ng-click="save(user)" value="Save" />
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form ng-submit="save(user)" class="form-horizontal">
+			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		    <div class="form-group">
+		    	<label for="userName" class="col-sm-3 control-label">User name<span style="color: red;">*</span></label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="userNameInput" placeholder="Enter user name" name="userName" ng-disabled="!formControl.edit" ng-model="user.userName" required>
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="mailInput" class="col-sm-3 control-label">Email address<span style="color: red;">*</span></label>
+		    	<div class="col-sm-5">
+		    		<input type="email" class="form-control" id="mailInput" placeholder="Enter email" name="emailAddress" ng-disabled="!formControl.edit" ng-model="user.emailAddress" required>
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="passwordInput" class="col-sm-3 control-label">Password<span style="color: red;">*</span></label>
+		    	<div class="col-sm-5">
+		    		<input type="password" class="form-control" id="passwordInput" placeholder="Enter password" name="password" ng-disabled="!formControl.edit" ng-model="user.password" required>
+		    	</div>
+		  	</div>
+		    
+		    <div class="form-group">
+		    	<label for="firstNameInput" class="col-sm-3 control-label">First name</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="firstNameInput" placeholder="Enter first name" name="firstName" ng-disabled="!formControl.edit" ng-model="user.firstName">
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="lastNameInput" class="col-sm-3 control-label">Last name</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="lastNameInput" placeholder="Enter last name" name="lastName" ng-disabled="!formControl.edit" ng-model="user.lastName">
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="mobileNumberInput" class="col-sm-3 control-label">Mobile number</label>
+		    	<div class="col-sm-5">
+		    		<input type="tel" class="form-control" id="mobileNumberInput" placeholder="Enter mobile number" name="mobileNumber" ng-disabled="!formControl.edit" ng-model="user.mobileNumber">
+		    	</div>
+		  	</div>
+		    <div class="form-group">
+		    	<label for="phoneNumberInput" class="col-sm-3 control-label">Phone number</label>
+		    	<div class="col-sm-5">
+		    		<input type="tel" class="form-control" id="phoneNumberInput" placeholder="Enter phone number" name="phoneNumber" ng-disabled="!formControl.edit" ng-model="user.phoneNumber">
+		    	</div>
+		  	</div>
+			<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-5">
+            		<input ng-hide="formControl.edit" type="button" class="btn btn-primary" ng-click="editOn()" value="Edit" />
+            		<input ng-show="formControl.edit && formControl.cancelPossible" class="btn btn-default" type="button" ng-click="editOff()" value="Cancel" />
+            		<input ng-show="formControl.edit" type="button" class="btn btn-default" ng-click="reset()" value="Reset" />
+            		<input ng-show="formControl.edit" type="submit" class="btn btn-primary" value="Save" />
+            	</div>
+            </div>
+		    
+		    
+		    
+		    <!-- 
+		    <table border="1px" style="margin: 10px;">
+		        <tr>
+		            <td style="padding: 10px; vertical-align: top;">
+		                <table class="tableList">
+		                    <tr>
+		                        <td>User:<span style="color: red;">*</span></td>
+		                        <td>
+		                            <input class="form-control" name="userName" ng-disabled="!formControl.edit" ng-model="user.userName" type="text" size="30" maxlength="30" value="" required/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>E-Mail Address:<span style="color: red;">*</span></td>
+		                        <td>
+		                            <input class="form-control" name="emailAddress" ng-disabled="!formControl.edit" ng-model="user.emailAddress" type="email" size="30" maxlength="30" value="" required/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>Password:<span style="color: red;">*</span></td>
+		                        <td>
+		                            <input class="form-control" name="password" ng-disabled="!formControl.edit" ng-model="user.password" type="password" size="30" maxlength="30" value="" required/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>First Name:</td>
+		                        <td>
+		                            <input class="form-control" name="firstName" ng-disabled="!formControl.edit" ng-model="user.firstName" type="text" size="30" maxlength="30" value=""/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>Last Name:</td>
+		                        <td>
+		                            <input class="form-control" name="lastName" ng-disabled="!formControl.edit" ng-model="user.lastName" type="text" size="30" maxlength="30" value=""/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>Role:<span style="color: red;">*</span></td>
+		                        <td>
+		                        	<select class="form-control" name="role" ng-disabled="!formControl.edit" ng-model="user.role" ng-options="role.value as role.label for role in allowedRoles" required>
+		                        	</select>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>Phone Number:</td>
+		                        <td>
+		                            <input class="form-control" name="phoneNumber" ng-disabled="!formControl.edit" ng-model="user.phoneNumber" type="text" size="30" maxlength="30" value=""/>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>Mobile Number:</td>
+		                        <td>
+		                            <input class="form-control" name="mobileNumber" ng-disabled="!formControl.edit" ng-model="user.mobileNumber" type="text" size="30" maxlength="30" value=""/>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </td>
+		
+		            <td style="padding: 10px; vertical-align: top;">
+		                <div>
+		                    Picture:
+		                    <br/> <img alt="No Picture available" width="200" height="100" src=""/>
+		                </div>
+		                </td></tr>
+		                <tr><td colspan="2">
+		                <input ng-hide="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="editOn()" value="Edit" />
+		                <input ng-show="formControl.edit && formControl.cancelPossible" class="btn btn-primary btn-sm" type="button" ng-click="editOff()" value="Cancel" />
+		                <input ng-show="formControl.edit" type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" />
+		                <input ng-show="formControl.edit" type="submit" class="btn btn-primary btn-sm" value="Save" />
+		            </td>
+		        </tr>
+		        <tr>
+					<th colspan="2" style="text-align: right; padding-right: 40px; padding: 10px;">
+						*mandatory field</th>
+				</tr>
+		    </table>
+		     -->
+		</form>
+	</div>
+</div>

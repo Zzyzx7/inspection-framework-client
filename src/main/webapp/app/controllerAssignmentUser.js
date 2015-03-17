@@ -190,7 +190,7 @@ InspectionAssignmentControllers.controller(
 									              $scope.master = inspectionAssignmentTask;
 									              
 									              alert('Saved successfully.');
-													//$location.path( '/assignments/' + $routeParams.id);
+												  $location.path( '/assignments/' + $routeParams.id);
 									          }, function(callbackData) {
 									              alert(callbackData.data.errorMessage);
 									          });

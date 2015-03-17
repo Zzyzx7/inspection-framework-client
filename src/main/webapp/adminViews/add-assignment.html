@@ -1,109 +1,143 @@
-<form>
-	<table border="1px" style="margin: 10px;" id="tableDefault">
-		<tr>
-
-			<td style="padding: 10px; vertical-align: top;">
-
-				<table class="tableList">
-					<tr>
-						<td style="vertical-align:top; padding-top: 12px;">Assignment Name:<span style="color: red;">*/**</span>
-						</td>
-						<td style="vertical-align:top;"><input class="form-control input-sm" name="assignmentName"
-							ng-model="inspectionassignment.assignmentName" type="text"
-							size="25" maxlength="50" value="" /></td>
-						<td style="padding-left: 40px; padding-top: 12px; vertical-align: top;">Start Date:<span
-							style="color: red;">**</span>
-						</td>
-						<td>
-						<p style="z-index: 1;" class="input-group input-group-sm">
-                         <input name="startDate" type="text" class="form-control"  datepicker-popup="{{format}}"
-                          size="15" ng-model="inspectionassignment.startDate" is-open="opened1" min-date="minDate" max-date="" 
-                          datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-change="onDateChange1()" 
-                          close-text="Close" />
-                         <span class="input-group-btn">
-                         <button id="1" type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                         </span>
-                       </p>						
-						</td>
-					</tr>
-
-					<tr>
-						<td style="vertical-align:top; padding-top: 12px;">Inspection Object:<span style="color: red;">**</span>
-						</td>
-						<td style="vertical-align:top;"><select style="width: 180px; height: 28px;"
-							ng-model="inspectionassignment.inspectionObject.id">
-								<option ng-repeat="inspectionobject in inspectionobjects"
-									value="{{inspectionobject.id}}">{{inspectionobject.objectName}}</option>
-						</select></td>
-						
-						<td style="padding-left: 40px; padding-top: 12px; vertical-align: top;">Due Date:<span
-							style="color: red;">**</span>
-						</td>
-						<td>
-			           <p style="z-index: 0;" class="input-group input-group-sm">
-                         <input name="dueDate" type="text" class="form-control"  datepicker-popup="{{format}}"
-                          size="15" ng-model="inspectionassignment.endDate" is-open="opened2" min-date="minDate" max-date="" 
-                          datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-change="onDateChange2()" 
-                          close-text="Close" />
-                         <span class="input-group-btn">
-                         <button id="2" type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                         </span>
-                       </p>
-                     </td>
-					</tr>
-					<tr>
-						<td style="vertical-align:top; padding-top: 12px;">Responsible User:<span style="color: red;">**</span>
-						</td>
-						<td style="vertical-align:top;">
-						<select style="width: 180px; height: 28px;"
-							ng-model="inspectionassignment.user.id">
-								<option ng-repeat="user in users" value="{{user.id}}">{{user.userName}}</option>
-						</select>
-						
-						
-						</td>
-					</tr>
-				</table> <span style="margin-left: 19px;">Assignment Description:<br />
-					<textarea style="margin-left: 19px;" 
-						ng-model="inspectionassignment.description" name="description"
-						cols="90" rows="1"></textarea></span>
-			</td>
-		</tr>
-		<tr>
-			<td><br />
-				<div ng-repeat="task in inspectionassignment.tasks"
-					style="margin: 2px; margin-left: 20px;">
-					Task Name:<input name="tasks" ng-model="task.taskName" type="text"
-						size="25" maxlength="50" value="" style="margin-left: 5px;" /> <span
-						style="margin-left: 20px;">Description:</span><input name="tasks"
-						ng-model="task.description" type="text" size="25" maxlength="50"
-						value="" style="margin-left: 5px;" />
+<div class="panel panel-default">
+	<div class="panel-heading">Inspection assignment details</div>
+	<div class="panel-body">
+		<form ng-submit="save(inspectionObject)" class="form-horizontal">
+			<alert ng-repeat="alert in alerts" type="{{alert.type}}"
+				close="closeAlert($index)">{{alert.msg}}</alert>
+			<div class="form-group">
+				<label for="assignmentNameInput" class="col-sm-3 control-label">Assignment
+					Name<span style="color: red;">*</span>
+				</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="assignmentNameInput"
+						placeholder="Enter assignment name" name="assignmentName"
+						ng-model="inspectionassignment.assignmentName" required>
 				</div>
-				<div style="text-align: right; margin-right: 40px;">
-					<input type="button" class="btn btn-primary btn-xs"
-						ng-click="addTask()" value="Add new task" style="margin: 10px;" />
-				</div></td>
-		</tr>
-		<tr>
-			<td
-				style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
-				
-				<input type="button" class="btn btn-primary btn-sm"
-				ng-click="reset()" value="Reset" /> <input type="button"
-				class="btn btn-primary btn-sm" ng-click="save(inspectionassignment)"
-				value="Save" style="margin-right: 40px;" /> as:
-				<form name="saveAs">
-					<input type="radio" ng-model="inspectionassignment.isTemplate"
-						value="false" /> Assignment<span style="color: red;">**</span> <input
-						type="radio" ng-model="inspectionassignment.isTemplate"
-						value="true" style="margin-left: 10px;" /> Template<span
-						style="color: red;">*</span>
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<th style="text-align: right; padding-right: 40px; padding: 10px;">
-				*mandatory for Templates / **mandatory for Assignments</th>
-		</tr>
-	</table>
-</form>
+			</div>
+			<div class="form-group">
+				<label for="locationInput" class="col-sm-3 control-label" id="inspectionObjectInput">Inspection
+					Object<span style="color: red;">*</span>
+				</label>
+				<div class="col-sm-5">
+
+					<select class="form-control" id="inspectionObjectInput"
+						ng-model="inspectionassignment.inspectionObject.id">
+						<option ng-repeat="inspectionobject in inspectionobjects"
+							value="{{inspectionobject.id}}">{{inspectionobject.objectName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="customerName" class="col-sm-3 control-label" id="userInput">Responsible
+					User<span style="color: red;">*</span>
+				</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="userInput"
+						ng-model="inspectionassignment.user.id">
+						<option ng-repeat="user in users" value="{{user.id}}">{{user.userName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="customerName" class="col-sm-3 control-label">Start
+					Date<span style="color: red;">*</span>
+				</label>
+				<div class="col-sm-5">
+					<p style="z-index: 1;" class="input-group input-group-sm">
+						<input name="startDate" type="text" class="form-control"
+							datepicker-popup="{{format}}" size="15"
+							ng-model="inspectionassignment.startDate" is-open="opened1"
+							min-date="minDate" max-date="" datepicker-options="dateOptions"
+							date-disabled="disabled(date, mode)" ng-change="onDateChange1()"
+							close-text="Close" /> <span class="input-group-btn">
+							<button id="1" type="button" class="btn btn-default"
+								ng-click="open($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="customerName" class="col-sm-3 control-label">Due
+					Date<span style="color: red;">*</span>
+				</label>
+				<div class="col-sm-5">
+					<p style="z-index: 0;" class="input-group input-group-sm">
+						<input name="dueDate" type="text" class="form-control"
+							datepicker-popup="{{format}}" size="15"
+							ng-model="inspectionassignment.endDate" is-open="opened2"
+							min-date="minDate" max-date="" datepicker-options="dateOptions"
+							date-disabled="disabled(date, mode)" ng-change="onDateChange2()"
+							close-text="Close" /> <span class="input-group-btn">
+							<button id="2" type="button" class="btn btn-default"
+								ng-click="open($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="descriptionInput" class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-5">
+					<textarea class="form-control" style="resize: none;" rows="3"
+						id="descriptionInput" ng-model="inspectionassignment.description"
+						name="description"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">Create Tasks</div>
+	<div class="panel-body">
+
+		<div class="col-md-9" style="margin-top: 7px;">
+			<div ng-repeat="task in inspectionassignment.tasks"
+				style="margin: 5px; margin-left: 20px;">
+
+
+				<label for="TaskNameInput">Task Name</label> <input name="tasks"
+					ng-model="task.taskName" type="text" size="25" maxlength="50"
+					value="" style="margin-left: 5px;" /> <label
+					style="margin-left: 20px;" for="descriptionTaskInput">Description</label>
+				<input name="tasks" ng-model="task.description" type="text"
+					size="25" maxlength="50" value="" style="margin-left: 5px;" />
+			</div>
+		</div>
+
+		<div class="col-md-1">
+			<input type="button" class="btn btn-success btn-sm"
+				ng-click="addTask()" value="Add new task" style="margin: 10px;" />
+		</div>
+
+
+	</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="col-sm-offset-3 col-sm-8">
+	<form name="saveAs">
+		<input type="button" class="btn btn-default" ng-click="reset()"
+			value="Reset" /> <input type="button" class="btn btn-primary"
+			ng-click="save(inspectionassignment)" value="Save"
+			style="margin-right: 40px;" /> as: <input type="radio"
+			ng-model="inspectionassignment.isTemplate" value="false" />
+		Assignment<span style="color: red;">**</span> <input type="radio"
+			ng-model="inspectionassignment.isTemplate" value="true"
+			style="margin-left: 10px;" /> Template<span style="color: red;">*</span>
+	</form>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
