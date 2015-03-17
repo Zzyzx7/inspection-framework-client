@@ -1,10 +1,10 @@
 <div class="panel panel-default">
-	<div class="panel-heading">Inspection object details</div>
+	<div class="panel-heading">Inspection Object Details</div>
 	<div class="panel-body">
 		<form ng-submit="save(inspectionObject)" class="form-horizontal">
 			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 		    <div class="form-group">
-		    	<label for="objectNameInput" class="col-sm-3 control-label">Object name<span style="color: red;">*</span></label>
+		    	<label for="objectNameInput" class="col-sm-3 control-label">Object Name<span style="color: red;">*</span></label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="objectNameInput" placeholder="Enter object name" name="objectName" ng-disabled="!formControl.edit" ng-model="inspectionObject.objectName" required>
 		    	</div>
@@ -43,7 +43,7 @@
 	<div class="panel-body">
 		<form ng-submit="performUpload()" name="fileUploadForm">
 			<div class="form-group">
-				<label for="fileInput">File input</label>
+				<label for="fileInput">File Input</label>
 				<input type="file" id="fileInput" name="fileInputField" nv-file-select="" uploader="uploader" ng-click="resetUploadQueue()"/>
 			</div>
 			<div class="form-group">
@@ -56,7 +56,7 @@
 			<table class="table table-hover table-bordered" ng-show="!noAttachments">
 				<thead>
 				    <tr>
-				        <th width="50%">File name</th>
+				        <th width="50%">File Name</th>
 				        <th>Description</th>
 				        <th ng-show="uploader.isHTML5">Size</th>
 				        <th>Actions</th>

@@ -9,7 +9,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 			$scope.inspectionassignments = InspectionAssignment.list()
 			$scope.orderProp = 'assignmentName';
 
-			//get User ID for "Manage Profile" Link
+			// get User ID for "Manage Profile" Link
 			CurrentUser.getDetails(
  					function(callbackData) {
 							$scope.currentUser = callbackData;
@@ -131,53 +131,120 @@ InspectionAssignmentControllers.controller(
 				'InspectionAssignmentTask',
 				'$rootScope',
 				'FileUploader',
+				'InspectionAssignmentAttachment',
+				'Attachment',
 				function($scope, $location, $routeParams,
-						InspectionAssignmentTask, $rootScope, FileUploader) {
+						InspectionAssignmentTask, $rootScope, FileUploader, InspectionAssignmentAttachment, Attachment) {
 					
 					var uploader = $scope.uploader = new FileUploader({
-					    url: REST_BACKEND_URL + '/inspectionobject/',
-					    alias: 'fileUpload' 
-					});
+        			    url: REST_BACKEND_URL + '/assignment/',
+        			    alias: 'fileUpload',
+        			    removeAfterUpload: true,
+        			    withCredentials: true,
+        			    queueLimit: 1
+        			});
+        			
+        			addAlert = function(message, type) {
+        				if($scope.alerts == undefined) {
+        					$scope.alerts = new Array();
+        				}
+        				$scope.alerts.push({type: type, msg: message});
+        			}
+        			  
+        			clearAlerts = function() {
+        				if($scope.alerts == undefined) {
+        					$scope.alerts = new Array();
+        				}
+        				$scope.alerts = [];
+        			}
+        			  
+        			uploader.onSuccessItem = function(item, response, status, headers) {
+        				getInspectionAssignmentTaskDetails($scope.inspectionAssignmentTask.id);
+        			}
+        			
+        			uploader.onErrorItem = function(item, response, status, headers) {
+        				addAlert(response, 'danger');
+        			}
+        			
+        			uploader.onBeforeUploadItem = function(item) {
+        				if(angular.isDefined($scope.fileDescription)) {
+        					if(angular.isDefined(item.formData[0])) {
+        						item.formData[0] = {fileDescription: $scope.fileDescription}
+        					} else {
+        						item.formData.push({fileDescription: $scope.fileDescription})
+        					}
+        				}
+        			} 
+        			
+        		  $scope.formControl = {};
+        		  $scope.noAttachments = false;
+        		  
+        		  $scope.performUpload = function() {
+        			  uploader.uploadItem(0);
+        			  if(angular.isDefined($scope.fileDescription)) {
+        				  $scope.fileDescription = "";
+        			  }
+        			  document.getElementById('fileInput').value = "";
+        		  }
+        		  
+        		  $scope.resetUploadQueue = function() {
+        			  uploader.clearQueue();
+        		  }
+        		  
+        		  setUploaderUrl = function(taskid) {
+        			  uploader.url = REST_BACKEND_URL + '/assignment/' + $routeParams.id + '/task/' + taskid + '/attachment';
+        		  }
 					
-					uploader.onBeforeUploadItem = function(item) {
 						
-					}
-					
-					uploader.onAfterAddingFile = function(item) {
-						item.setDescription = function(description) {
-							if(angular.isDefined(description)) {
-								if(angular.isDefined(item.formData[0])) {
-									item.formData[0] = {fileDescription: description}
-								} else {
-									item.formData.push({fileDescription: description})
-								}
-							} else {
-								if(angular.isDefined(item.formData[0])) {
-									return item.formData[0].fileDescription;
-								} else {
-									return description;
-								}
-							} 
-						}
-						//$scope.inspectionObject.attachments
-					};
-
-					
-					$scope.formControl = {}
-                    
-					$scope.master = {};
-					
-						InspectionAssignmentTask.getDetails({
+					 getInspectionAssignmentTaskDetails = function(inspectionAssignmentId) {
+						  this.clearAlerts();
+					InspectionAssignmentTask.getDetails({
 							inspectionassignmentid : $routeParams.id,
-							taskid : $routeParams.taskid
+							taskid : $routeParams.taskid,
+							addAttachmentDetails: true
 							
 						}, function(callbackData) {
 							$scope.inspectionAssignmentTask = callbackData;
-							
 							$scope.master = angular.copy(callbackData);
+							
+							setUploaderUrl($scope.inspectionAssignmentTask.id);
+          		          if($scope.inspectionAssignmentTask.attachments === undefined || $scope.inspectionAssignmentTask.attachments == null || $scope.inspectionAssignmentTask.attachments.length == 0) {
+          		        	  $scope.noAttachments = true;
+          		          } else {
+          		        	  $scope.noAttachments = false;
+          		          }
 						}, function(callbackData) {
 							console.log(callbackData.data.errorMessage);
 						});
+					 }
+					 
+					 $scope.master = {};
+				      getInspectionAssignmentTaskDetails($routeParams.id);
+						
+						$scope.downloadAttachment = function(attachment) {
+              			  window.open(attachment.url)
+						}
+						
+						 $scope.deleteAttachment = function(inspectionAssignmentTask, attachment) {
+                                                            			  clearAlerts();
+                                                            			  var index = $scope.inspectionAssignmentTask.attachments.indexOf(attachment);
+                                                            			  InspectionAssignmentAttachmentTask.remove({
+                                                            				  attachmentid : attachment.gridFsId,
+                                                            				  inspectionassignmentid : inspectionAssignment.id
+                                                            			  }, function(callbackData) {
+                                                            				  $scope.inspectionAssignmentTask.attachments.splice(index, 1);
+                                                            				  $scope.master.attachments.splice(index, 1);
+                                                            				  if($scope.inspectionAssignmentTask.attachments.length == 0) {
+                                                            					  $scope.noAttachments = true;
+                                                            				  } else {
+                                                            					  $scope.noAttachments = false;
+                                                            				  }
+                                                            			  }, function(callbackData) {
+                                                            				  addAlert(callbackData.data.errorMessage, 'danger')
+                                                            			  });
+                                                            		  }
+						
+						
 						
                         $scope.save = function(inspectionAssignmentTask) {
 							
@@ -185,6 +252,7 @@ InspectionAssignmentControllers.controller(
 											inspectionAssignmentTask.$update({
 												inspectionassignmentid: $routeParams.id,
 												taskid: inspectionAssignmentTask.id
+												
 												
 									          }, function(callbackData) {
 									              $scope.master = inspectionAssignmentTask;
@@ -207,4 +275,8 @@ InspectionAssignmentControllers.controller(
 
 					
 				} ]);
+
+
+
+
 

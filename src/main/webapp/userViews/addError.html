@@ -1,47 +1,42 @@
-<form>
-	<table border="1px" style="margin: 10px;">
-		<tr>
-			<td style="padding: 10px; vertical-align: top;">
+<div class="panel panel-default">
+<div class="panel-heading">Add Error Description</div>
+	<div class="panel-body">
 
-				<table class="tableList">
-					<tr>
-						<td>Task Name:</td>
-						<td>
-						<input name="assignmentName" type="text" size="30"
-							ng-disabled="!formControl.edit" maxlength="30"
-							value="{{inspectionAssignmentTask.taskName}}" /></td>
-					</tr>
-					<tr>
-						<td>Task Description:</td>
-						<td><textarea ng-disabled="!formControl.edit"
-								name="taskDescription" cols="40" rows="1">{{inspectionAssignmentTask.description}}</textarea></td>
-					</tr>
-					<tr>
-					<td>Add Error Description:</td>
-					<td><textarea name="errorDescription" ng-model="inspectionAssignmentTask.errorDescription" cols="40" rows="2"></textarea></td>
-					</tr>
-					<tr>
-					
-					<td>
-					
-					
-
-			</td>
-		</tr>
-		<tr>
-			<td	style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
-				<input type="button" class="btn btn-primary btn-sm" ng-click="reset()" value="Reset" /> <input
-				type="submit" class="btn btn-success btn-sm" ng-click="save(inspectionAssignmentTask)" href="/saved" value="Done" />
-				
-			</td>
-		</tr>
-	</table>
-	<div class="panel panel-default">
+<form class="form-horizontal">
+	<div class="form-group">
+		    	<label for="assignmentTaskNameOutput" class="col-sm-3 control-label">Task Name</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="assignmentTaskNameOutput" name="assignmentTaskName" ng-disabled="!formControl.edit" ng-model="inspectionAssignmentTask.taskName">
+		    	</div>
+		  	</div>
+<div class="form-group">
+		    	<label for="taskDescriptionOutput" class="col-sm-3 control-label">Task Description</label>
+		    	<div class="col-sm-5">
+		    	    <textarea class="form-control" style="resize: none;" rows="2" ng-disabled="!formControl.edit" id="taskDescriptionOutput" ng-model="inspectionAssignmentTask.description" name="description"></textarea>
+		    	</div>
+		  	</div>
+<div class="form-group">
+		    	<label for="errorDescriptionInput" class="col-sm-3 control-label">Error Description</label>
+		    	<div class="col-sm-5">
+		    	    <textarea class="form-control" style="resize: none;" rows="2" id="errorDescriptionInput" ng-model="inspectionAssignmentTask.errorDescription" name="errorDescription"></textarea>
+		    	</div>
+		  	</div>
+<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-5">
+            	   <input type="button" class="btn btn-default" ng-click="reset()" value="Reset" />
+            	   <input type="submit" class="btn btn-success" ng-click="save(inspectionAssignmentTask)" value="Done" />
+				</div>
+            </div>
+      </form>
+      </div>
+      </div>
+      
+<div class="panel panel-default">
 	<div class="panel-heading">Attachments</div>
 	<div class="panel-body">
 		<form ng-submit="performUpload()" name="fileUploadForm">
 			<div class="form-group">
-				<label for="fileInput">File input</label>
+				<label for="fileInput">File Input</label>
 				<input type="file" id="fileInput" name="fileInputField" nv-file-select="" uploader="uploader" ng-click="resetUploadQueue()"/>
 			</div>
 			<div class="form-group">
@@ -54,7 +49,7 @@
 			<table class="table table-hover table-bordered" ng-show="!noAttachments">
 				<thead>
 				    <tr>
-				        <th width="50%">File name</th>
+				        <th width="50%">File Name</th>
 				        <th>Description</th>
 				        <th ng-show="uploader.isHTML5">Size</th>
 				        <th>Actions</th>
@@ -85,5 +80,3 @@
 		</div>
 	</div>
 </div>
-	
-</form>
