@@ -4,6 +4,7 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
     'inspectionAssignmentControllers',
     'inspectionObjectServices',
     'inspectionAssignmentServices',
+    'attachmentServices',
     'userControllers',
     'userServices',
     'sessionServices',

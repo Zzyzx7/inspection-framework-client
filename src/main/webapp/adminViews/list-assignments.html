@@ -1,12 +1,20 @@
-<div style="margin: 20px;">
-	Search: <input ng-model="query" /> Sort by: <select
+
+	<div class="panel-body">
+
+<div class="container-fluid" style="margin-bottom:15px;">
+<div class="col-md-7">
+	Search: <input ng-model="query" /> <span style="margin-left:15px;">Sort by: <select
 		ng-model="orderProp">
 		<option value="name">Alphabetical</option>
 		<option value="endDate">Newest</option>
-	</select>
+	</select></span>
+	</div>
+	<div class="col-md-3 navbar-right" style="text-align:right;">
+	<a href="#/assignments/new" class="btn btn-success btn-xs">Create New Assignment</a>
+    </div>
 </div>
 
-<table border="1" id="tableDefault">
+<table class="table table-hover table-bordered">
 	<thead>
 		<tr>
 			<th style="min-width: 250px;">Assignments</th>
@@ -35,3 +43,4 @@
 		</tr>
 	</tbody>
 </table>
+</div>

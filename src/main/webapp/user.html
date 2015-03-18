@@ -12,10 +12,12 @@
 
 <script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
 
+
 <!-- loading AngularJS -->
 <script src="assets/js/angular.js"></script>
 <script src="assets/js/angular-route.min.js"></script>
 <script src="assets/js/angular-resource.min.js"></script>
+
 
 <!-- loading different controllers -->
 <script src="app/controllerAssignmentUser.js"></script>
@@ -34,54 +36,74 @@
 </head>
 <body ng-controller="AssignmentListCtrl">
 
-	<div id="navigation">
-		<table width="900px" style="margin-left: 20px;">
-			<tr>
-				<td style="font-size: 28px; text-align: left; padding-left: 5px;">
-					<img alt="Logo" src="assets/img/if_gold_logo.png" height="41px"
-					width="50px" style="margin-right: 3px; vertical-align: top;">
-					Inspection <span style="font-weight: bolder">FRAMEWORK</span>
-				</td>
-				<td style="text-align: right;"><span
-					style="font-style: italic; font-size: 12px; margin-right:10px;">Role: User</span> 
-					<insp-logout></insp-logout>
-				</td>
-		</table>
+	<div class="wrapper">
+		<div class="navbar navbar-default navbar-fixed-top" style="background-color:#042c57;">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand">
+						<img alt="Logo" src="assets/img/if_gold_logo.png" height="41px">
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<p class="navbar-text" style="color: #ffffff; font-size: 28px;">
+						Inspection <span style="font-weight: bolder">FRAMEWORK</span>
+					</p>
+					<div class="col-md-5" style="text-align:center;">
+					<p style="color: #ffffff;margin-top:30px;">
+<a id="navLink" href="#/assignments">Open ({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a> /
+<a id="navLink" href="#/saved">Saved ({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a> //
+<a id="navLink" href="#/profile/{{currentUser.id}}">Manage Profile</a>
 
-	</div>
-
-	<table style="margin-top: 50px;">
-		<tr>
-			<td style="vertical-align: top; min-width: 210px;">
-
-				<table border="1" id="menu" width="180px">
+					</p>
+					</div>
+					
+					<p class="navbar-text navbar-right" style="color: #ffffff;margin-top:25px;margin-right:15px;">
+					   <insp-logout></insp-logout> 
+					</p>
+					
+				</div>
+	
+				<!--  <table width="900px" style="margin-left: 20px;">
 					<tr>
-						<th>Assignments</th>
+						<td style="font-size: 28px; text-align: left; padding-left: 5px;">
+							
+						</td>
+						<td style="text-align: right;">
+						</td>
 					</tr>
-					<tr>
-						<td><a href="#/assignments" style="display: block;">Open
-								Assignments 
-								({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a></td>
-					</tr>
-					<tr>
-						<td><a href="#/saved" style="display: block;">Saved
-								Assignments
-								({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a></td>
-					</tr>
-					<tr>
-						<th>User</th>
-					</tr>
-					<tr>
-						<td><a href="#/profile/{{currentUser.id}}" style="display: block;">Manage
-								Profile</a></td>
-					</tr>
-
 				</table>
+				-->
+			</div>
+		</div>
 
-			</td>
-			<td style="vertical-align: top;"><ng-view></ng-view></td>
-		</tr>
-	</table>
+	
+	
+	<div class="row" style="margin-right: 0px; margin-left: 0px;margin-top:90px;">
+			<div class="col-md-2">
+				<div class="list-group" role="navigation">
+					<div class="list-group-item" style="background-color:#eee" role="presentation">Assignments</div>
+					<a class="list-group-item" href="#/assignments" role="presentation">Open Assignments
+					({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a>
+					
+					<a class="list-group-item" href="#/saved" role="presentation">Saved Assignments
+					({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a>
+					<div class="list-group-item" style="background-color:#eee" role="presentation">User</div>
+					<a class="list-group-item" href="#/profile/{{currentUser.id}}" role="presentation">Manage Profile</a>
+				</div>
+				
+			</div>
+			<div class="col-md-8">
+				<ng-view></ng-view>
+			</div>
+		</div>
+		<div class="push">
+		</div>
+	</div>
+	<footer class="footer">
+    	<div class="container">
+        	<p>Role: User</p>
+      	</div>
+	</footer>
 
 
 

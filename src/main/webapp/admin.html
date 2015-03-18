@@ -38,21 +38,28 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="navbar navbar-default" style="background-color:#042c57;">
+		<div class="navbar navbar-default navbar-fixed-top" style="background-color:#042c57;">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" style="height:51px;padding-top: 5px;padding-bottom: 5px;">
-						<img alt="Logo" src="assets/img/if_gold_logo.png" height="41px" width="50px">
+					<a class="navbar-brand">
+						<img alt="Logo" src="assets/img/if_gold_logo.png" height="41px">
 					</a>
 				</div>
 				<div class="collapse navbar-collapse">
-					<p class="navbar-text" style="color: #ffffff;">
+					<p class="navbar-text" style="color: #ffffff; font-size: 28px;">
 						Inspection <span style="font-weight: bolder">FRAMEWORK</span>
 					</p>
-					<p class="navbar-text navbar-right" style="color: #ffffff;">
-						<span style="font-style: italic; font-size: 12px; margin-right:10px;">Role: Admin</span>
-						<insp-logout></insp-logout> 
+					<div class="col-md-5" style="text-align:center;">
+					<p style="color: #ffffff;margin-top:30px;">
+					Assignments | Users | Inspection Objects
+					
 					</p>
+					</div>
+					
+					<p class="navbar-text navbar-right" style="color: #ffffff;margin-top:25px;margin-right:15px;">
+					   <insp-logout></insp-logout> 
+					</p>
+					
 				</div>
 	
 				<!--  <table width="900px" style="margin-left: 20px;">
@@ -68,7 +75,7 @@
 			</div>
 		</div>
 		
-		<div class="row" style="margin-right: 0px; margin-left: 0px;">
+		<div class="row" style="margin-right: 0px; margin-left: 0px;margin-top:90px;">
 			<div class="col-md-2">
 				<div class="list-group" role="navigation">
 					<div class="list-group-item" style="background-color:#eee" role="presentation">Assignments</div>
@@ -106,11 +113,11 @@
 		</div>
 		<div class="push">
 		</div>
-	</div>
-	<footer class="footer">
-    	<div class="container">
-        	<p>!Footer!</p>
-      	</div>
+	</div><!-- /wrapper -->
+	<footer class="footer" style="height:10px;">
+    	
+        	<p>Role: Admin</p>
+      	
 	</footer>
 </body>
 </html>

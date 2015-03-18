@@ -18,6 +18,9 @@ a:hover {
 	color:#014283;
 	cursor: pointer;
 }
+#navLink {
+	color: #ffffff;
+}
 
 .footer {
 	width:100%;
