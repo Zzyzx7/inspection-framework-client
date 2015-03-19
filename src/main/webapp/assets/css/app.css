@@ -18,9 +18,6 @@ a:hover {
 	color:#014283;
 	cursor: pointer;
 }
-#navLink {
-	color: #ffffff;
-}
 
 .footer {
 	width:100%;
@@ -105,32 +102,6 @@ table.tableList  {
 }
 #tableDefault a:hover {
 	color:#014283;
-	cursor: pointer;
-}
-
-
-/* style id for the navigation bar*/
-#navigation {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  color: #ffffff; /*font color*/
-  background-color:#042c57;
-  height: 60px;
-  padding-top: 0px;
-  z-index: 2;
-}
-
-#navigation a {
-	font-size: 14px;
-	padding-left: 15px;
-	padding-right: 15px;
-	color: white;
-	text-decoration: none;
-}
-
-#navigation a:hover {
-	color: #c0c0c0;
 	cursor: pointer;
 }
 

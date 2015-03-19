@@ -152,8 +152,7 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 									function(callbackData) {
 										$scope.inspectionAssignment = callbackData;
 										$scope.master = callbackData;
-										$scope.formControl.edit = false;
-										$scope.formControl.cancelPossible = true;
+										
 										
 										alert('Saved successfully.');
 										$location.path( '/assignments' );
