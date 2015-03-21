@@ -50,9 +50,8 @@
 							min-date="minDate" max-date="" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange1()"
 							close-text="Close" /> <span class="input-group-btn">
-							<button id="1" type="button" class="btn btn-default"
-								ng-click="open($event)">
-								<i class="glyphicon glyphicon-calendar"></i>
+							<button id="1" type="button" class="btn btn-default" ng-click="open($event)">
+								<i id="1" class="glyphicon glyphicon-calendar"></i>
 							</button>
 						</span>
 					</p>
@@ -70,9 +69,8 @@
 							min-date="minDate" max-date="" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange2()"
 							close-text="Close" /> <span class="input-group-btn">
-							<button id="2" type="button" class="btn btn-default"
-								ng-click="open($event)">
-								<i class="glyphicon glyphicon-calendar"></i>
+							<button id="2" type="button" class="btn btn-default" ng-click="open($event)">
+								<i id="2" class="glyphicon glyphicon-calendar"></i>
 							</button>
 						</span>
 					</p>
@@ -113,25 +111,23 @@
 			<input type="button" class="btn btn-success btn-sm"
 				ng-click="addTask()" value="Add new task" style="margin: 10px;" />
 		</div>
-
-
 	</div>
 </div>
 <div class="panel panel-default">
-<div class="panel-body">
-<div class="col-sm-offset-3 col-sm-8">
-	<form name="saveAs">
-		<input type="button" class="btn btn-default" ng-click="reset()"
-			value="Reset" /> <input type="button" class="btn btn-primary"
-			ng-click="save(inspectionassignment)" value="Save"
-			style="margin-right: 40px;" /> as: <input type="radio"
-			ng-model="inspectionassignment.isTemplate" value="false" />
-		Assignment<span style="color: red;">**</span> <input type="radio"
-			ng-model="inspectionassignment.isTemplate" value="true"
-			style="margin-left: 10px;" /> Template<span style="color: red;">*</span>
-	</form>
-</div>
-</div>
+	<div class="panel-body">
+		<div class="col-sm-offset-3 col-sm-8">
+			<form name="saveAs">
+				<input type="button" class="btn btn-default" ng-click="reset()"
+					value="Reset" /> <input type="button" class="btn btn-primary"
+					ng-click="save(inspectionassignment)" value="Save"
+					style="margin-right: 40px;" /> as: <input type="radio"
+					ng-model="inspectionassignment.isTemplate" value="false" />
+				Assignment<span style="color: red;">**</span> <input type="radio"
+					ng-model="inspectionassignment.isTemplate" value="true"
+					style="margin-left: 10px;" /> Template<span style="color: red;">*</span>
+			</form>
+		</div>
+	</div>
 </div>
 
 
