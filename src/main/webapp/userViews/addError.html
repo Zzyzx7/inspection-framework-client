@@ -1,35 +1,34 @@
 <div class="panel panel-default">
-<div class="panel-heading">Add Error Description</div>
+	<div class="panel-heading">Add Error Description</div>
 	<div class="panel-body">
-
-<form class="form-horizontal">
-	<div class="form-group">
+		<form class="form-horizontal">
+			<div class="form-group">
 		    	<label for="assignmentTaskNameOutput" class="col-sm-3 control-label">Task Name</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="assignmentTaskNameOutput" name="assignmentTaskName" ng-disabled="!formControl.edit" ng-model="inspectionAssignmentTask.taskName">
 		    	</div>
 		  	</div>
-<div class="form-group">
+			<div class="form-group">
 		    	<label for="taskDescriptionOutput" class="col-sm-3 control-label">Task Description</label>
 		    	<div class="col-sm-5">
 		    	    <textarea class="form-control" style="resize: none;" rows="2" ng-disabled="!formControl.edit" id="taskDescriptionOutput" ng-model="inspectionAssignmentTask.description" name="description"></textarea>
 		    	</div>
 		  	</div>
-<div class="form-group">
+			<div class="form-group">
 		    	<label for="errorDescriptionInput" class="col-sm-3 control-label">Error Description</label>
 		    	<div class="col-sm-5">
 		    	    <textarea class="form-control" style="resize: none;" rows="2" id="errorDescriptionInput" ng-model="inspectionAssignmentTask.errorDescription" name="errorDescription"></textarea>
 		    	</div>
 		  	</div>
-<div class="form-group">
-    			<div class="col-sm-offset-3 col-sm-5">
-            	   <input type="button" class="btn btn-default" ng-click="reset()" value="Reset" />
-            	   <input type="submit" class="btn btn-success" ng-click="save(inspectionAssignmentTask)" value="Done" />
+			<div class="form-group">
+	  			<div class="col-sm-offset-3 col-sm-5">
+	          	   <input type="button" class="btn btn-default" ng-click="reset()" value="Reset" />
+	          	   <input type="submit" class="btn btn-success" ng-click="save(inspectionAssignmentTask)" value="Done" />
 				</div>
-            </div>
-      </form>
-      </div>
-      </div>
+			</div>
+		</form>
+	</div>
+</div>
       
 <div class="panel panel-default">
 	<div class="panel-heading">Attachments</div>
@@ -56,7 +55,7 @@
 				    </tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="attachment in inspectionObject.attachments">
+					<tr ng-repeat="attachment in inspectionAssignmentTask.attachments">
 						<td>
 							<a ng-href="{{attachment.url}}">{{attachment.fileName}}</a>
 						</td>
@@ -70,7 +69,7 @@
 							<button type="button" class="btn btn-success btn-xs" ng-click="downloadAttachment(attachment)">
 								<span class="glyphicon glyphicon-download"></span> Download
 							</button>
-							<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAttachment(inspectionObject, attachment)">
+							<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAttachment(inspectionAssignmentTask, attachment)">
 								<span class="glyphicon glyphicon-trash"></span> Delete
 							</button>
 						</td>
