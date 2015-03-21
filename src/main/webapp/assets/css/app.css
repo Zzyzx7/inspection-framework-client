@@ -23,7 +23,7 @@ a:hover {
 	width:100%;
   	text-align: center;
   	padding: 30px 0;
-  	margin-top: 70px;
+  	/*margin-top: 70px; */
   	border-top: 1px solid #e5e5e5;
   	bottom:0;
   	background-color: #f5f5f5;
@@ -31,11 +31,11 @@ a:hover {
 
 .wrapper {
 	min-height: 100%;
-	margin: 0 auto -161px;
+	margin: 0 auto -61px;
 }
 
 .push {
-	height: 161px; /* .push must be the same height as .footer */
+	height: 61px;  /* .push must be the same height as .footer */
 }
 
 /* style for the login form*/

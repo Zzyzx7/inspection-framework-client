@@ -1,6 +1,20 @@
 var userControllers = angular.module('userControllers', []);
 
 userControllers.controller('UserListCtrl', [ '$scope', 'User', function($scope, User) {
+	addAlert = function(message, type) {
+		if($scope.alerts == undefined) {
+			$scope.alerts = new Array();
+		}
+		$scope.alerts.push({type: type, msg: message});
+	}
+	  
+	clearAlerts = function() {
+		if($scope.alerts == undefined) {
+			$scope.alerts = new Array();
+		}
+		$scope.alerts = [];
+	}
+	
 	$scope.users = User.list({},
 			function(callbackData) {
 
@@ -8,8 +22,6 @@ userControllers.controller('UserListCtrl', [ '$scope', 'User', function($scope, 
 				addAlert(callbackData.data.errorMessage, 'danger');
 			}
 	);
-	
-
 	
 	$scope.orderProp = 'userName';
 
