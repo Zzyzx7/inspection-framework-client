@@ -19,6 +19,24 @@ a:hover {
 	cursor: pointer;
 }
 
+#form-signin {
+	max-width: 450px;
+  	padding: 19px 29px 29px;
+  	margin: 0 auto 20px;
+  	border: 1px solid #e5e5e5;
+  	box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  	border-radius: 5px;
+  	margin-top:80px;
+	background-color: #042c57;
+	color: white;
+	text-align:center;
+}
+
+#form-signin a {
+	color: white;
+	text-decoration: none;
+}
+
 .footer {
 	width:100%;
   	text-align: center;
@@ -36,26 +54,6 @@ a:hover {
 
 .push {
 	height: 61px;  /* .push must be the same height as .footer */
-}
-
-/* style for the login form*/
-#login {
-	text-align:center;
-	margin:auto;
-	vertical-align:center;
-	margin-top:50px;
-	background-color: #042c57;
-	color: white;
-}
-#login td {
-	padding:10px;
-}
-#login a {
-	color: white;
-	text-decoration: none;
-}
-#login input {
-	color: black;
 }
 
 /*style id for the menu on the left side*/
@@ -76,11 +74,6 @@ a:hover {
 	cursor: pointer;
 }
 #menu a {
-	padding: 10px;
-}
-
-
-td {
 	padding: 10px;
 }
 
