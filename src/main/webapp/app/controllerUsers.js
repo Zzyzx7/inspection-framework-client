@@ -1,7 +1,28 @@
 var userControllers = angular.module('userControllers', []);
 
 userControllers.controller('UserListCtrl', [ '$scope', 'User', function($scope, User) {
-	$scope.users = User.list();
+	addAlert = function(message, type) {
+		if($scope.alerts == undefined) {
+			$scope.alerts = new Array();
+		}
+		$scope.alerts.push({type: type, msg: message});
+	}
+	  
+	clearAlerts = function() {
+		if($scope.alerts == undefined) {
+			$scope.alerts = new Array();
+		}
+		$scope.alerts = [];
+	}
+	
+	$scope.users = User.list({},
+			function(callbackData) {
+
+			}, function(callbackData) {
+				addAlert(callbackData.data.errorMessage, 'danger');
+			}
+	);
+	
 	$scope.orderProp = 'userName';
 
 	$scope.deleteItem = function(user) {
@@ -11,9 +32,13 @@ userControllers.controller('UserListCtrl', [ '$scope', 'User', function($scope, 
 		}, function(callbackData) {
 			$scope.users.splice(index, 1)
 		}, function(callbackData) {
-			console.log(callbackData.data.errorMessage);
+			addAlert(callbackData.data.errorMessage, 'danger')
 		});
 	}
+	
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
 } ]);
 
 userControllers.controller('UserDetailCtrl', [ '$scope', '$location', '$routeParams', 'User',
@@ -21,8 +46,8 @@ userControllers.controller('UserDetailCtrl', [ '$scope', '$location', '$routePar
 			$scope.formControl = {}
 			
 			$scope.allowedRoles = [
-	          { label: 'Administrator', value: 'ROLE_ADMIN'},
-	          { label: 'Inspector', value: 'ROLE_INSPECTOR' }
+	          { label: 'Administrator', value: ROLE_ADMIN},
+	          { label: 'Inspector', value: ROLE_INSPECTOR }
 	        ];
 			
 			addAlert = function(message, type) {
@@ -43,7 +68,7 @@ userControllers.controller('UserDetailCtrl', [ '$scope', '$location', '$routePar
 				$scope.formControl.edit = true;
 				$scope.formControl.cancelPossible = false;
 				$scope.user = {};
-				$scope.user.role = 'ROLE_INSPECTOR';
+				$scope.user.role = ROLE_INSPECTOR;
 				$scope.master = $scope.user;
 			} else {
 				$scope.formControl.edit = false;

@@ -1,32 +1,29 @@
 <div class="panel panel-default">
-<div class="panel-heading">Inspection Assignment Details</div>
-	<div class="panel-body">
-
-<form class="form-horizontal">
-	<div class="form-group">
-		    	<label for="assignmentNameOutput" class="col-sm-3 control-label">Assignment Name</label>
-		    	<div class="col-sm-5">
-		    		<input type="text" class="form-control" id="assignmentNameOutput" name="assignmentName" ng-disabled="!formControl.edit" ng-model="inspectionAssignment.assignmentName">
-		    	</div>
-		  	</div>
-	<div class="form-group">
-		    	<label for="taskDescriptionOutput" class="col-sm-3 control-label">Task Description</label>
-		    	<div class="col-sm-5">
-		    		<textarea class="form-control" style="resize: none;" rows="2" ng-disabled="!formControl.edit" id="taskDescriptionOutput" ng-model="inspectionAssignment.description" name="description"></textarea>
-		    	</div>
-		  	</div>
+	<div class="panel-heading">Inspection Assignment Details</div>
+		<div class="panel-body">
 	
-	
-	
-</form>
-</div>
-</div>
+			<form class="form-horizontal">
+				<div class="form-group">
+			    	<label for="assignmentNameOutput" class="col-sm-3 control-label">Assignment Name</label>
+			    	<div class="col-sm-5">
+			    		<input type="text" class="form-control" id="assignmentNameOutput" name="assignmentName" ng-disabled="!formControl.edit" ng-model="inspectionAssignment.assignmentName">
+			    	</div>
+			  	</div>
+				<div class="form-group">
+			    	<label for="taskDescriptionOutput" class="col-sm-3 control-label">Task Description</label>
+			    	<div class="col-sm-5">
+			    		<textarea class="form-control" style="resize: none;" rows="2" ng-disabled="!formControl.edit" id="taskDescriptionOutput" ng-model="inspectionAssignment.description" name="description"></textarea>
+			    	</div>
+			  	</div>
+			</form>
+		</div>
+	</div>
 
 <div class="panel panel-default">
-<div class="panel-heading">Inspection Assignment Tasks</div>
+	<div class="panel-heading">Inspection Assignment Tasks</div>
 	<div class="panel-body">
-	<form class="form-horizontal">
-	  <table class="table table-hover table-bordered">
+		<form class="form-horizontal">
+			<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>Task</th>
@@ -44,23 +41,22 @@
 									<input type="radio" ng-model="task.state" value="1" /> OK <input
 										type="radio" ng-model="task.state" value="0"
 										style="margin-left: 5px;" /> not OK
-								</form>
-							</td>
-							<td><a href="#/addError/{{inspectionAssignment.id}}/{{task.id}}" style="display: block;">Add
-									Error Description</a></td>
-						</tr>
-					</tbody>
-				</table>
-				
-				<div class="form-group">
-		<div class="col-sm-3 control-label"></div>    	
-<div class="col-sm-6">
-		    		
-  <input type="button" class="btn btn-default" ng-click="reset()" value="Reset Tasks" />
-  <input type="submit" class="btn btn-primary" ng-click="save(inspectionAssignment)" value="Save" />
-  <input style="margin-left:20px;" type="submit" class="btn btn-success" ng-click="finish(inspectionAssignment)" value="Submit Assignment" />
-</div>
-</div>
-</form>	
+							</form>
+						</td>
+						<td><a href="#/addError/{{inspectionAssignment.id}}/{{task.id}}" style="display: block;">Add
+								Error Description</a></td>
+					</tr>
+				</tbody>
+			</table>	
+			<div class="form-group">
+				<div class="col-sm-3 control-label"></div>    	
+				<div class="col-sm-6">
+						    		
+				  <input type="button" class="btn btn-default" ng-click="reset()" value="Reset Tasks" />
+				  <input type="submit" class="btn btn-primary" ng-click="save(inspectionAssignment)" value="Save" />
+				  <input style="margin-left:20px;" type="submit" class="btn btn-success" ng-click="finish(inspectionAssignment)" value="Submit Assignment" />
+				</div>
+			</div>
+		</form>	
 	</div>
 </div>
