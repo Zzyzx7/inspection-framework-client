@@ -1,37 +1,14 @@
-var sessionControllers = angular.module('sessionControllers', []);
-
-sessionControllers.controller('LoginCtrl', ['$scope','$window', 'Login', function($scope, $window, Login) {
-    $scope.login = function(username, password) {
-    	Login.login({ username: username,
-    				  password: password }, 
-    	function(callbackData) {
-    		$window.location.href = 'admin.html#/assignments';
-        }, function(callbackData) {
-            console.log("error");
-        });
-    }
-}]);
-
-sessionControllers.controller('LogoutCtrl', ['$scope', '$window', 'Logout', function($scope, $window, Logout) {
-	Logout.logout({ },function(callbackData) {
-		$window.location.href = 'index.html';
-    }, function(callbackData) {
-        console.log(callbackData.data.errorMessage);
-    });
-}]);
-
-
 var sessionControlDirective = angular.module('sessionControlDirective', [])
 
 sessionControlDirective.directive('inspLogout', ['Logout', '$window', function(Logout, $window) {
 	function link(scope, element, attrs) {
 		scope.logout = function() {
 							Logout.logout({ },function(callbackData) {
-								$window.location.href = 'index.html';
+								$window.location.href = 'index.html#/loggedout';
 						    }, function(callbackData) {
-						        $window.location.href = 'index.html';
+						        alert(callbackData.data.errorMessage);
 					    });
-						}
+					}
 	}
 	
 	return {
@@ -42,36 +19,54 @@ sessionControlDirective.directive('inspLogout', ['Logout', '$window', function(L
 }])
 
 sessionControlDirective.directive('inspLogin', ['Login', 'CurrentUser',  '$window', 
-                                                function(Login, CurrentUser, $window) {
-	function link(scope, element, attrs) {
-	    scope.login = function(username, password) {
-				    	Login.login({ username: username,
-				    				  password: password }, 
-				    	function(callbackData) {
-				    					  CurrentUser.getDetails(
-				    					function(callbackData) {
-				  							scope.currentUser = callbackData;
-				  							
-				  							if (scope.currentUser.role == 'ROLE_ADMIN') {
-				  								$window.location.href = 'admin.html#/assignments';
-				  							} else {
-				  								$window.location.href = 'user.html#/assignments';
-				  							}
-				  							
-				  						}, function(callbackData) {
-				  							console.log(callbackData.data.errorMessage);
-				  						});		  
+    function(Login, CurrentUser, $window) {		
+		function link(scope, element, attrs) {		
+			scope.closeAlert = function(index) {
+				scope.alerts.splice(index, 1);
+			};
+			
+			function addAlert(message, type) {
+				if(scope.alerts == undefined) {
+					scope.alerts = new Array();
+				}
+				scope.alerts.push({type: type, msg: message});
+			}
+			  
+			function clearAlerts() {
+				if(scope.alerts == undefined) {
+					scope.alerts = new Array();
+				}
+				scope.alerts = [];
+			}
+				
+		    scope.login = function(username, password) {
+		    	clearAlerts();
+		    	Login.login({ username: username, password: password }, 
+			    	function(callbackData) {
+			    		CurrentUser.getDetails(
+	    					function(callbackData) {
+	  							scope.currentUser = callbackData;
+	  							if (scope.currentUser.role == 'ROLE_ADMIN') {
+	  								$window.location.href = 'admin.html#/assignments';
+	  							} else {
+	  								$window.location.href = 'user.html#/assignments';
+	  							}
+	  							
+	  						}, function(callbackData) {
+	  							console.log(callbackData.data.errorMessage);
+	  						});		  
 				        }, function(callbackData) {
-				            console.log("error");
-				            alert('Wrong Username or Password!');
+				        	// no message is provided from the server...
+				        	//addAlert(callbackData.data.errorMessage, 'danger');
+				        	addAlert('Wrong Username or Password!', 'danger');
 				        })
-		        	}
-	}
-	
-	return {
-		retrict: 'E',
-		templateUrl: 'login.html',
-		link: link
-	};
+        	}
+		}
+		
+		return {
+			retrict: 'E',
+			templateUrl: 'directiveViews/login.html',
+			link: link
+		};
 }])
 

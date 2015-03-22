@@ -10,7 +10,7 @@ httpInterceptors.factory('UnauthorizedInterceptor', [ '$q', '$location',
 				},
 				responseError : function(response, rejectReason) {
 					if (response.status === 403 || response.status === 401) {
-						$window.location.href = '#/index.html/login';
+						$window.location.href = '/index.html#/notauthorized';
 					}
 					return $q.reject(response);
 				}

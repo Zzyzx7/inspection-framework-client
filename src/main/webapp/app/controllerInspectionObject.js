@@ -123,24 +123,6 @@ inspectionObjectControllers.controller('InspectionObjectDetailCtrl', ['$scope', 
 		  
 		  $scope.downloadAttachment = function(attachment) {
 			  window.open(attachment.url)
-			  
-			  /*Attachment.download({
-				  gridfsid: attachment.gridFsId,
-			  }, function(callbackData) {
-				  window.saveAs(callbackData.response, attachment.fileName);
-				  //window.saveAs(new Blob([callbackData]), attachment.fileName)
-				  /*var file = new Blob([ callbackData ], {
-                      type : 'application/csv'
-                  });
-				  var fileURL 	= URL.createObjectURL(file);
-                  var a         = document.createElement('a');
-                  a.href        = fileURL; 
-                  a.target      = '_blank';
-                  document.body.appendChild(a);
-                  a.click();
-			  }, function(callbackData) {
-				  console.log(callbackData.data.errorMessage);
-			  }) */
 		  }
 		  
 		  $scope.deleteAttachment = function(inspectionObject, attachment) {
