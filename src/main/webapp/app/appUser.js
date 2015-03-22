@@ -15,8 +15,7 @@ var inspectionFrameworkApp = angular.module('inspectionFrameworkApp', [
 inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProvider',
     function($routeProvider, $locationProvider, $httpProvider) {
 		$httpProvider.interceptors.push('UnauthorizedInterceptor');
-        
-	
+		
 	$routeProvider.
         when('/profile/:id', {
             templateUrl: 'userViews/profile.html',
