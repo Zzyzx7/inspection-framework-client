@@ -1,5 +1,29 @@
 <div class="panel panel-default">
-	<div class="panel-heading">Inspection assignment details</div>
+  <div class="panel-heading">Select Type of Assignment</div>
+	<div class="panel-body">
+		<div class="row">
+		  <div class="col-sm-offset-2 col-lg-4">
+			<div class="input-group">
+				<span class="input-group-addon">
+				<input type="radio" ng-model="inspectionassignment.isTemplate" value="false"/>
+				</span>
+				<input type="text" class="form-control" name="assignment" ng-disabled="!formControl.edit" value="Assignment"/>
+			</div>
+		  </div>
+		  <div class="col-lg-4">
+			<div class="input-group">
+				<span class="input-group-addon">	
+				<input type="radio" ng-model="inspectionassignment.isTemplate" value="true" />
+				</span>
+				<input type="text" class="form-control" name="template" ng-disabled="!formControl.edit" value="Template"/>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Inspection Assignment Details</div>
 	<div class="panel-body">
 		<form ng-submit="save(inspectionObject)" class="form-horizontal">
 			<alert ng-repeat="alert in alerts" type="{{alert.type}}"
@@ -14,7 +38,7 @@
 						ng-model="inspectionassignment.assignmentName" required>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-if="inspectionassignment.isTemplate == 'false'">
 				<label for="locationInput" class="col-sm-3 control-label" id="inspectionObjectInput">Inspection
 					Object<span style="color: red;">*</span>
 				</label>
@@ -27,7 +51,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-if="inspectionassignment.isTemplate == 'false'">
 				<label for="customerName" class="col-sm-3 control-label" id="userInput">Responsible
 					User<span style="color: red;">*</span>
 				</label>
@@ -38,15 +62,15 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="customerName" class="col-sm-3 control-label">Start
+			<div class="form-group" ng-if="inspectionassignment.isTemplate == 'false'">
+				<label for="startDate" class="col-sm-3 control-label">Start
 					Date<span style="color: red;">*</span>
 				</label>
 				<div class="col-sm-5">
 					<p style="z-index: 0.6;" class="input-group input-group-sm">
 						<input name="startDate" type="text" class="form-control"
 							datepicker-popup="{{format}}" size="15"
-							ng-model="inspectionassignment.startDate" is-open="opened1"
+							ng-model="inspectionassignment.startDate" is-open="$parent.opened1"
 							min-date="minDate" max-date="" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange1()"
 							close-text="Close" /> <span class="input-group-btn">
@@ -57,15 +81,15 @@
 					</p>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="customerName" class="col-sm-3 control-label">Due
+			<div class="form-group" ng-if="inspectionassignment.isTemplate == 'false'">
+				<label for="dueDate" class="col-sm-3 control-label">Due
 					Date<span style="color: red;">*</span>
 				</label>
 				<div class="col-sm-5">
 					<p style="z-index: 0.5;" class="input-group input-group-sm">
 						<input name="dueDate" type="text" class="form-control"
 							datepicker-popup="{{format}}" size="15"
-							ng-model="inspectionassignment.endDate" is-open="opened2"
+							ng-model="inspectionassignment.endDate" is-open="$parent.opened2"
 							min-date="minDate" max-date="" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange2()"
 							close-text="Close" /> <span class="input-group-btn">
@@ -118,13 +142,10 @@
 		<div class="col-sm-offset-3 col-sm-8">
 			<form name="saveAs">
 				<input type="button" class="btn btn-default" ng-click="reset()"
-					value="Reset" /> <input type="button" class="btn btn-primary"
+					value="Reset" /> 
+				<input type="button" class="btn btn-primary"
 					ng-click="save(inspectionassignment)" value="Save"
-					style="margin-right: 40px;" /> as: <input type="radio"
-					ng-model="inspectionassignment.isTemplate" value="false" />
-				Assignment<span style="color: red;">**</span> <input type="radio"
-					ng-model="inspectionassignment.isTemplate" value="true"
-					style="margin-left: 10px;" /> Template<span style="color: red;">*</span>
+					style="margin-right: 40px;" />
 			</form>
 		</div>
 	</div>

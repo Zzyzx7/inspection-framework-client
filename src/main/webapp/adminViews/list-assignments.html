@@ -27,7 +27,7 @@
 		<tr>
 			<td><a href="#/assignments/{{inspectionassignment.id}}">{{inspectionassignment.assignmentName}}</a>
 			</td>
-			<td>{{inspectionassignment.user.userName}}</td>
+			<td><a href="#/users/{{inspectionassignment.user.id}}">{{inspectionassignment.user.userName}}</a></td>
 			<td>{{inspectionassignment.endDate | date:"dd.MM.yyyy"}}</td>
 			<td>
 			<span ng-if="inspectionassignment.state == 0">Initial</span>

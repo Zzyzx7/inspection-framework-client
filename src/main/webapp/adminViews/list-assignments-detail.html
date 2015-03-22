@@ -22,6 +22,9 @@
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="inspectionObjectInput" name="inspectionObject" ng-disabled="!formControl.edit" ng-model="inspectionassignment.inspectionObject.objectName"/>
 		    	</div>
+		    	<div style="padding-top:2px;">
+		    	<a class="btn btn-success btn-sm" href="#/inspectionobjects/{{inspectionassignment.inspectionObject.id}}"><span style="color:#ffffff;">View Inspection Object</span></a>
+		    	</div>
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="dueDateInput" class="col-sm-3 control-label">Due Date</label>
@@ -33,6 +36,9 @@
 		    	<label for="userNameInput" class="col-sm-3 control-label">Responsible User</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="userNameInput" name="userName" ng-disabled="!formControl.edit" ng-model="inspectionassignment.user.userName"/>
+		    	</div>
+		    	<div style="padding-top:2px;">
+		    	<a class="btn btn-success btn-sm" href="#/users/{{inspectionassignment.user.id}}"><span style="color:#ffffff;">View User</span></a>
 		    	</div>
 		  	</div>
 		
@@ -55,16 +61,22 @@
 					<tr>
 						<th>Task</th>
 						<th>Report</th>
-						<th>Display</th>
+						<th>Error</th>
 					</tr>
 				</thead>
 				<tbody ng-repeat="task in inspectionassignment.tasks">
 					<tr>
 						<td>{{task.taskName}}</td>
-						<td><span ng-if="task.state == '0'">not OK</span> <span
-							ng-if="task.state == '1'">OK</span> </td>
-						<td><input ng-if="task.attatchmentIds == '1'" type="submit"
-							ng-click="" value="View Problem" /></td>
+						<td>
+						<span ng-if="task.state == '2'">Not OK</span>
+						<span ng-if="task.state == '1'">OK</span>
+						<span ng-if="task.state == '0'">Initial</span>
+						</td>
+						<td>
+						<a ng-if="" class="btn btn-danger btn-xs" href="#/" >
+						<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+						<span style="margin-left:5px;">View Error</span></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -94,8 +94,9 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			$scope.formControl = {}
 			
 			if ($routeParams.id == null) {
-
 				$scope.inspectionassignment = {};
+				
+				$scope.inspectionassignment.isTemplate = 'false';
 
 				$scope.inspectionassignment.tasks = new Array();
 				$scope.inspectionassignment.tasks.push({
@@ -122,6 +123,8 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 					delete template.assignmentName;
 
 					$scope.inspectionassignment = template;
+					
+					$scope.inspectionassignment.isTemplate = 'false';
 				});
 
 				$scope.addTask = function() {
@@ -136,17 +139,19 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			
 				$scope.users = User.list();
 			
+			    $scope.inspectionobjects = InspectionObject.list();
 			
-			
-				
-				$scope.inspectionobjects = InspectionObject.list();
-			
-			
-			
-
 			$scope.save = function(inspectionAssignment) {
 				
-					InspectionAssignment
+				if($scope.inspectionassignment.isTemplate == 'true') {
+					$scope.inspectionassignment.inspectionObject = null;
+					$scope.inspectionassignment.user = null;
+					$scope.inspectionassignment.startDate = null;
+					$scope.inspectionassignment.endDate = null;
+				}	
+				
+				
+				InspectionAssignment
 							.save(
 									inspectionAssignment,
 									function(callbackData) {
