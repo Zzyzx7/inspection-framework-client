@@ -73,7 +73,8 @@
 						<span ng-if="task.state == '0'">Initial</span>
 						</td>
 						<td>
-						<a ng-if="" class="btn btn-danger btn-xs" href="#/" >
+						<a ng-if="task.errorDescription != '' || task.attachments != ''" class="btn btn-danger btn-xs"
+						 href="#/errorDetail/{{inspectionassignment.id}}/{{task.id}}" >
 						<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 						<span style="margin-left:5px;">View Error</span></a>
 						</td>
