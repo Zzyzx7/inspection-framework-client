@@ -6,7 +6,7 @@ sessionControlDirective.directive('inspLogout', ['Logout', '$window', function(L
 							Logout.logout({ },function(callbackData) {
 								$window.location.href = 'index.html#/loggedout';
 						    }, function(callbackData) {
-						        alert(callbackData.data.errorMessage);
+						        //alert(callbackData.data.errorMessage);
 					    });
 					}
 	}
