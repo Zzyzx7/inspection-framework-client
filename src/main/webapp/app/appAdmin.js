@@ -54,7 +54,10 @@ inspectionFrameworkApp.config(['$routeProvider', '$locationProvider', '$httpProv
 			}).when('/templates', {
 				templateUrl : 'adminViews/list-templates.html',
 				controller : 'TemplateListCtrl'
-			}).otherwise({
+			}).when('/errorDetail/:id/:taskid', {
+	            templateUrl: 'adminViews/errorDetail.html',
+	            controller: 'ErrorDetailCtrl'
+	        }).otherwise({
 				redirectTo : '/'
 			});
 		} ]);

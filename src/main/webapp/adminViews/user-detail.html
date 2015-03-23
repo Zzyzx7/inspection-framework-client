@@ -1,4 +1,5 @@
 <div class="panel panel-default">
+<div class="panel-heading">User Information</div>
 	<div class="panel-body">
 		<form ng-submit="save(user)" class="form-horizontal">
 			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>

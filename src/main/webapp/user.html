@@ -37,7 +37,7 @@
 <body ng-controller="AssignmentListCtrl">
 
 	<div class="wrapper">
-		<div class="navbar navbar-default navbar-fixed-top" style="background-color:#042c57;">
+		<div class="navbar navbar-default navbar-fixed-top" style="background-color:#042c57;z-index:5;">
 			<div class="container">
 				<div class="navbar-header">
 					<a class="navbar-brand">
@@ -48,60 +48,38 @@
 					<p class="navbar-text" style="color: #ffffff; font-size: 28px;">
 						Inspection <span style="font-weight: bolder">FRAMEWORK</span>
 					</p>
-					<div class="col-md-5" style="text-align:center;">
-					<p style="color: #ffffff;margin-top:30px;">
-<a id="navLink" href="#/assignments">Open ({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a> /
-<a id="navLink" href="#/saved">Saved ({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a> //
-<a id="navLink" href="#/profile/{{currentUser.id}}">Manage Profile</a>
-
-					</p>
-					</div>
-					
 					<p class="navbar-text navbar-right" style="color: #ffffff;margin-top:25px;margin-right:15px;">
-					   <insp-logout></insp-logout> 
+						<span style="padding-right:25px">Role: Inspector</span>
+					   	<insp-logout></insp-logout> 
 					</p>
-					
 				</div>
-	
-				<!--  <table width="900px" style="margin-left: 20px;">
-					<tr>
-						<td style="font-size: 28px; text-align: left; padding-left: 5px;">
-							
-						</td>
-						<td style="text-align: right;">
-						</td>
-					</tr>
-				</table>
-				-->
 			</div>
 		</div>
-
-	
-	
-	<div class="row" style="margin-right: 0px; margin-left: 0px;margin-top:90px;">
-			<div class="col-md-2">
-				<div class="list-group" role="navigation">
-					<div class="list-group-item" style="background-color:#eee" role="presentation">Assignments</div>
-					<a class="list-group-item" href="#/assignments" role="presentation">Open Assignments
-					({{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}})</a>
-					
-					<a class="list-group-item" href="#/saved" role="presentation">Saved Assignments
-					({{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}})</a>
-					<div class="list-group-item" style="background-color:#eee" role="presentation">User</div>
-					<a class="list-group-item" href="#/profile/{{currentUser.id}}" role="presentation">Manage Profile</a>
+		
+		<div class="navbar navbar-default navbar-fixed-top" style="background-color:#DADCDE;margin-top:60px;z-index:4;border-bottom:1px solid #BFBFBF;">
+			<div class="container" style="text-align:center;margin-top:14px;">
+			    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+				<button class="btn btn-primary" onclick="location.href='#/assignments'">Open<span class="badge" style="margin-left:7px;">{{(inspectionassignments | filter: {isTemplate: "false",state:"0"}).length}}</span></button>
+                <button class="btn btn-primary" onclick="location.href='#/saved'">Saved<span class="badge" style="margin-left:7px;">{{(inspectionassignments | filter: {isTemplate: "false",state:"1"}).length}}</span></button>
 				</div>
-				
+				<span style="margin-left:50px;">
+				<a class="btn btn-primary btn-sm" href="#/profile/{{currentUser.id}}"><span style="color:#ffffff;">Manage Profile</span></a></span>
 			</div>
-			<div class="col-md-8">
-				<ng-view></ng-view>
+		</div>
+		<div class="container-fluid">
+	        <div class="row" style="margin-top:120px;">
+				<div class="col-md-8 col-md-offset-2">
+					<ng-view></ng-view>
+				</div>
 			</div>
 		</div>
 		<div class="push">
 		</div>
-	</div>
+	</div><!-- wrapper -->
+	
 	<footer class="footer">
-    	<div class="container">
-        	<p>Role: User</p>
+    	<div class="container-fluid">
+    	
       	</div>
 	</footer>
 

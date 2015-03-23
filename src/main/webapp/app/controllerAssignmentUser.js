@@ -196,8 +196,8 @@ InspectionAssignmentControllers.controller(
         		  }
 					
 						
-					 getInspectionAssignmentTaskDetails = function(inspectionAssignmentId) {
-						  this.clearAlerts();
+				 getInspectionAssignmentTaskDetails = function() {
+				 	this.clearAlerts();
 					InspectionAssignmentTask.getDetails({
 							inspectionassignmentid : $routeParams.id,
 							taskid : $routeParams.taskid,
@@ -216,7 +216,7 @@ InspectionAssignmentControllers.controller(
 						}, function(callbackData) {
 							console.log(callbackData.data.errorMessage);
 						});
-					 }
+				 	}
 					 
 					 $scope.master = {};
 				      getInspectionAssignmentTaskDetails($routeParams.id);
@@ -226,34 +226,31 @@ InspectionAssignmentControllers.controller(
 						}
 						
 						 $scope.deleteAttachment = function(inspectionAssignmentTask, attachment) {
-                                                            			  clearAlerts();
-                                                            			  var index = $scope.inspectionAssignmentTask.attachments.indexOf(attachment);
-                                                            			  InspectionAssignmentAttachmentTask.remove({
-                                                            				  attachmentid : attachment.gridFsId,
-                                                            				  inspectionassignmentid : inspectionAssignment.id
-                                                            			  }, function(callbackData) {
-                                                            				  $scope.inspectionAssignmentTask.attachments.splice(index, 1);
-                                                            				  $scope.master.attachments.splice(index, 1);
-                                                            				  if($scope.inspectionAssignmentTask.attachments.length == 0) {
-                                                            					  $scope.noAttachments = true;
-                                                            				  } else {
-                                                            					  $scope.noAttachments = false;
-                                                            				  }
-                                                            			  }, function(callbackData) {
-                                                            				  addAlert(callbackData.data.errorMessage, 'danger')
-                                                            			  });
-                                                            		  }
+                                        			  clearAlerts();
+                                        			  var index = $scope.inspectionAssignmentTask.attachments.indexOf(attachment);
+                                        			  InspectionAssignmentAttachment.remove({
+                                        				  attachmentid : attachment.gridFsId,
+                                        				  inspectionassignmentid : $routeParams.id,
+                                        				  taskid: inspectionAssignmentTask.id
+                                        			  }, function(callbackData) {
+                                        				  $scope.inspectionAssignmentTask.attachments.splice(index, 1);
+                                        				  $scope.master.attachments.splice(index, 1);
+                                        				  if($scope.inspectionAssignmentTask.attachments.length == 0) {
+                                        					  $scope.noAttachments = true;
+                                        				  } else {
+                                        					  $scope.noAttachments = false;
+                                        				  }
+                                        			  }, function(callbackData) {
+                                        				  addAlert(callbackData.data.errorMessage, 'danger')
+                                        			  });
+                                        		  }
 						
 						
 						
                         $scope.save = function(inspectionAssignmentTask) {
-							
-							
 											inspectionAssignmentTask.$update({
 												inspectionassignmentid: $routeParams.id,
 												taskid: inspectionAssignmentTask.id
-												
-												
 									          }, function(callbackData) {
 									              $scope.master = inspectionAssignmentTask;
 									              
@@ -262,10 +259,6 @@ InspectionAssignmentControllers.controller(
 									          }, function(callbackData) {
 									              alert(callbackData.data.errorMessage);
 									          });
-											
-											
-						
-						
 					};
 
 					$scope.reset = function() {

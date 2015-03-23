@@ -1,44 +1,40 @@
-<div class="panel panel-default">
-	<div class="panel-body">
+<div class="panel-body">
 	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	<div class="container-fluid" style="margin-bottom:15px;">
-	<div class="col-md-7">
-		    Search:
-		    <input ng-model="query"/> <span style="margin-left:15px;">Sort by:
-		    <select ng-model="orderProp">
-		        <option value="name">Alphabetical</option>
-		        <option value="endDate">Newest</option>
-		    </select></span>
-		    </div>
-		    <div class="col-md-3 navbar-right" style="text-align:right;">
-		    <a href="#/users/new" class="btn btn-success btn-xs">Create New User</a>
-		    </div>
-		</div>
-		<table class="table table-hover table-bordered">
-		    <thead>
-		        <tr>
-		            <th style="min-width: 100px;">Users</th>
-		            <th style="min-width: 150px;">Name</th>
-		            <th style="min-width: 75px;">E-Mail Address</th>
-		            <th style="min-width: 75px;">Role</th>
-		            <th style="min-width: 75px;">Clear</th>
-		        </tr>
-		    </thead>
-		    <tbody ng-repeat="user in users | filter:query | orderBy:orderProp">
-		        <tr>
-		            <td><a href="#/users/{{user.id}}">{{user.userName}}</a>
-		            </td>
-		            <td>{{user.firstName}} {{user.lastName}}</td>
-		            <td>{{user.emailAddress}}</td>
-		            <td>
-		            	<span ng-if="user.role == 'ROLE_ADMIN'">Administrator</span>
-		            	<span ng-if="user.role == 'ROLE_INSPECTOR'">Inspector</span>
-		            </td>
-		            <td style="text-align:center;">
-		                <input type="submit" class="btn btn-danger btn-xs" ng-click="deleteItem(user)" value="Delete" />
-		            </td>
-		        </tr>
-		    </tbody>
-		</table>
-  </div>
+	<div>
+	    Search:
+	    <input ng-model="query"/> <span style="margin-left:15px;">Sort by:
+	    <select ng-model="orderProp">
+	        <option value="name">Alphabetical</option>
+	        <option value="endDate">Newest</option>
+	    </select></span>
+	    </div>
+	</div>
+	<table class="table table-hover table-bordered">
+	    <thead>
+	        <tr>
+	            <th style="min-width: 100px;">Users</th>
+	            <th style="min-width: 150px;">Name</th>
+	            <th style="min-width: 75px;">E-Mail Address</th>
+	            <th style="min-width: 75px;">Role</th>
+	            <th style="min-width: 75px;">Clear</th>
+	        </tr>
+	    </thead>
+	    <tbody ng-repeat="user in users | filter:query | orderBy:orderProp">
+	        <tr>
+	            <td><a href="#/users/{{user.id}}">{{user.userName}}</a>
+	            </td>
+	            <td>{{user.firstName}} {{user.lastName}}</td>
+	            <td>{{user.emailAddress}}</td>
+	            <td>
+	            	<span ng-if="user.role == 'ROLE_ADMIN'">Administrator</span>
+	            	<span ng-if="user.role == 'ROLE_INSPECTOR'">Inspector</span>
+	            </td>
+	            <td style="text-align:center;">
+	                <input type="submit" class="btn btn-danger btn-xs" ng-click="deleteItem(user)" value="Delete" />
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+ </div>
 

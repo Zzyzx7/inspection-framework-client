@@ -2,86 +2,50 @@
 <html ng-app="inspectionFrameworkApp">
 
 <head>
-<meta charset="utf-8">
-<title>Inspection Framework</title>
-
-<!-- loading different stylesheets -->
-<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="assets/css/app.css">
-<link rel="stylesheet" href="css/fileupload.css">
-
-<script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
-
-<!-- loading AngularJS -->
-<script src="assets/js/angular.js"></script>
-<script src="assets/js/angular-route.min.js"></script>
-<script src="assets/js/angular-resource.min.js"></script>
-
-<script src="assets/libs/ui-bootstrap-tpls-0.12.1.min.js"></script>
-
-<!-- loading different controllers -->
-<script src="app/controllerAssignmentAdmin.js"></script>
-<script src="app/controllerInspectionObject.js"></script>
-<script src="app/controllerUsers.js"></script>
-
-<!-- loading different directives -->
-<script src="app/directiveSession.js"></script>
-
-<script src="app/appAdmin.js"></script>
-<script src="app/services.js"></script>
-<script src="app/httpInterceptors.js"></script>
-<script src="app/constants.js"></script>
-
-<script type="text/javascript" src="assets/js/angular-file-upload.js"></script>
+	<meta charset="utf-8">
+	<title>Inspection Framework</title>
+	
+	<!-- loading different stylesheets -->
+	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/app.css">
+	<link rel="stylesheet" href="css/fileupload.css">
+	
+	<script type="text/javascript" src="assets/libs/jquery-1.11.2.min.js"></script>
+	
+	<!-- loading AngularJS -->
+	<script src="assets/js/angular.js"></script>
+	<script src="assets/js/angular-route.min.js"></script>
+	<script src="assets/js/angular-resource.min.js"></script>
+	
+	<script src="assets/libs/ui-bootstrap-tpls-0.12.1.min.js"></script>
+	
+	<!-- loading different controllers -->
+	<script src="app/controllerAssignmentAdmin.js"></script>
+	<script src="app/controllerInspectionObject.js"></script>
+	<script src="app/controllerUsers.js"></script>
+	<script src="app/controllerIndex.js"></script>
+	
+	<!-- loading different directives -->
+	<script src="app/directiveSession.js"></script>
+	
+	<script src="app/appIndex.js"></script>
+	<script src="app/services.js"></script>
+	<script src="app/httpInterceptors.js"></script>
+	<script src="app/constants.js"></script>
+	
+	<script type="text/javascript" src="assets/js/angular-file-upload.js"></script>
 
 </head>
 
 <body style="background-color: #f2f2f2;">
-
-
-	<table id="login">
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><img alt="Logo goes here" src="assets/img/if_gold_logo.png"
-				width="125px"></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td style="font-size: 28px;">Login to Inspection <span
-				style="font-weight: bolder">FRAMEWORK</span>
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>
-				<insp-login></insp-login>
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>
-				<p>
-					Forgot your password? <a href="index.html">Click here to reset
-						it</a>.
-				</p>
-			</td>
-			<td></td>
-		</tr>
-	</table>
-
-
-
+	<div class="container">
+		<div id="form-signin">
+			<img alt="Inspection Framework Logo" src="assets/img/if_gold_logo.png" width="125px">
+			<ng-view></ng-view>
+		</div>
+	</div>
 	<a href="admin.html#/assignments">Admin LOGIN</a>
 	<a href="user.html#/assignments">User LOGIN</a>
-
 </body>
 
 </html>
