@@ -6,7 +6,10 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 		'InspectionAssignment',
 		function($scope, InspectionAssignment) {
 			$scope.inspectionassignments = InspectionAssignment.list()
-			$scope.orderProp = 'assignmentName';
+			$scope.orderProp = 'name';
+			$scope.orderProp = 'state';
+			$scope.orderProp = 'user.userName';
+			$scope.orderProp = 'endDate';
 
 			$scope.deleteItem = function(inspectionAssignment) {
 				var index = $scope.inspectionassignments
@@ -183,7 +186,11 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 				});
 
 			};
-
+			
+			$scope.deleteItem = function(index) { 
+					  $scope.inspectionassignment.tasks.splice(index, 1);     
+			}
+			
 		} ]);
 
 InspectionAssignmentControllers.controller('AssignmentDetailCtrl', [
@@ -350,7 +357,8 @@ InspectionAssignmentControllers.controller('TemplateListCtrl', [
 		'InspectionAssignment',
 		function($scope, InspectionAssignment) {
 			$scope.inspectionassignments = InspectionAssignment.list()
-			$scope.orderProp = 'assignmentName';
+			$scope.orderProp = 'tasks.length';
+			$scope.orderProp = 'name';
 
 			$scope.deleteItem = function(inspectionAssignment) {
 				var index = $scope.inspectionassignments

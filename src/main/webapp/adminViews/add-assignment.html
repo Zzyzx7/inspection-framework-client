@@ -117,15 +117,15 @@
 	<div class="panel-heading">Create Tasks</div>
 	<div class="panel-body">
 
-		<div class="col-md-9" style="margin-top: 7px;">
+		<div class="col-md-10" style="margin-top: 7px;">
 			<div ng-repeat="task in inspectionassignment.tasks"
 				style="margin: 5px; margin-left: 20px;">
-
-
-				<label for="TaskNameInput">Task Name</label> <input name="tasks"
-					ng-model="task.taskName" type="text" size="25" maxlength="50"
-					value="" style="margin-left: 5px;" /> <label
-					style="margin-left: 20px;" for="descriptionTaskInput">Description</label>
+				
+				<input type="submit" style="margin-right:10px;" class="btn btn-danger btn-xs" ng-click="deleteItem($index)" value="Delete" />
+				<label for="TaskNameInput">Task Name</label>
+				<input name="tasks" ng-model="task.taskName" type="text" size="25" maxlength="50"
+					value="" style="margin-left: 5px;" />
+				<label style="margin-left: 20px;" for="descriptionTaskInput">Description</label>
 				<input name="tasks" ng-model="task.description" type="text"
 					size="25" maxlength="50" value="" style="margin-left: 5px;" />
 			</div>
