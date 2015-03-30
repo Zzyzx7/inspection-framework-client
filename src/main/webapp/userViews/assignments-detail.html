@@ -43,7 +43,12 @@
 										style="margin-left: 5px;" /> not OK
 							</form>
 						</td>
-						<td><a href="#/addError/{{inspectionAssignment.id}}/{{task.id}}" style="display: block;">Add
+						<td>
+						<a ng-if="task.errorDescription != '' || task.attachments != ''" class="btn btn-danger btn-xs"
+						 href="#/addError/{{inspectionAssignment.id}}/{{task.id}}" >
+						<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+						<span style="margin-left:5px;">Edit Error Description</span></a>
+						<a ng-if="task.errorDescription == '' && task.attachments == ''" href="#/addError/{{inspectionAssignment.id}}/{{task.id}}" style="display: block;">Add
 								Error Description</a></td>
 					</tr>
 				</tbody>
