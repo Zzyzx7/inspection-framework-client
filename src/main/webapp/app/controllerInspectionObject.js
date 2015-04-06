@@ -3,6 +3,8 @@ var inspectionObjectControllers = angular.module('inspectionObjectControllers', 
 inspectionObjectControllers.controller('InspectionObjectListCtrl', [ '$scope',
 		'InspectionObject', function($scope, InspectionObject) {
 			$scope.inspectionobjects = InspectionObject.list();
+			$scope.orderProp = 'location';
+			$scope.orderProp = 'customerName';
 			$scope.orderProp = 'objectName';
 
 			$scope.deleteItem = function(inspectionObject) {

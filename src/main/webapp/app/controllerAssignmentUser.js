@@ -3,11 +3,14 @@ var InspectionAssignmentControllers = angular.module(
 
 InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 		'$scope',
+		'$window',
 		'InspectionAssignment',
 		'CurrentUser',
-		function($scope, InspectionAssignment, CurrentUser) {
+		function($scope, $window, InspectionAssignment, CurrentUser) {
 			$scope.inspectionassignments = InspectionAssignment.list()
 			$scope.orderProp = 'assignmentName';
+			$scope.orderProp = 'inspectionObject.objectName';
+			$scope.orderProp = 'endDate';
 
 			// get User ID for "Manage Profile" Link
 			CurrentUser.getDetails(
@@ -17,19 +20,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 						}, function(callbackData) {
 							console.log(callbackData.data.errorMessage);
 						});	
-			
-			$scope.deleteItem = function(inspectionAssignment) {
-				var index = $scope.inspectionassignments
-						.indexOf(inspectionAssignment);
-				InspectionAssignment.remove({
-					inspectionassignmentid : inspectionAssignment.id
-				}, function(callbackData) {
-					$scope.inspectionassignments.splice(index, 1)
-				}, function(callbackData) {
-					console.log(callbackData.data.errorMessage);
-				});
-			}
-			
+						
 			$scope.finish = function(inspectionAssignment) {
 
 				inspectionAssignment.state = '2';
@@ -40,11 +31,10 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 								},
 								function(callbackData) {
 									$scope.master = inspectionAssignment;
+									$window.location.reload();
 								
 								}
 								);
-				
-				
 			};
 		} ]);
 
@@ -56,10 +46,11 @@ InspectionAssignmentControllers
 				[
 						'$scope',
 						'$location',
+						'$window',
 						'$routeParams',
 						'InspectionAssignment',
 						'$rootScope',
-						function($scope, $location, $routeParams,
+						function($scope, $location, $window, $routeParams,
 								InspectionAssignment, $rootScope) {
 
 							$scope.formControl = {}
@@ -88,6 +79,7 @@ InspectionAssignmentControllers
 												function(callbackData) {
 													$scope.master = inspectionAssignment;
 													alert("Assignment saved successfully.")
+													$window.location.reload();
 												}
 												);
 								
@@ -104,13 +96,11 @@ InspectionAssignmentControllers
 												},
 												function(callbackData) {
 													$scope.master = inspectionAssignment;
-													
+													$window.location.reload();
 													alert("Assignment submitted successfully.")
-													
-													$location.path( '/assignments' );
 												}
 												);
-								
+								$location.path('/assignments');								
 							};
 
 							$scope.reset = function() {
