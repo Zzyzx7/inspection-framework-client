@@ -2,7 +2,7 @@
 
 
 	<div class="panel-body">
-	
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	<div class="container-fluid" style="margin-bottom:15px;">
 	<div>
 		    Search:

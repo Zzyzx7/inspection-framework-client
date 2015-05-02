@@ -2,21 +2,41 @@ var inspectionObjectControllers = angular.module('inspectionObjectControllers', 
 
 inspectionObjectControllers.controller('InspectionObjectListCtrl', [ '$scope',
 		'InspectionObject', function($scope, InspectionObject) {
+			addAlert = function(message, type) {
+				if($scope.alerts == undefined) {
+					$scope.alerts = new Array();
+				}
+				$scope.alerts.push({type: type, msg: message});
+			}
+			  
+			clearAlerts = function() {
+				if($scope.alerts == undefined) {
+					$scope.alerts = new Array();
+				}
+				$scope.alerts = [];
+			}
+	
 			$scope.inspectionobjects = InspectionObject.list();
 			$scope.orderProp = 'location';
 			$scope.orderProp = 'customerName';
 			$scope.orderProp = 'objectName';
 
 			$scope.deleteItem = function(inspectionObject) {
+				clearAlerts();
 				var index = $scope.inspectionobjects.indexOf(inspectionObject);
 				InspectionObject.remove({
 					inspectionobjectid : inspectionObject.id
 				}, function(callbackData) {
 					$scope.inspectionobjects.splice(index, 1)
 				}, function(callbackData) {
-					console.log(callbackData.data.errorMessage);
+					addAlert(callbackData.data.errorMessage, 'danger')
 				});
 			}
+			
+			  $scope.closeAlert = function(index) {
+				  $scope.alerts.splice(index, 1);
+			  };
+			  
 		} ]);
 
 

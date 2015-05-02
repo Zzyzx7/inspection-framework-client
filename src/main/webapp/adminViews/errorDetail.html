@@ -42,6 +42,12 @@
 				<label for="fileDescription">Description</label>
 				<input type="text" class="form-control" placeholder="Enter file description" ng-model="fileDescription" size="30" maxlength="30"/>
 			</div>
+			<div class="form-group">
+				<label for="progressbar">Upload Progress</label>
+				<div class="progress" style="">
+                	<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+                </div>
+            </div>
 			<button type="submit" class="btn btn-primary" ng-disabled="uploader.queue < 1">Upload</button>
 		</form>
 		<div class="panel-body">
