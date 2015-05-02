@@ -19,7 +19,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 				}, function(callbackData) {
 					$scope.inspectionassignments.splice(index, 1)
 				}, function(callbackData) {
-					console.log(callbackData.data.errorMessage);
+					alert(callbackData.data.errorMessage);
 				});
 			}
 		} ]);
@@ -248,10 +248,11 @@ InspectionAssignmentControllers.controller(
         			}
         			
         			uploader.onErrorItem = function(item, response, status, headers) {
-        				addAlert(response, 'danger');
+        				addAlert(response.errorMessage, 'danger');
         			}
         			
         			uploader.onBeforeUploadItem = function(item) {
+        				clearAlerts();
         				if(angular.isDefined($scope.fileDescription)) {
         					if(angular.isDefined(item.formData[0])) {
         						item.formData[0] = {fileDescription: $scope.fileDescription}
@@ -265,6 +266,7 @@ InspectionAssignmentControllers.controller(
         		  $scope.noAttachments = false;
         		  
         		  $scope.performUpload = function() {
+        			  clearAlerts();
         			  uploader.uploadItem(0);
         			  if(angular.isDefined($scope.fileDescription)) {
         				  $scope.fileDescription = "";
@@ -351,7 +353,9 @@ InspectionAssignmentControllers.controller(
 								.copy($scope.master);
 					};
 
-					
+				  $scope.closeAlert = function(index) {
+					  $scope.alerts.splice(index, 1);
+				  };
 				} ]);
 
 InspectionAssignmentControllers.controller('TemplateListCtrl', [

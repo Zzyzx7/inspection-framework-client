@@ -32,6 +32,7 @@
       
 <div class="panel panel-default">
 	<div class="panel-heading">Attachments</div>
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	<div class="panel-body">
 		<form ng-submit="performUpload()" name="fileUploadForm">
 			<div class="form-group">

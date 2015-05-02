@@ -157,6 +157,7 @@ InspectionAssignmentControllers.controller(
         			}
         			
         			uploader.onBeforeUploadItem = function(item) {
+        				clearAlerts();
         				if(angular.isDefined($scope.fileDescription)) {
         					if(angular.isDefined(item.formData[0])) {
         						item.formData[0] = {fileDescription: $scope.fileDescription}
@@ -170,6 +171,7 @@ InspectionAssignmentControllers.controller(
         		  $scope.noAttachments = false;
         		  
         		  $scope.performUpload = function() {
+        			  clearAlerts();
         			  uploader.uploadItem(0);
         			  if(angular.isDefined($scope.fileDescription)) {
         				  $scope.fileDescription = "";
@@ -255,8 +257,11 @@ InspectionAssignmentControllers.controller(
 						$scope.inspectionAssignmentTask = angular
 								.copy($scope.master);
 					};
-
 					
+				  $scope.closeAlert = function(index) {
+					  $scope.alerts.splice(index, 1);
+				  };
+
 				} ]);
 
 

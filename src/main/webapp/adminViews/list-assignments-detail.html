@@ -27,6 +27,12 @@
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
+		    	<label for="startDateInput" class="col-sm-3 control-label">Start Date</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control" id="startDateInput" name="startDate" ng-disabled="!formControl.edit" value="{{inspectionassignment.startDate | date:'dd.MM.yyyy'}}"/>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
 		    	<label for="dueDateInput" class="col-sm-3 control-label">Due Date</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="dueDateInput" name="dueDate" ng-disabled="!formControl.edit" value="{{inspectionassignment.endDate | date:'dd.MM.yyyy'}}"/>
