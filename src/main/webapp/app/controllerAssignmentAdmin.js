@@ -19,7 +19,7 @@ InspectionAssignmentControllers.controller('AssignmentListCtrl', [
 				}, function(callbackData) {
 					$scope.inspectionassignments.splice(index, 1)
 				}, function(callbackData) {
-					console.log(callbackData.data.errorMessage);
+					alert(callbackData.data.errorMessage);
 				});
 			}
 		} ]);
@@ -84,12 +84,14 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			  $scope.onDateChange1 = function() {
                   if (this.inspectionassignment.startDate) {
                     this.inspectionassignment.startDate = this.inspectionassignment.startDate.getTime();
+                    $scope.minDueDate = this.inspectionassignment.startDate;
                   }
                 };
                 
                 $scope.onDateChange2 = function() {
                     if (this.inspectionassignment.endDate) {
                       this.inspectionassignment.endDate = this.inspectionassignment.endDate.getTime();
+                      $scope.maxStartDate = this.inspectionassignment.endDate;
                     }
                   };
 			//end of datepicker
@@ -246,10 +248,11 @@ InspectionAssignmentControllers.controller(
         			}
         			
         			uploader.onErrorItem = function(item, response, status, headers) {
-        				addAlert(response, 'danger');
+        				addAlert(response.errorMessage, 'danger');
         			}
         			
         			uploader.onBeforeUploadItem = function(item) {
+        				clearAlerts();
         				if(angular.isDefined($scope.fileDescription)) {
         					if(angular.isDefined(item.formData[0])) {
         						item.formData[0] = {fileDescription: $scope.fileDescription}
@@ -263,6 +266,7 @@ InspectionAssignmentControllers.controller(
         		  $scope.noAttachments = false;
         		  
         		  $scope.performUpload = function() {
+        			  clearAlerts();
         			  uploader.uploadItem(0);
         			  if(angular.isDefined($scope.fileDescription)) {
         				  $scope.fileDescription = "";
@@ -349,7 +353,9 @@ InspectionAssignmentControllers.controller(
 								.copy($scope.master);
 					};
 
-					
+				  $scope.closeAlert = function(index) {
+					  $scope.alerts.splice(index, 1);
+				  };
 				} ]);
 
 InspectionAssignmentControllers.controller('TemplateListCtrl', [

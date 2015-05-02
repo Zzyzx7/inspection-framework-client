@@ -29,6 +29,7 @@ userControllers.controller('UserListCtrl', [ '$scope', 'User', function($scope, 
 	);
 
 	$scope.deleteItem = function(user) {
+		clearAlerts();
 		var index = $scope.users.indexOf(user);
 		User.remove({
 			userid : user.id
