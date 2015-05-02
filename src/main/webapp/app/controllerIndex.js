@@ -48,7 +48,8 @@ indexControllers.controller('RememberPasswordCtrl', [ '$scope','$location', 'Rem
 			$scope.sendPassword = function(username, email) {
 				clearAlerts();
 			      RememberPassword.sendPassword({
-			          username: username
+			          username: username,
+			          email: email
 			      }, function(callbackData) {
 			          addAlert('The password has been sent to you via e-mail.', 'success');
 			          $scope.sentWithSuccess = true;

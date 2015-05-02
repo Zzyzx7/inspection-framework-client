@@ -274,7 +274,7 @@ sessionServices.factory('Logout', [ '$resource', function($resource) {
 } ]);
 
 sessionServices.factory('RememberPassword', ['$resource', function($resource) {
-	return $resource(REST_BACKEND_URL + '/users/rememberpass/:username', {}, {
+	return $resource(REST_BACKEND_URL + '/users/rememberpass/', {}, {
 		'sendPassword' : {
 			method: 'GET'
 		}
