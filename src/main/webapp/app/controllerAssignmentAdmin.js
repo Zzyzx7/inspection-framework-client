@@ -84,12 +84,14 @@ InspectionAssignmentControllers.controller('AddAssignmentCtrl', [
 			  $scope.onDateChange1 = function() {
                   if (this.inspectionassignment.startDate) {
                     this.inspectionassignment.startDate = this.inspectionassignment.startDate.getTime();
+                    $scope.minDueDate = this.inspectionassignment.startDate;
                   }
                 };
                 
                 $scope.onDateChange2 = function() {
                     if (this.inspectionassignment.endDate) {
                       this.inspectionassignment.endDate = this.inspectionassignment.endDate.getTime();
+                      $scope.maxStartDate = this.inspectionassignment.endDate;
                     }
                   };
 			//end of datepicker

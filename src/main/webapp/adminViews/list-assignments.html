@@ -20,7 +20,7 @@
 			<th style="min-width: 150px;">User Responsible</th>
 			<th style="min-width: 75px;">Due Date</th>
 			<th style="min-width: 75px;">Status</th>
-			<th style="min-width: 75px;">Clear</th>
+			<th style="min-width: 75px;">Delete</th>
 		</tr>
 	</thead>
 	<tbody
@@ -37,7 +37,7 @@
 			<span ng-if="inspectionassignment.state == 2">Finished</span>
 			</td>
 			<td style="text-align:center;"><input type="submit" class="btn btn-danger btn-xs"
-				ng-click="deleteItem(inspectionassignment)" ng-if="inspectionassignment.state == '2' || inspectionassignment.state == '0'" value="Clear" />
+				ng-click="deleteItem(inspectionassignment)" ng-if="inspectionassignment.state == '2' || inspectionassignment.state == '0'" value="Delete" />
 				</td>
 		</tr>
 	</tbody>

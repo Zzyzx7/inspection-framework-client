@@ -71,7 +71,7 @@
 						<input name="startDate" type="text" class="form-control"
 							datepicker-popup="{{format}}" size="15"
 							ng-model="inspectionassignment.startDate" is-open="$parent.opened1"
-							min-date="minDate" max-date="" datepicker-options="dateOptions"
+							min-date="" max-date="maxStartDate" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange1()"
 							close-text="Close" /> <span class="input-group-btn">
 							<button id="1" type="button" class="btn btn-default" ng-click="open($event)">
@@ -90,7 +90,7 @@
 						<input name="dueDate" type="text" class="form-control"
 							datepicker-popup="{{format}}" size="15"
 							ng-model="inspectionassignment.endDate" is-open="$parent.opened2"
-							min-date="minDate" max-date="" datepicker-options="dateOptions"
+							min-date="minDueDate" max-date="" datepicker-options="dateOptions"
 							date-disabled="disabled(date, mode)" ng-change="onDateChange2()"
 							close-text="Close" /> <span class="input-group-btn">
 							<button id="2" type="button" class="btn btn-default" ng-click="open($event)">
